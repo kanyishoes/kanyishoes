@@ -4,148 +4,75 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>KANYI SHOES</title>
+<title>KANYI STORE</title>
 
-<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- Bootstrap Icons -->
 <link rel="stylesheet"
 href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<!-- Swiper -->
 <link rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-<!-- Custom CSS -->
 <link rel="stylesheet" href="./css/home.css">
 </head>
 
 <body class="bg-slate-50">
 
-<!-- TOP NAVBAR -->
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+<!-- TOP NAV -->
+<header class="bg-white shadow-sm sticky top-0 z-50">
 
-<div class="flex justify-between items-center px-4 py-4">
+<div class="max-w-md mx-auto px-4 py-4 flex justify-between items-center">
 
-<div>
-<h1 class="logo-text">KANYI</h1>
-</div>
-
-<div class="flex gap-4 items-center">
+<h1 class="text-sky-600 font-bold text-xl">
+KANYI STORE
+</h1>
 
 <button>
-<i class="bi bi-search text-xl text-sky-500"></i>
+<i class="bi bi-search text-xl text-slate-700"></i>
 </button>
-
-<button class="relative">
-
-<i class="bi bi-heart-fill text-xl text-red-500"></i>
-
-<span
-class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
-2
-</span>
-
-</button>
-
-<button class="relative">
-
-<i class="bi bi-cart3 text-xl text-sky-500"></i>
-
-<span
-class="absolute -top-2 -right-2 bg-sky-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
-3
-</span>
-
-</button>
-
-</div>
 
 </div>
 
 </header>
 
-<!-- MAIN -->
-<main class="pt-20 pb-24">
+<main class="pb-24">
 
-<!-- HERO -->
-<section class="px-4">
+<!-- BANNER -->
+<section class="p-4">
 
-<div class="swiper heroSwiper luxury-radius">
+<div class="swiper bannerSwiper rounded-3xl overflow-hidden">
 
 <div class="swiper-wrapper">
 
-<!-- Slide 1 -->
-<div class="swiper-slide relative">
+<div class="swiper-slide">
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1200"
+class="banner-image">
 
-<img
-src="https://images.unsplash.com/photo-1542291026-7eec264c27ff"
-class="hero-image"
-alt="Jordan">
-
-<div class="hero-overlay">
-
-<h2>Classic Jordan</h2>
-
-<p>
-Own every step with confidence and timeless style.
-</p>
-
-<button class="hero-btn">
-Shop Collection
-</button>
-
+<div class="banner-content">
+<h2>Everything You Need</h2>
+<p>Quality products at great prices.</p>
+</div>
 </div>
 
+<div class="swiper-slide">
+<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1200"
+class="banner-image">
+
+<div class="banner-content">
+<h2>Shop Electronics</h2>
+<p>Latest gadgets available.</p>
+</div>
 </div>
 
-<!-- Slide 2 -->
-<div class="swiper-slide relative">
+<div class="swiper-slide">
+<img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1200"
+class="banner-image">
 
-<img
-src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519"
-class="hero-image"
-alt="Nike">
-
-<div class="hero-overlay">
-
-<h2>Nike Premium</h2>
-
-<p>
-Performance engineered for winners.
-</p>
-
-<button class="hero-btn">
-Shop Collection
-</button>
-
+<div class="banner-content">
+<h2>Books & Learning</h2>
+<p>Expand your knowledge.</p>
 </div>
-
-</div>
-
-<!-- Slide 3 -->
-<div class="swiper-slide relative">
-
-<img
-src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77"
-class="hero-image"
-alt="Zara">
-
-<div class="hero-overlay">
-
-<h2>Zara Luxury</h2>
-
-<p>
-Where elegance meets modern fashion.
-</p>
-
-<button class="hero-btn">
-Shop Collection
-</button>
-
-</div>
-
 </div>
 
 </div>
@@ -156,192 +83,88 @@ Shop Collection
 
 </section>
 
-<!-- FEATURED -->
-<section class="mt-8 px-4">
-
-<div class="flex justify-between items-center mb-4">
+<!-- CATEGORIES -->
+<section class="px-4">
 
 <h2 class="section-title">
-Featured Shoes
-</h2>
-
-<a href="#" class="text-sky-500 text-sm">
-See All
-</a>
-
-</div>
-
-<div class="grid grid-cols-2 gap-4">
-
-<!-- CARD -->
-<div class="product-card">
-
-<div class="featured-badge">
-Featured
-</div>
-
-<img
-src="https://images.unsplash.com/photo-1542291026-7eec264c27ff"
-alt="">
-
-<h3>Jordan Air Max</h3>
-
-<p class="price">
-UGX 250,000
-</p>
-
-<button class="view-btn">
-View
-</button>
-
-</div>
-
-<div class="product-card">
-
-<div class="featured-badge">
-Featured
-</div>
-
-<img
-src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519"
-alt="">
-
-<h3>Nike Revolution</h3>
-
-<p class="price">
-UGX 220,000
-</p>
-
-<button class="view-btn">
-View
-</button>
-
-</div>
-
-<div class="product-card">
-
-<div class="featured-badge">
-Featured
-</div>
-
-<img
-src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77"
-alt="">
-
-<h3>Zara Premium</h3>
-
-<p class="price">
-UGX 280,000
-</p>
-
-<button class="view-btn">
-View
-</button>
-
-</div>
-
-<div class="product-card">
-
-<div class="featured-badge">
-Featured
-</div>
-
-<img
-src="https://images.unsplash.com/photo-1608231387042-66d1773070a5"
-alt="">
-
-<h3>Classic Leather</h3>
-
-<p class="price">
-UGX 180,000
-</p>
-
-<button class="view-btn">
-View
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- CATEGORIES -->
-<section class="mt-10 px-4">
-
-<h2 class="section-title mb-4">
 Categories
 </h2>
 
-<div class="grid grid-cols-4 gap-4 text-center">
+<div class="grid grid-cols-2 gap-4 mt-4">
 
-<div class="category-item">
-<i class="bi bi-person-fill"></i>
-<p>Men</p>
+<a href="#" class="category-card">
+
+<div class="icon-box">
+<i class="bi bi-bag-fill"></i>
 </div>
 
-<div class="category-item">
-<i class="bi bi-person-heart"></i>
-<p>Women</p>
+<h3>Shoes</h3>
+
+<p>Fashion & Sports</p>
+
+</a>
+
+<a href="#" class="category-card">
+
+<div class="icon-box">
+<i class="bi bi-laptop-fill"></i>
 </div>
 
-<div class="category-item">
-<i class="bi bi-emoji-smile"></i>
-<p>Kids</p>
+<h3>Electronics</h3>
+
+<p>Phones & Gadgets</p>
+
+</a>
+
+<a href="#" class="category-card">
+
+<div class="icon-box">
+<i class="bi bi-book-fill"></i>
 </div>
 
-<div class="category-item">
-<i class="bi bi-lightning-charge-fill"></i>
-<p>Sports</p>
-</div>
+<h3>Books</h3>
 
-<div class="category-item">
-<i class="bi bi-briefcase-fill"></i>
-<p>Formal</p>
-</div>
+<p>Educational & More</p>
 
-<div class="category-item">
+</a>
+
+<a href="#" class="category-card">
+
+<div class="icon-box">
 <i class="bi bi-stars"></i>
-<p>Casual</p>
 </div>
 
-<div class="category-item">
-<i class="bi bi-shield-fill"></i>
-<p>Boots</p>
-</div>
+<h3>Special Order</h3>
 
-<div class="category-item">
-<i class="bi bi-trophy-fill"></i>
-<p>Sneakers</p>
-</div>
+<p>Request Any Item</p>
+
+</a>
 
 </div>
 
 </section>
 
 <!-- CONTACT -->
-<section class="mt-10 px-4">
+<section class="p-4 mt-6">
 
 <div class="contact-card">
 
-<h2>
-Contact Us
-</h2>
+<h2>Contact Information</h2>
 
-<p>
+<div class="contact-item">
 <i class="bi bi-envelope-fill"></i>
-info@kanyishoes.com
-</p>
+<span>info@kanyistore.com</span>
+</div>
 
-<p>
+<div class="contact-item">
 <i class="bi bi-whatsapp"></i>
-+256 700 000 000
-</p>
+<span>+256 700 000 000</span>
+</div>
 
-<p>
+<div class="contact-item">
 <i class="bi bi-telephone-fill"></i>
-+256 700 000 000
-</p>
+<span>+256 700 000 000</span>
+</div>
 
 </div>
 
@@ -349,37 +172,8 @@ info@kanyishoes.com
 
 </main>
 
-<!-- BOTTOM NAV -->
-<nav class="bottom-nav">
-
-<a href="#" class="active-nav">
-<i class="bi bi-house-fill"></i>
-<span>Home</span>
-</a>
-
-<a href="#">
-<i class="bi bi-shop"></i>
-<span>Shoes</span>
-</a>
-
-<a href="#">
-<i class="bi bi-box-seam"></i>
-<span>Orders</span>
-</a>
-
-<a href="#">
-<i class="bi bi-person"></i>
-<span>Profile</span>
-</a>
-
-</nav>
-
-<!-- Swiper -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-<!-- JS -->
 <script src="./js/home.js"></script>
 
 </body>
 </html>
-
