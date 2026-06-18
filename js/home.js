@@ -61,3 +61,15 @@ if ("serviceWorker" in navigator) {
             .catch(err => console.log(err));
     });
 }
+const swiper = new Swiper(".heroSwiper", {
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false
+  },
+  speed: 1000,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true
+  }
+});
