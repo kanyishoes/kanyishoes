@@ -22,34 +22,40 @@
 <body class="bg-slate-50">
 
     <!-- Header -->
-    <header class="fixed top-0 left-0 w-full bg-white shadow-sm z-50">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-
-            <div class="font-bold text-xl text-slate-900">
-                Kanye Series
-            </div>
-
-            <div class="flex items-center gap-4">
-
-                <button id="searchBtn"
-                    class="text-xl text-slate-700">
-                    <i class="bi bi-search"></i>
-                </button>
-
-                <button class="relative text-xl text-slate-700">
-                    <i class="bi bi-cart3"></i>
-
-                    <span
-                        class="absolute -top-2 -right-2 bg-blue-600 text-white text-xs h-5 w-5 rounded-full flex items-center justify-center">
-                        0
-                    </span>
-                </button>
-
-            </div>
-
+    <header class="fixed top-0 left-0 right-0 bg-white border-b z-50">
+      <div class="h-16 px-4 flex items-center justify-between">
+    
+        <h1 class="font-bold text-xl">
+          Kanye Series
+        </h1>
+    
+        <div class="flex items-center gap-4">
+    
+          <button>
+            <i class="bi bi-heart text-xl"></i>
+          </button>
+    
+          <button>
+            <i class="bi bi-search text-xl"></i>
+          </button>
+    
+          <button class="relative">
+            <i class="bi bi-cart3 text-xl"></i>
+    
+            <span
+              class="absolute -top-2 -right-2
+                     bg-blue-600 text-white
+                     text-xs h-5 w-5 rounded-full
+                     flex items-center justify-center">
+              0
+            </span>
+    
+          </button>
+    
         </div>
+    
+      </div>
     </header>
-
     <main class="pt-16">
 
         <!-- Hero -->
@@ -225,7 +231,37 @@
         </div>
 
     </footer>
+<nav
+ class="fixed bottom-0 left-0 right-0
+        bg-white border-t
+        h-16 flex justify-around
+        items-center z-50">
 
+  <a href="index.html"
+     class="nav-item active">
+     <i class="bi bi-house"></i>
+     <span>Home</span>
+  </a>
+
+  <a href="products.html"
+     class="nav-item">
+     <i class="bi bi-grid"></i>
+     <span>Products</span>
+  </a>
+
+  <a href="orders.html"
+     class="nav-item">
+     <i class="bi bi-box-seam"></i>
+     <span>Orders</span>
+  </a>
+
+  <a href="profile.html"
+     class="nav-item">
+     <i class="bi bi-person"></i>
+     <span>Profile</span>
+  </a>
+
+</nav>
     <script src="js/home.js"></script>
 
 </body>
