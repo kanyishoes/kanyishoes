@@ -86,3 +86,18 @@
     }
 
 }
+.nav-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:.75rem;
+  color:#64748b;
+}
+
+.nav-item i{
+  font-size:1.2rem;
+}
+
+.nav-item.active{
+  color:#2563eb;
+}
