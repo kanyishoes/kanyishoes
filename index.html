@@ -1,65 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanye Series</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#111827">
+  <title>Kanye Series</title>
 
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Swiper -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/home.css">
+  <!-- Home CSS -->
+  <link rel="stylesheet" href="css/home.css">
 </head>
+
 <body class="bg-slate-50">
 
-    <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 bg-white border-b z-50">
-      <div class="h-16 px-4 flex items-center justify-between">
-    
-        <h1 class="font-bold text-xl">
-          Kanye Series
-        </h1>
-    
-        <div class="flex items-center gap-4">
-    
-          <button>
-            <i class="bi bi-heart text-xl"></i>
-          </button>
-    
-          <button>
-            <i class="bi bi-search text-xl"></i>
-          </button>
-    
-          <button class="relative">
-            <i class="bi bi-cart3 text-xl"></i>
-    
-            <span
-              class="absolute -top-2 -right-2
-                     bg-blue-600 text-white
-                     text-xs h-5 w-5 rounded-full
-                     flex items-center justify-center">
-              0
-            </span>
-    
-          </button>
-    
-        </div>
-    
-      </div>
-    </header>
-    <main class="pt-16">
+  <!-- ===================== -->
+  <!-- TOP APP BAR -->
+  <!-- ===================== -->
+  <header
+    class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200">
 
-        <!-- Hero -->
-        <section class="px-4 pt-4">
+    <div class="h-16 px-4 flex items-center justify-between">
+
+      <!-- Logo -->
+      <h1 class="text-xl font-bold text-slate-900">
+        Kanye Series
+      </h1>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-4">
+
+        <button>
+          <img
+            src="assets/icons/wishlist.svg"
+            alt="Wishlist"
+            class="w-6 h-6"
+          >
+        </button>
+
+        <button>
+          <img
+            src="assets/icons/search.svg"
+            alt="Search"
+            class="w-6 h-6"
+          >
+        </button>
+
+        <button class="relative">
+
+          <img
+            src="assets/icons/cart.svg"
+            alt="Cart"
+            class="w-6 h-6"
+          >
+
+          <span
+            class="absolute -top-2 -right-2
+            bg-blue-600 text-white text-xs
+            w-5 h-5 rounded-full flex items-center justify-center">
+            0
+          </span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- ===================== -->
+  <!-- MAIN -->
+  <!-- ===================== -->
+
+  <main class="pt-16 pb-24">
+
+    <!-- ===================== -->
+    <!-- HERO SLIDER -->
+    <!-- ===================== -->
+
+    <section class="px-4 pt-4">
 
       <div class="swiper heroSwiper rounded-3xl overflow-hidden shadow-xl">
 
@@ -220,172 +247,156 @@
 
     </section>
 
-        <!-- Categories -->
-        <section class="px-4 py-8">
+    <!-- ===================== -->
+    <!-- CATEGORIES -->
+    <!-- ===================== -->
 
-            <div class="max-w-7xl mx-auto">
+    <section class="px-4 py-8">
 
-                <h2 class="section-title">
-                    Categories
-                </h2>
+      <h2 class="text-xl font-bold text-slate-900 mb-4">
+        Categories
+      </h2>
 
-                <div class="grid grid-cols-2 gap-4 mt-5">
+      <div class="grid grid-cols-2 gap-4">
 
-                    <div class="category-card">
-                        <div class="category-icon">👟</div>
-                        <h3>Shoes</h3>
-                    </div>
+       <a href="#" class="category-card">
+          <img src="assets/icons/shoes.svg"
+               class="w-14 h-14 mb-3">
+          <h3 class="font-semibold">Shoes</h3>
+        </a>
 
-                    <div class="category-card">
-                        <div class="category-icon">📱</div>
-                        <h3>Electronics</h3>
-                    </div>
+        <a href="#" class="category-card">
+          <img src="assets/icons/electronics.svg"
+               class="w-14 h-14 mb-3">
+          <h3 class="font-semibold">Electronics</h3>
+        </a>
 
-                    <div class="category-card">
-                        <div class="category-icon">🔬</div>
-                        <h3>Science Books</h3>
-                    </div>
+        <a href="#" class="category-card">
+          <img src="assets/icons/science-books.svg"
+               class="w-14 h-14 mb-3">
+          <h3 class="font-semibold">Science Books</h3>
+        </a>
 
-                    <div class="category-card">
-                        <div class="category-icon">🛒</div>
-                        <h3>Special Orders</h3>
-                    </div>
+        <a href="#" class="category-card">
+          <img src="assets/icons/special-order.svg"
+               class="w-14 h-14 mb-3">
+          <h3 class="font-semibold">Special Orders</h3>
+        </a>
 
-                </div>
+      </div>
 
-            </div>
+    </section>
 
-        </section>
+    <!-- FEATURED PRODUCTS -->
+    <section class="px-4 pb-8">
 
-        <!-- Featured Products -->
-        <section id="featured" class="px-4 py-8">
+      <div class="flex justify-between items-center mb-4">
 
-            <div class="max-w-7xl mx-auto">
+        <h2 class="text-xl font-bold">
+          Featured Products
+        </h2>
 
-                <h2 class="section-title">
-                    Featured Products
-                </h2>
+        <a href="#" class="text-blue-600">
+          View All
+        </a>
 
-                <div id="featuredProducts"
-                     class="product-grid mt-5">
-                </div>
+      </div>
 
-            </div>
+      <div id="featuredProducts">
+        <!-- Dynamic Products -->
+      </div>
 
-        </section>
+    </section>
 
-        <!-- Latest Products -->
-        <section class="px-4 py-8">
+    <!-- CONTACT -->
+    <section class="px-4 pb-8">
 
-            <div class="max-w-7xl mx-auto">
+      <div
+        class="bg-white rounded-3xl p-6 shadow-sm">
 
-                <h2 class="section-title">
-                    Latest Products
-                </h2>
+        <h2 class="font-bold text-xl mb-4">
+          Contact Us
+        </h2>
 
-                <div id="latestProducts"
-                     class="product-grid mt-5">
-                </div>
+        <div class="space-y-3">
 
-            </div>
+          <p>📞 +256 XXX XXX XXX</p>
 
-        </section>
+          <p>💬 +256 XXX XXX XXX</p>
 
-        <!-- Contact -->
-        <section id="contact" class="px-4 py-10">
-
-            <div class="max-w-7xl mx-auto contact-card">
-
-                <h2 class="section-title">
-                    Contact Us
-                </h2>
-
-                <div class="space-y-4 mt-5">
-
-                    <div>
-                        <i class="bi bi-telephone"></i>
-                        +256 XXX XXX XXX
-                    </div>
-
-                    <div>
-                        <i class="bi bi-whatsapp"></i>
-                        +256 XXX XXX XXX
-                    </div>
-
-                    <div>
-                        <i class="bi bi-envelope"></i>
-                        info@kanyeseries.com
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-white">
-
-        <div class="max-w-7xl mx-auto px-4 py-8">
-
-            <div class="grid gap-4">
-
-                <a href="#">Home</a>
-                <a href="#">Categories</a>
-                <a href="#">Special Orders</a>
-                <a href="#">Contact</a>
-
-            </div>
-
-            <div class="flex gap-4 mt-6 text-xl">
-
-                <i class="bi bi-facebook"></i>
-                <i class="bi bi-instagram"></i>
-                <i class="bi bi-whatsapp"></i>
-
-            </div>
-
-            <p class="text-sm text-slate-400 mt-6">
-                © 2026 Kanye Series. All Rights Reserved.
-            </p>
+          <p>✉ info@kanyeseries.com</p>
 
         </div>
 
-    </footer>
-<nav
- class="fixed bottom-0 left-0 right-0
-        bg-white border-t
-        h-16 flex justify-around
-        items-center z-50">
+      </div>
 
-  <a href="index.html"
-     class="nav-item active">
-     <i class="bi bi-house"></i>
-     <span>Home</span>
-  </a>
+    </section>
 
-  <a href="products.html"
-     class="nav-item">
-     <i class="bi bi-grid"></i>
-     <span>Products</span>
-  </a>
+  </main>
 
-  <a href="orders.html"
-     class="nav-item">
-     <i class="bi bi-box-seam"></i>
-     <span>Orders</span>
-  </a>
+  <!-- ===================== -->
+  <!-- BOTTOM NAVIGATION -->
+  <!-- ===================== -->
 
-  <a href="profile.html"
-     class="nav-item">
-     <i class="bi bi-person"></i>
-     <span>Profile</span>
-  </a>
+  <nav
+    class="fixed bottom-0 left-0 right-0
+    bg-white border-t border-slate-200
+    h-16 flex items-center justify-around z-50">
 
-</nav>
-    <script src="js/home.js"></script>
+    <a href="#" class="flex flex-col items-center nav-active">
+      <img
+        src="assets/icons/home.svg"
+        class="w-6 h-6">
+
+      <span class="text-xs mt-1">
+        Home
+      </span>
+
+    </a>
+
+    <a href="#" class="flex flex-col items-center text-slate-500">
+
+      <img
+        src="assets/icons/products.svg"
+        class="w-6 h-6">
+
+      <span class="text-xs mt-1">
+        Products
+      </span>
+
+    </a>
+
+    <a href="#" class="flex flex-col items-center text-slate-500">
+
+      <img
+        src="assets/icons/orders.svg"
+        class="w-6 h-6">
+
+      <span class="text-xs mt-1">
+        Orders
+      </span>
+
+    </a>
+
+    <a href="#" class="flex flex-col items-center text-slate-500">
+
+      <img
+        src="assets/icons/profile.svg"
+        class="w-6 h-6">
+
+      <span class="text-xs mt-1">
+        Profile
+      </span>
+
+    </a>
+
+  </nav>
+
+  <!-- Swiper -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Home JS -->
+  <script src="js/home.js"></script>
 
 </body>
 </html>
