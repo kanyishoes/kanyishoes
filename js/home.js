@@ -1,7 +1,4 @@
-// HERO SLIDER
-
 const swiper = new Swiper(".heroSwiper", {
-
     loop: true,
 
     autoplay: {
@@ -15,18 +12,4 @@ const swiper = new Swiper(".heroSwiper", {
         el: ".swiper-pagination",
         clickable: true,
     }
-
-});
-
-
-// TOP BAR BUTTONS
-
-document.querySelectorAll("button").forEach(btn => {
-
-    btn.addEventListener("click", () => {
-
-        console.log("Button clicked");
-
-    });
-
 });
