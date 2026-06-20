@@ -1,295 +1,166 @@
-/* =========================
-   GLOBAL
-========================= */
+/* GENERAL */
 
-html {
-  scroll-behavior: smooth;
+body{
+    font-family: Inter, sans-serif;
 }
 
-body {
-  font-family: Inter, sans-serif;
-  background: #f8fafc;
-  color: #0f172a;
+.section-title{
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
 }
 
-/* =========================
-   HERO SLIDER
-========================= */
+/* HERO */
 
-.heroSwiper {
-  border-radius: 28px;
-  overflow: hidden;
+.heroSwiper{
+    border-radius: 24px;
 }
 
-.swiper-slide {
-  overflow: hidden;
+.hero-slide{
+    height: 260px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
 }
 
-.swiper-pagination-bullet {
-  background: rgba(255, 255, 255, 0.6);
+.hero-overlay{
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,.75),
+        rgba(0,0,0,.2)
+    );
 }
 
-.swiper-pagination-bullet-active {
-  background: #ffffff;
+.hero-content{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    color: white;
+    z-index: 2;
 }
 
-/* =========================
-   GLASS EFFECT CARD
-========================= */
-
-.glass-card {
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
-  background: rgba(255, 255, 255, 0.12);
-
-  border: 1px solid rgba(255, 255, 255, 0.2);
-
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.15);
-
-  border-radius: 24px;
+.hero-content h2{
+    font-size: 1.8rem;
+    font-weight: 800;
 }
 
-/* =========================
-   CATEGORY CARDS
-========================= */
-
-.category-card {
-  background: #ffffff;
-
-  border-radius: 24px;
-
-  padding: 20px;
-
-  transition: all 0.3s ease;
-
-  box-shadow:
-    0 4px 15px rgba(0, 0, 0, 0.05);
+.hero-content p{
+    margin-top: 6px;
+    font-size: .9rem;
 }
 
-.category-card:hover {
-  transform: translateY(-4px);
+/* SWIPER */
 
-  box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.08);
+.swiper-pagination-bullet{
+    background: white;
 }
 
-.category-card img {
-  transition: transform 0.3s ease;
+.swiper-pagination-bullet-active{
+    background: white;
 }
 
-.category-card:hover img {
-  transform: scale(1.08);
+/* CATEGORY */
+
+.category-card{
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,.05);
+    transition: .3s;
 }
 
-/* =========================
-   PRODUCT CARDS
-========================= */
-
-.product-card {
-  background: white;
-
-  border-radius: 24px;
-
-  overflow: hidden;
-
-  box-shadow:
-    0 4px 15px rgba(0, 0, 0, 0.05);
-
-  transition: 0.3s;
+.category-card:hover{
+    transform: translateY(-4px);
 }
 
-.product-card:hover {
-  transform: translateY(-4px);
+/* PRODUCTS */
 
-  box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.08);
+.product-card{
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,.05);
 }
 
-.product-image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
+.product-card img{
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
 }
 
-.product-info {
-  padding: 16px;
+.product-card h3{
+    font-size: .9rem;
+    font-weight: 600;
 }
 
-.product-name {
-  font-size: 15px;
-  font-weight: 600;
-  color: #0f172a;
+.product-card p{
+    color: #2563eb;
+    font-weight: 700;
+    margin-top: 4px;
 }
 
-.product-price {
-  color: #2563eb;
-  font-weight: 700;
-  margin-top: 6px;
+/* CONTACT */
+
+.contact-card{
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.05);
 }
 
-/* =========================
-   BUTTONS
-========================= */
+/* BOTTOM NAV */
 
-.primary-btn {
-  background: linear-gradient(
-    135deg,
-    #2563eb,
-    #1d4ed8
-  );
+.bottom-nav{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
-  color: white;
+    height: 65px;
 
-  border-radius: 14px;
+    background: white;
 
-  padding: 12px 20px;
+    border-top: 1px solid #e2e8f0;
 
-  font-weight: 600;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 
-  transition: 0.3s;
+    z-index: 100;
 }
 
-.primary-btn:hover {
-  transform: translateY(-2px);
+.bottom-nav a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: #64748b;
+    text-decoration: none;
 }
 
-.secondary-btn {
-  background: white;
-
-  border: 1px solid #e2e8f0;
-
-  color: #0f172a;
-
-  border-radius: 14px;
-
-  padding: 12px 20px;
-
-  font-weight: 600;
+.bottom-nav iconify-icon{
+    font-size: 22px;
 }
 
-/* =========================
-   TOP BAR
-========================= */
-
-header {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  background:
-    rgba(255, 255, 255, 0.95);
+.bottom-nav span{
+    font-size: 12px;
 }
 
-/* =========================
-   CART BADGE
-========================= */
-
-.cart-badge {
-  position: absolute;
-
-  top: -6px;
-  right: -6px;
-
-  width: 18px;
-  height: 18px;
-
-  border-radius: 50%;
-
-  background: #2563eb;
-
-  color: white;
-
-  font-size: 10px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.bottom-nav a:first-child{
+    color: #2563eb;
 }
 
-/* =========================
-   CONTACT CARD
-========================= */
+/* SCROLLBAR */
 
-.contact-card {
-  background: white;
-
-  border-radius: 24px;
-
-  box-shadow:
-    0 4px 15px rgba(0, 0, 0, 0.05);
-
-  padding: 24px;
+::-webkit-scrollbar{
+    width: 5px;
 }
 
-/* =========================
-   BOTTOM NAVIGATION
-========================= */
-
-nav {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  background:
-    rgba(255, 255, 255, 0.96);
-}
-
-nav a {
-  transition: 0.3s ease;
-}
-
-nav a:hover {
-  transform: translateY(-2px);
-}
-
-/* Active Navigation Item */
-.nav-active {
-  color: #2563eb;
-}
-
-/* =========================
-   SCROLLBAR
-========================= */
-
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 20px;
-}
-
-/* =========================
-   TABLET
-========================= */
-
-@media (min-width: 768px) {
-
-  .product-grid {
-    display: grid;
-    grid-template-columns:
-      repeat(2, 1fr);
-    gap: 20px;
-  }
-
-}
-
-/* =========================
-   DESKTOP
-========================= */
-
-@media (min-width: 1024px) {
-
-  .heroSwiper {
-    height: 80vh;
-  }
-
-  .product-grid {
-    display: grid;
-    grid-template-columns:
-      repeat(4, 1fr);
-    gap: 24px;
-  }
-
+::-webkit-scrollbar-thumb{
+    background: #cbd5e1;
 }
