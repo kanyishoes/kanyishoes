@@ -1,269 +1,166 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+/* GENERAL */
 
 body{
-    font-family:Inter,sans-serif;
-    background:#f8fafc;
+    font-family: Inter, sans-serif;
 }
 
-/* Top Nav */
-
-.top-nav{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    height:65px;
-    background:#fff;
-    border-bottom:1px solid #e2e8f0;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 16px;
-    z-index:100;
+.section-title{
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
 }
 
-.logo-section{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
+/* HERO */
 
-.logo-section img{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-}
-
-.logo-section h1{
-    font-size:18px;
-    font-weight:700;
-}
-
-.nav-actions{
-    display:flex;
-    gap:16px;
-}
-
-.nav-icon{
-    position:relative;
-    background:none;
-    border:none;
-}
-
-.nav-icon iconify-icon{
-    font-size:24px;
-}
-
-.badge{
-    position:absolute;
-    top:-5px;
-    right:-5px;
-    background:#2563eb;
-    color:#fff;
-    width:18px;
-    height:18px;
-    border-radius:50%;
-    font-size:10px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-/* Main */
-
-.main-content{
-    padding-top:80px;
-    padding-bottom:90px;
-}
-
-/* Hero */
-
-.hero-section{
-    padding:0 16px;
+.heroSwiper{
+    border-radius: 24px;
 }
 
 .hero-slide{
-    height:260px;
-    background-size:cover;
-    background-position:center;
-    border-radius:24px;
-    overflow:hidden;
-    position:relative;
+    height: 260px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
 }
 
 .hero-overlay{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,.2));
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,.75),
+        rgba(0,0,0,.2)
+    );
 }
 
 .hero-content{
-    position:absolute;
-    bottom:20px;
-    left:20px;
-    color:white;
-    z-index:2;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    color: white;
+    z-index: 2;
 }
 
 .hero-content h2{
-    font-size:28px;
-    font-weight:800;
+    font-size: 1.8rem;
+    font-weight: 800;
 }
 
 .hero-content p{
-    margin-top:5px;
+    margin-top: 6px;
+    font-size: .9rem;
 }
 
-/* Sections */
+/* SWIPER */
 
-.section{
-    padding:24px 16px;
+.swiper-pagination-bullet{
+    background: white;
 }
 
-.section-header{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:16px;
+.swiper-pagination-bullet-active{
+    background: white;
 }
 
-.section-header h2{
-    font-size:20px;
-    font-weight:700;
-}
-
-/* Categories */
-
-.category-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
+/* CATEGORY */
 
 .category-card{
-    background:white;
-    border-radius:20px;
-    padding:20px;
-    text-decoration:none;
-    color:#0f172a;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:10px;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,.05);
+    transition: .3s;
 }
 
-.category-card iconify-icon{
-    font-size:42px;
-    color:#2563eb;
+.category-card:hover{
+    transform: translateY(-4px);
 }
 
-/* Products */
-
-.products-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
+/* PRODUCTS */
 
 .product-card{
-    background:white;
-    border-radius:20px;
-    overflow:hidden;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,.05);
 }
 
-.product-image{
-    position:relative;
+.product-card img{
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
 }
 
-.product-image img{
-    width:100%;
-    height:140px;
-    object-fit:cover;
+.product-card h3{
+    font-size: .9rem;
+    font-weight: 600;
 }
 
-.wishlist-btn{
-    position:absolute;
-    top:10px;
-    right:10px;
-    width:36px;
-    height:36px;
-    border:none;
-    border-radius:50%;
-    background:white;
+.product-card p{
+    color: #2563eb;
+    font-weight: 700;
+    margin-top: 4px;
 }
 
-.product-info{
-    padding:12px;
-}
-
-.price{
-    color:#2563eb;
-    font-weight:700;
-    margin:6px 0;
-}
-
-.cart-btn{
-    width:100%;
-    border:none;
-    background:#2563eb;
-    color:white;
-    padding:10px;
-    border-radius:12px;
-}
-
-/* Contact */
+/* CONTACT */
 
 .contact-card{
-    background:white;
-    border-radius:20px;
-    padding:20px;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.05);
 }
 
-.contact-grid{
-    margin-top:15px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-}
-
-.contact-grid a{
-    text-decoration:none;
-    color:#0f172a;
-    background:#f1f5f9;
-    padding:12px;
-    border-radius:12px;
-}
-
-/* Bottom Nav */
+/* BOTTOM NAV */
 
 .bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    height:70px;
-    background:white;
-    border-top:1px solid #e2e8f0;
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: 65px;
+
+    background: white;
+
+    border-top: 1px solid #e2e8f0;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    z-index: 100;
 }
 
 .bottom-nav a{
-    text-decoration:none;
-    color:#64748b;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: #64748b;
+    text-decoration: none;
 }
 
 .bottom-nav iconify-icon{
-    font-size:24px;
+    font-size: 22px;
 }
 
-.bottom-nav .active{
-    color:#2563eb;
+.bottom-nav span{
+    font-size: 12px;
+}
+
+.bottom-nav a:first-child{
+    color: #2563eb;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #cbd5e1;
 }
