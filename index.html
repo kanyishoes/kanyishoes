@@ -1,402 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanye Series</title>
 
-  <title>Kanye Series</title>
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Swiper -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-  <!-- Swiper -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-  />
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/3.1.1/iconify-icon.min.js"></script>
 
-  <!-- Home CSS -->
-  <link rel="stylesheet" href="css/home.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/home.css">
 </head>
 
 <body class="bg-slate-50">
 
-  <!-- ===================== -->
-  <!-- TOP APP BAR -->
-  <!-- ===================== -->
-  <header
-    class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200">
+    <!-- TOP NAV -->
+    <header class="fixed top-0 left-0 right-0 bg-white border-b z-50">
 
-    <div class="h-16 px-4 flex items-center justify-between">
+        <div class="h-16 px-4 flex items-center justify-between">
 
-      <!-- Logo -->
-      <h1 class="text-xl font-bold text-slate-900">
-        Kanye Series
-      </h1>
+            <div class="flex items-center gap-2">
+                <img src="assets/logo.png"
+                     alt="Logo"
+                     class="w-8 h-8 rounded-full">
 
-      <!-- Actions -->
-      <div class="flex items-center gap-4">
-
-        <button>
-          <img
-            src="assets/icons/wishlist.svg"
-            alt="Wishlist"
-            class="w-6 h-6"
-          >
-        </button>
-
-        <button>
-          <img
-            src="assets/icons/search.svg"
-            alt="Search"
-            class="w-6 h-6"
-          >
-        </button>
-
-        <button class="relative">
-
-          <img
-            src="assets/icons/cart.svg"
-            alt="Cart"
-            class="w-6 h-6"
-          >
-
-          <span
-            class="absolute -top-2 -right-2
-            bg-blue-600 text-white text-xs
-            w-5 h-5 rounded-full flex items-center justify-center">
-            0
-          </span>
-
-        </button>
-
-      </div>
-
-    </div>
-
-  </header>
-
-  <!-- ===================== -->
-  <!-- MAIN -->
-  <!-- ===================== -->
-
-  <main class="pt-16 pb-24">
-
-    <!-- ===================== -->
-    <!-- HERO SLIDER -->
-    <!-- ===================== -->
-
-    <section class="px-4 pt-4">
-
-      <div class="swiper heroSwiper rounded-3xl overflow-hidden shadow-xl">
-
-        <div class="swiper-wrapper">
-
-          <!-- Slide 1 -->
-
-          <div class="swiper-slide">
-
-            <div
-              class="relative h-[65vh] bg-cover bg-center"
-              style="
-              background-image:
-              url('https://images.unsplash.com/photo-1542291026-7eec264c27ff');
-              ">
-
-              <div class="absolute inset-0 bg-black/50"></div>
-
-              <div
-                class="absolute bottom-6 left-4 right-4">
-
-                <div
-                  class="backdrop-blur-md
-                  bg-white/10
-                  border border-white/20
-                  rounded-3xl
-                  p-5">
-
-                  <p class="text-white/80 uppercase text-xs">
-                    Premium Collection
-                  </p>
-
-                  <h2 class="text-white text-3xl font-bold mt-2">
-                    STEP INTO CONFIDENCE
-                  </h2>
-
-                  <p class="text-white/90 mt-2">
-                    Premium footwear designed for comfort,
-                    performance and style.
-                  </p>
-
-                  <button
-                    class="mt-4 bg-blue-600 text-white px-5 py-3 rounded-xl">
-                    Shop Shoes
-                  </button>
-
-                </div>
-
-              </div>
-
+                <h1 class="font-bold text-lg">
+                    Kanye Series
+                </h1>
             </div>
 
-          </div>
+            <div class="flex items-center gap-4">
 
-          <!-- Slide 2 -->
+                <button>
+                    <iconify-icon
+                        icon="solar:heart-outline"
+                        width="24">
+                    </iconify-icon>
+                </button>
 
-          <div class="swiper-slide">
+                <button>
+                    <iconify-icon
+                        icon="solar:cart-large-2-outline"
+                        width="24">
+                    </iconify-icon>
+                </button>
 
-            <div
-              class="relative h-[65vh] bg-cover bg-center"
-              style="
-              background-image:
-              url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9');
-              ">
-
-              <div class="absolute inset-0 bg-black/50"></div>
-
-              <div
-                class="absolute bottom-6 left-4 right-4">
-
-                <div
-                  class="backdrop-blur-md
-                  bg-white/10
-                  border border-white/20
-                  rounded-3xl
-                  p-5">
-
-                  <p class="text-white/80 uppercase text-xs">
-                    Latest Technology
-                  </p>
-
-                  <h2 class="text-white text-3xl font-bold mt-2">
-                    SMARTER EVERY DAY
-                  </h2>
-
-                  <p class="text-white/90 mt-2">
-                    Discover quality electronics,
-                    gadgets and accessories.
-                  </p>
-
-                  <button
-                    class="mt-4 bg-blue-600 text-white px-5 py-3 rounded-xl">
-                    Explore Electronics
-                  </button>
-
-                </div>
-
-              </div>
+                <button>
+                    <iconify-icon
+                        icon="solar:magnifer-outline"
+                        width="24">
+                    </iconify-icon>
+                </button>
 
             </div>
-
-          </div>
-
-          <!-- Slide 3 -->
-
-          <div class="swiper-slide">
-
-            <div
-              class="relative h-[65vh] bg-cover bg-center"
-              style="
-              background-image:
-              url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');
-              ">
-
-              <div class="absolute inset-0 bg-black/50"></div>
-
-              <div
-                class="absolute bottom-6 left-4 right-4">
-
-                <div
-                  class="backdrop-blur-md
-                  bg-white/10
-                  border border-white/20
-                  rounded-3xl
-                  p-5">
-
-                  <p class="text-white/80 uppercase text-xs">
-                    Science Learning
-                  </p>
-
-                  <h2 class="text-white text-3xl font-bold mt-2">
-                    LEARN. DISCOVER. EXCEL.
-                  </h2>
-
-                  <p class="text-white/90 mt-2">
-                    Mathematics, Physics, Chemistry,
-                    Biology, Agriculture and ICT.
-                  </p>
-
-                  <button
-                    class="mt-4 bg-blue-600 text-white px-5 py-3 rounded-xl">
-                    Browse Books
-                  </button>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
 
         </div>
 
-        <div class="swiper-pagination"></div>
+    </header>
 
-      </div>
+    <main class="pt-20 pb-24">
 
-    </section>
+        <!-- HERO -->
+        <section class="px-4">
 
-    <!-- ===================== -->
-    <!-- CATEGORIES -->
-    <!-- ===================== -->
+            <div class="swiper heroSwiper rounded-3xl overflow-hidden">
 
-    <section class="px-4 py-8">
+                <div class="swiper-wrapper">
 
-      <h2 class="text-xl font-bold text-slate-900 mb-4">
-        Categories
-      </h2>
+                    <div class="swiper-slide">
+                        <div class="hero-slide"
+                             style="background-image:url('https://images.unsplash.com/photo-1542291026-7eec264c27ff');">
+                            <div class="hero-overlay"></div>
+                            <div class="hero-content">
+                                <h2>Premium Shoes</h2>
+                                <p>Discover style and comfort.</p>
+                            </div>
+                        </div>
+                    </div>
 
-      <div class="grid grid-cols-2 gap-4">
+                    <div class="swiper-slide">
+                        <div class="hero-slide"
+                             style="background-image:url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9');">
+                            <div class="hero-overlay"></div>
+                            <div class="hero-content">
+                                <h2>Smart Electronics</h2>
+                                <p>Latest gadgets and devices.</p>
+                            </div>
+                        </div>
+                    </div>
 
-       <a href="#" class="category-card">
-          <img src="assets/icons/shoes.svg"
-               class="w-14 h-14 mb-3">
-          <h3 class="font-semibold">Shoes</h3>
+                    <div class="swiper-slide">
+                        <div class="hero-slide"
+                             style="background-image:url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');">
+                            <div class="hero-overlay"></div>
+                            <div class="hero-content">
+                                <h2>Science Books</h2>
+                                <p>Learn and excel.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="swiper-pagination"></div>
+
+            </div>
+
+        </section>
+
+        <!-- CATEGORIES -->
+        <section class="px-4 mt-8">
+
+            <h2 class="section-title">Categories</h2>
+
+            <div class="grid grid-cols-2 gap-4 mt-4">
+
+                <div class="category-card">👟 Shoes</div>
+                <div class="category-card">📱 Electronics</div>
+                <div class="category-card">📚 Books</div>
+                <div class="category-card">🛒 Special Orders</div>
+
+            </div>
+
+        </section>
+
+        <!-- LATEST PRODUCTS -->
+        <section class="px-4 mt-8">
+
+            <div class="flex justify-between mb-4">
+
+                <h2 class="section-title">
+                    Latest Products
+                </h2>
+
+                <a href="#">View All</a>
+
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
+                    <div class="p-3">
+                        <h3>Nike Air Max</h3>
+                        <p>UGX 350,000</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
+                    <div class="p-3">
+                        <h3>Samsung Phone</h3>
+                        <p>UGX 950,000</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f">
+                    <div class="p-3">
+                        <h3>Physics Book</h3>
+                        <p>UGX 40,000</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1580910051074-3eb694886505">
+                    <div class="p-3">
+                        <h3>Wireless Earbuds</h3>
+                        <p>UGX 120,000</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CONTACT -->
+        <section class="px-4 mt-8">
+
+            <div class="contact-card">
+
+                <h2 class="section-title">
+                    Contact Us
+                </h2>
+
+                <div class="mt-4 space-y-2">
+                    <p>📞 +256 XXX XXX XXX</p>
+                    <p>💬 WhatsApp: +256 XXX XXX XXX</p>
+                    <p>✉ info@kanyeseries.com</p>
+                    <p>𝕏 @kanyeseries</p>
+                    <p>📷 @kanyeseries</p>
+                    <p>📘 Kanye Series</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+
+        <a href="#">
+            <iconify-icon icon="solar:home-outline"></iconify-icon>
+            <span>Home</span>
         </a>
 
-        <a href="#" class="category-card">
-          <img src="assets/icons/electronics.svg"
-               class="w-14 h-14 mb-3">
-          <h3 class="font-semibold">Electronics</h3>
+        <a href="#">
+            <iconify-icon icon="solar:widget-outline"></iconify-icon>
+            <span>Products</span>
         </a>
 
-        <a href="#" class="category-card">
-          <img src="assets/icons/science-books.svg"
-               class="w-14 h-14 mb-3">
-          <h3 class="font-semibold">Science Books</h3>
+        <a href="#">
+            <iconify-icon icon="solar:box-outline"></iconify-icon>
+            <span>Orders</span>
         </a>
 
-        <a href="#" class="category-card">
-          <img src="assets/icons/special-order.svg"
-               class="w-14 h-14 mb-3">
-          <h3 class="font-semibold">Special Orders</h3>
+        <a href="#">
+            <iconify-icon icon="solar:user-outline"></iconify-icon>
+            <span>Profile</span>
         </a>
 
-      </div>
+    </nav>
 
-    </section>
-
-    <!-- FEATURED PRODUCTS -->
-    <section class="px-4 pb-8">
-
-      <div class="flex justify-between items-center mb-4">
-
-        <h2 class="text-xl font-bold">
-          Featured Products
-        </h2>
-
-        <a href="#" class="text-blue-600">
-          View All
-        </a>
-
-      </div>
-
-      <div id="featuredProducts">
-        <!-- Dynamic Products -->
-      </div>
-
-    </section>
-
-    <!-- CONTACT -->
-    <section class="px-4 pb-8">
-
-      <div
-        class="bg-white rounded-3xl p-6 shadow-sm">
-
-        <h2 class="font-bold text-xl mb-4">
-          Contact Us
-        </h2>
-
-        <div class="space-y-3">
-
-          <p>📞 +256 XXX XXX XXX</p>
-
-          <p>💬 +256 XXX XXX XXX</p>
-
-          <p>✉ info@kanyeseries.com</p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-  <!-- ===================== -->
-  <!-- BOTTOM NAVIGATION -->
-  <!-- ===================== -->
-
-  <nav
-    class="fixed bottom-0 left-0 right-0
-    bg-white border-t border-slate-200
-    h-16 flex items-center justify-around z-50">
-
-    <a href="#" class="flex flex-col items-center nav-active">
-      <img
-        src="assets/icons/home.svg"
-        class="w-6 h-6">
-
-      <span class="text-xs mt-1">
-        Home
-      </span>
-
-    </a>
-
-    <a href="#" class="flex flex-col items-center text-slate-500">
-
-      <img
-        src="assets/icons/products.svg"
-        class="w-6 h-6">
-
-      <span class="text-xs mt-1">
-        Products
-      </span>
-
-    </a>
-
-    <a href="#" class="flex flex-col items-center text-slate-500">
-
-      <img
-        src="assets/icons/orders.svg"
-        class="w-6 h-6">
-
-      <span class="text-xs mt-1">
-        Orders
-      </span>
-
-    </a>
-
-    <a href="#" class="flex flex-col items-center text-slate-500">
-
-      <img
-        src="assets/icons/profile.svg"
-        class="w-6 h-6">
-
-      <span class="text-xs mt-1">
-        Profile
-      </span>
-
-    </a>
-
-  </nav>
-
-  <!-- Swiper -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-  <!-- Home JS -->
-  <script src="js/home.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js/home.js"></script>
 
 </body>
 </html>
