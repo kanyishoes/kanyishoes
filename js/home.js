@@ -1,32 +1,16 @@
-// HERO SLIDER
-
-const swiper = new Swiper(".heroSwiper", {
-
-    loop: true,
-
-    autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-    },
-
-    speed: 1000,
-
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    }
-
+AOS.init({
+    duration:800,
+    once:true
 });
 
+const searchBtn =
+document.getElementById("searchBtn");
 
-// TOP BAR BUTTONS
+const searchContainer =
+document.getElementById("searchContainer");
 
-document.querySelectorAll("button").forEach(btn => {
+searchBtn.addEventListener("click", () => {
 
-    btn.addEventListener("click", () => {
-
-        console.log("Button clicked");
-
-    });
+    searchContainer.classList.toggle("hidden");
 
 });
