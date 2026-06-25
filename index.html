@@ -15,6 +15,10 @@
 
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -84,7 +88,197 @@
 
     <!-- DEMO CONTENT -->
     <main class="max-w-md mx-auto px-4 mt-5">
+        <!-- HERO SECTION -->
 
+        <section class="max-w-md mx-auto px-3 mt-3">
+
+            <div class="swiper heroSwiper rounded-3xl overflow-hidden shadow-xl">
+
+                <div class="swiper-wrapper">
+
+                    <!-- Slide 1 -->
+
+                    <div class="swiper-slide">
+
+                        <div
+                            class="relative h-[500px]">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1200"
+                                class="w-full h-full object-cover"
+                                alt="Luxury Shoes">
+
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/60 to-transparent">
+
+                            </div>
+
+                            <div
+                                class="absolute inset-0 flex flex-col justify-center px-6">
+
+                                <span
+                                    class="text-blue-300 uppercase tracking-[4px] text-sm font-semibold">
+
+                                    Premium Collection
+
+                                </span>
+
+                                <h2
+                                    class="text-white text-5xl font-bold mt-2 leading-tight">
+
+                                    Walk In Luxury
+
+                                </h2>
+
+                                <p
+                                    class="text-gray-200 mt-4">
+
+                                    Discover premium shoes crafted for style and comfort.
+
+                                </p>
+
+                                <div class="flex gap-3 mt-6">
+
+                                    <button
+                                        class="bg-blue-700 hover:bg-blue-800 text-white px-5 py-3 rounded-xl font-medium">
+
+                                        <i class="fas fa-bag-shopping mr-2"></i>
+                                        Shop Now
+
+                                    </button>
+
+                                    <button
+                                        class="bg-white text-blue-900 px-5 py-3 rounded-xl font-medium">
+
+                                        Learn More
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Slide 2 -->
+
+                    <div class="swiper-slide">
+
+                        <div class="relative h-[500px]">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1200"
+                                class="w-full h-full object-cover"
+                                alt="Electronics">
+
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/60 to-transparent">
+
+                            </div>
+
+                            <div
+                                class="absolute inset-0 flex flex-col justify-center px-6">
+
+                                <span
+                                    class="text-blue-300 uppercase tracking-[4px] text-sm font-semibold">
+
+                                    Smart Technology
+
+                                </span>
+
+                                <h2
+                                    class="text-white text-5xl font-bold">
+
+                                    Future Starts Here
+
+                                </h2>
+
+                                <p
+                                    class="text-gray-200 mt-4">
+
+                                    Premium gadgets and electronics for modern living.
+
+                                </p>
+
+                                <button
+                                    class="mt-6 bg-blue-700 text-white px-5 py-3 rounded-xl w-fit">
+
+                                    <i class="fas fa-mobile-screen mr-2"></i>
+                                    Explore Tech
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Slide 3 -->
+
+                    <div class="swiper-slide">
+
+                        <div class="relative h-[500px]">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200"
+                                class="w-full h-full object-cover"
+                                alt="Books">
+
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/60 to-transparent">
+
+                            </div>
+
+                            <div
+                                class="absolute inset-0 flex flex-col justify-center px-6">
+
+                                <span
+                                    class="text-blue-300 uppercase tracking-[4px] text-sm font-semibold">
+
+                                    Knowledge Hub
+
+                                </span>
+
+                                <h2
+                                    class="text-white text-5xl font-bold">
+
+                                    Read. Learn. Grow.
+
+                                </h2>
+
+                                <p
+                                    class="text-gray-200 mt-4">
+
+                                    Books that inspire success and transformation.
+
+                                </p>
+
+                                <button
+                                    class="mt-6 bg-blue-700 text-white px-5 py-3 rounded-xl w-fit">
+
+                                    <i class="fas fa-book-open mr-2"></i>
+                                    Browse Books
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Pagination -->
+
+                <div class="swiper-pagination"></div>
+
+            </div>
+
+        </section>
         <div
             class="bg-white rounded-2xl p-6 shadow"
             data-aos="zoom-in">
@@ -148,6 +342,7 @@
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
     <script src="js/main.js"></script>
-
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 </html>
