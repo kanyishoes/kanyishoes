@@ -3,61 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Kanye Series</title>
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Swiper -->
+    <!-- Font Awesome -->
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Iconify -->
-    <script src="https://code.iconify.design/iconify-icon/3.1.1/iconify-icon.min.js"></script>
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
-<body class="bg-slate-50">
+<body class="bg-gray-100 pb-20">
 
     <!-- TOP NAV -->
-    <header class="fixed top-0 left-0 right-0 bg-white border-b z-50">
+    <header
+        class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
 
-        <div class="h-16 px-4 flex items-center justify-between">
+        <div class="max-w-md mx-auto">
 
-            <div class="flex items-center gap-2">
-                <img src="assets/logo.png"
-                     alt="Logo"
-                     class="w-8 h-8 rounded-full">
+            <div class="flex items-center justify-between px-4 py-4">
 
-                <h1 class="font-bold text-lg">
-                    Kanye Series.com
-                </h1>
-            </div>
+                <!-- Logo -->
+                <div data-aos="fade-right">
+                    <h1 class="text-2xl font-bold text-blue-900">
+                        Kanye Series
+                    </h1>
+                </div>
 
-            <div class="flex items-center gap-4">
+                <!-- Actions -->
+                <div
+                    class="flex items-center gap-5 text-blue-900 text-xl">
 
-                <button>
-                    <iconify-icon
-                        icon="solar:heart-outline"
-                        width="24">
-                    </iconify-icon>
-                </button>
+                    <button id="searchBtn">
+                        <i class="fas fa-search"></i>
+                    </button>
 
-                <button>
-                    <iconify-icon
-                        icon="solar:cart-large-2-outline"
-                        width="24">
-                    </iconify-icon>
-                </button>
+                    <button>
+                        <i class="fas fa-heart"></i>
+                    </button>
 
-                <button>
-                    <iconify-icon
-                        icon="solar:magnifer-outline"
-                        width="24">
-                    </iconify-icon>
-                </button>
+                    <button class="relative">
+                        <i class="fas fa-shopping-cart"></i>
+
+                        <span
+                            class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                            0
+                        </span>
+                    </button>
+
+                </div>
 
             </div>
 
@@ -65,174 +64,90 @@
 
     </header>
 
-    <main class="pt-20 pb-24">
+    <!-- PAGE SPACING -->
+    <div class="h-20"></div>
 
-        <!-- HERO -->
-        <section class="px-4">
+    <!-- SEARCH BAR -->
+    <div id="searchContainer"
+        class="hidden px-4 max-w-md mx-auto">
 
-            <div class="swiper heroSwiper rounded-3xl overflow-hidden">
+        <div class="bg-white rounded-xl shadow p-3">
 
-                <div class="swiper-wrapper">
+            <input
+                type="text"
+                placeholder="Search shoes, books, electronics..."
+                class="w-full outline-none">
 
-                    <div class="swiper-slide">
-                        <div class="hero-slide"
-                             style="background-image:url('https://images.unsplash.com/photo-1542291026-7eec264c27ff');">
-                            <div class="hero-overlay"></div>
-                            <div class="hero-content">
-                                <h2>Premium Shoes</h2>
-                                <p>Discover style and comfort.</p>
-                            </div>
-                        </div>
-                    </div>
+        </div>
 
-                    <div class="swiper-slide">
-                        <div class="hero-slide"
-                             style="background-image:url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9');">
-                            <div class="hero-overlay"></div>
-                            <div class="hero-content">
-                                <h2>Smart Electronics</h2>
-                                <p>Latest gadgets and devices.</p>
-                            </div>
-                        </div>
-                    </div>
+    </div>
 
-                    <div class="swiper-slide">
-                        <div class="hero-slide"
-                             style="background-image:url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');">
-                            <div class="hero-overlay"></div>
-                            <div class="hero-content">
-                                <h2>Science Books</h2>
-                                <p>Learn and excel.</p>
-                            </div>
-                        </div>
-                    </div>
+    <!-- DEMO CONTENT -->
+    <main class="max-w-md mx-auto px-4 mt-5">
 
-                </div>
+        <div
+            class="bg-white rounded-2xl p-6 shadow"
+            data-aos="zoom-in">
 
-                <div class="swiper-pagination"></div>
+            <h2 class="text-xl font-semibold text-blue-900">
+                Luxury Shopping Experience
+            </h2>
 
-            </div>
+            <p class="text-gray-600 mt-2">
+                Shoes, Electronics and Books.
+            </p>
 
-        </section>
-
-        <!-- CATEGORIES -->
-        <section class="px-4 mt-8">
-
-            <h2 class="section-title">Categories</h2>
-
-            <div class="grid grid-cols-2 gap-4 mt-4">
-
-                <div class="category-card">👟 Shoes</div>
-                <div class="category-card">📱 Electronics</div>
-                <div class="category-card">📚 Books</div>
-                <div class="category-card">🛒 Special Orders</div>
-
-            </div>
-
-        </section>
-
-        <!-- LATEST PRODUCTS -->
-        <section class="px-4 mt-8">
-
-            <div class="flex justify-between mb-4">
-
-                <h2 class="section-title">
-                    Latest Products
-                </h2>
-
-                <a href="#">View All</a>
-
-            </div>
-
-            <div class="grid grid-cols-2 gap-4">
-
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
-                    <div class="p-3">
-                        <h3>Nike Air Max</h3>
-                        <p>UGX 350,000</p>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
-                    <div class="p-3">
-                        <h3>Samsung Phone</h3>
-                        <p>UGX 950,000</p>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f">
-                    <div class="p-3">
-                        <h3>Physics Book</h3>
-                        <p>UGX 40,000</p>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1580910051074-3eb694886505">
-                    <div class="p-3">
-                        <h3>Wireless Earbuds</h3>
-                        <p>UGX 120,000</p>
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- CONTACT -->
-        <section class="px-4 mt-8">
-
-            <div class="contact-card">
-
-                <h2 class="section-title">
-                    Contact Us
-                </h2>
-
-                <div class="mt-4 space-y-2">
-                    <p>📞 +256 XXX XXX XXX</p>
-                    <p>💬 WhatsApp: +256 XXX XXX XXX</p>
-                    <p>✉ info@kanyeseries.com</p>
-                    <p>𝕏 @kanyeseries</p>
-                    <p>📷 @kanyeseries</p>
-                    <p>📘 Kanye Series</p>
-                </div>
-
-            </div>
-
-        </section>
+        </div>
 
     </main>
 
     <!-- BOTTOM NAV -->
-    <nav class="bottom-nav">
+    <nav
+        class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.08)] border-t">
 
-        <a href="#">
-            <iconify-icon icon="solar:home-outline"></iconify-icon>
-            <span>Home</span>
-        </a>
+        <div
+            class="max-w-md mx-auto flex justify-around py-3">
 
-        <a href="#">
-            <iconify-icon icon="solar:widget-outline"></iconify-icon>
-            <span>Products</span>
-        </a>
+            <a href="#"
+                class="flex flex-col items-center text-blue-900">
 
-        <a href="#">
-            <iconify-icon icon="solar:box-outline"></iconify-icon>
-            <span>Orders</span>
-        </a>
+                <i class="fas fa-house text-xl"></i>
+                <span class="text-xs mt-1">Home</span>
 
-        <a href="#">
-            <iconify-icon icon="solar:user-outline"></iconify-icon>
-            <span>Profile</span>
-        </a>
+            </a>
+
+            <a href="#"
+                class="flex flex-col items-center text-gray-500">
+
+                <i class="fas fa-store text-xl"></i>
+                <span class="text-xs mt-1">Products</span>
+
+            </a>
+
+            <a href="#"
+                class="flex flex-col items-center text-gray-500">
+
+                <i class="fas fa-box text-xl"></i>
+                <span class="text-xs mt-1">Orders</span>
+
+            </a>
+
+            <a href="#"
+                class="flex flex-col items-center text-gray-500">
+
+                <i class="fas fa-user text-xl"></i>
+                <span class="text-xs mt-1">Profile</span>
+
+            </a>
+
+        </div>
 
     </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="js/home.js"></script>
+    <!-- JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script src="js/main.js"></script>
 
 </body>
 </html>
