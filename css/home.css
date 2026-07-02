@@ -17,3 +17,14 @@ body{
 .category-card:hover{
     transform:translateY(-8px);
 }
+.productSwiper{
+    padding-bottom: 20px;
+}
+
+.productSwiper .swiper-slide{
+    transition: transform 0.3s ease;
+}
+
+.productSwiper .swiper-slide:hover{
+    transform: scale(1.03);
+}

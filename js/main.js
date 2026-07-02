@@ -1,6 +1,15 @@
-AOS.init({
-    duration:800,
-    once:true
+const productSwiper = new Swiper(".productSwiper", {
+
+    slidesPerView: 1.2,
+    spaceBetween: 15,
+
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+
+    loop: true,
+
 });
 
 const searchBtn =
@@ -34,3 +43,9 @@ const heroSwiper = new Swiper(".heroSwiper", {
     speed: 1200,
 
 });
+
+AOS.init({
+    duration:800,
+    once:true
+});
+
