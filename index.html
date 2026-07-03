@@ -23,133 +23,243 @@
     <link rel="stylesheet" href="css/home.css">
 </head>
 <body class="bg-gray-100 pb-20">
-    <div class="page-container">
-        <!-- TOP NAV -->
-        <header
-            class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+    <div class="bg-gray-100 min-h-screen">
+        <div class="max-w-7xl mx-auto">
+            <!-- TOP NAV -->
+            <header
+                class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
 
-            <div class="max-w-md mx-auto">
+                <div class="max-w-md mx-auto">
 
-                <div class="flex items-center justify-between px-4 py-4">
+                    <div class="flex items-center justify-between px-4 md:px-10 py-4">
 
-                    <!-- Logo -->
-                    <div data-aos="fade-right">
-                        <h1 style="color:black;" class="text-2xl font-bold">
-                            Kanye Series
-                        </h1>
-                    </div>
+                        <!-- Logo -->
+                        <div data-aos="fade-right">
+                            <h1 class="text-2xl md:text-3xl font-bold text-blue-900"></h1>
+                                Kanye Series
+                            </h1>
+                        </div>
 
-                    <!-- Actions -->
-                    <div
-                        class="flex items-center gap-5 text-blue-900 text-xl">
+                        <!-- Actions -->
+                        <div class="flex items-center gap-5 md:gap-8 text-blue-900 text-xl">
 
-                        <button id="searchBtn">
-                            <i class="fas fa-search"></i>
-                        </button>
+                            <button id="searchBtn">
+                                <i class="fas fa-search"></i>
+                            </button>
 
-                        <button>
-                            <i class="fas fa-heart"></i>
-                        </button>
+                            <button>
+                                <i class="fas fa-heart"></i>
+                            </button>
 
-                        <button class="relative">
-                            <i class="fas fa-shopping-cart"></i>
+                            <button class="relative">
+                                <i class="fas fa-shopping-cart"></i>
 
-                            <span
-                                class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
-                                0
-                            </span>
-                        </button>
+                                <span
+                                    class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                                    0
+                                </span>
+                            </button>
+
+                        </div>
 
                     </div>
 
                 </div>
 
+            </header>
+
+            <!-- PAGE SPACING -->
+            <div class="h-20"></div>
+
+            <!-- SEARCH BAR -->
+            <div id="searchContainer"
+                class="hidden px-4 max-w-md mx-auto">
+
+                <div class="bg-white rounded-xl shadow p-3">
+
+                    <input
+                        type="text"
+                        placeholder="Search shoes, books, electronics..."
+                        class="w-full outline-none">
+
+                </div>
+
             </div>
 
-        </header>
+            <!-- DEMO CONTENT -->
+            <main class="max-w-md mx-auto px-4 mt-5">
+                <!-- HERO SECTION -->
 
-        <!-- PAGE SPACING -->
-        <div class="h-20"></div>
+                <section class="max-w-md mx-auto px-3 mt-3">
 
-        <!-- SEARCH BAR -->
-        <div id="searchContainer"
-            class="hidden px-4 max-w-md mx-auto">
+                    <div class="swiper heroSwiper rounded-3xl overflow-hidden shadow-xl">
 
-            <div class="bg-white rounded-xl shadow p-3">
+                        <div class="swiper-wrapper">
 
-                <input
-                    type="text"
-                    placeholder="Search shoes, books, electronics..."
-                    class="w-full outline-none">
+                            <!-- Slide 1 -->
 
-            </div>
+                            <div class="swiper-slide">
 
-        </div>
+                                <div class="hero-slide relative h-[500px]">
 
-        <!-- DEMO CONTENT -->
-        <main class="max-w-md mx-auto px-4 mt-5">
-            <!-- HERO SECTION -->
+                                    <img
+                                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1200"
+                                        class="w-full h-full object-cover"
+                                        alt="Luxury Shoes">
 
-            <section class="max-w-md mx-auto px-3 mt-3">
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/60 to-transparent">
 
-                <div class="swiper heroSwiper rounded-3xl overflow-hidden shadow-xl">
+                                    </div>
 
-                    <div class="swiper-wrapper">
+                                    <div
+                                        class="absolute inset-0 flex flex-col justify-center px-6">
 
-                        <!-- Slide 1 -->
+                                        <span
+                                            class="text-blue-300 uppercase tracking-[4px] text-sm font-semibold">
 
-                        <div class="swiper-slide">
+                                            Premium Collection
 
-                            <div class="hero-slide relative h-[500px]">
+                                        </span>
 
-                                <img
-                                    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1200"
-                                    class="w-full h-full object-cover"
-                                    alt="Luxury Shoes">
+                                        <h2
+                                            class="hero-title text-white text-5xl font-bold mt-2 leading-tight">
 
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/60 to-transparent">
+                                            Walk In Luxury
+
+                                        </h2>
+
+                                        <p
+                                            class="hero-subtitle text-gray-200 mt-4">
+
+                                            Discover premium shoes crafted for style and comfort.
+
+                                        </p>
+
+                                        <div class="flex gap-3 mt-6">
+
+                                            <button
+                                                class="bg-blue-700 hover:bg-blue-800 text-white px-5 py-3 rounded-xl font-medium">
+
+                                                <i class="fas fa-bag-shopping mr-2"></i>
+                                                Shop Now
+
+                                            </button>
+
+                                            <button
+                                                class="bg-white text-blue-900 px-5 py-3 rounded-xl font-medium">
+
+                                                Learn More
+
+                                            </button>
+
+                                        </div>
+
+                                    </div>
 
                                 </div>
 
-                                <div
-                                    class="absolute inset-0 flex flex-col justify-center px-6">
+                            </div>
 
-                                    <span
-                                        class="text-blue-300 uppercase tracking-[4px] text-sm font-semibold">
+                            <!-- Slide 2 -->
 
-                                        Premium Collection
+                            <div class="swiper-slide">
 
-                                    </span>
+                                <div class="relative h-[500px] md:h-[650px] lg:h-[750px]">
 
-                                    <h2
-                                        class="hero-title text-white text-5xl font-bold mt-2 leading-tight">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1200"
+                                        class="w-full h-full object-cover"
+                                        alt="Electronics">
 
-                                        Walk In Luxury
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/60 to-transparent">
 
-                                    </h2>
+                                    </div>
 
-                                    <p
-                                        class="hero-subtitle text-gray-200 mt-4">
+                                    <div
+                                        class="absolute inset-0 flex flex-col justify-center px-6">
 
-                                        Discover premium shoes crafted for style and comfort.
+                                        <span
+                                            class="hero-title uppercase tracking-[4px] text-sm font-semibold">
 
-                                    </p>
+                                            Smart Technology
 
-                                    <div class="flex gap-3 mt-6">
+                                        </span>
+
+                                        <h2
+                                            class="hero-subtitle text-5xl font-bold">
+
+                                            Future Starts Here
+
+                                        </h2>
+
+                                        <p
+                                            class="text-gray-200 mt-4">
+
+                                            Premium gadgets and electronics for modern living.
+
+                                        </p>
 
                                         <button
-                                            class="bg-blue-700 hover:bg-blue-800 text-white px-5 py-3 rounded-xl font-medium">
+                                            class="mt-6 bg-blue-700 text-white px-5 py-3 rounded-xl w-fit">
 
-                                            <i class="fas fa-bag-shopping mr-2"></i>
-                                            Shop Now
+                                            <i class="fas fa-mobile-screen mr-2"></i>
+                                            Explore Tech
 
                                         </button>
 
-                                        <button
-                                            class="bg-white text-blue-900 px-5 py-3 rounded-xl font-medium">
+                                    </div>
 
-                                            Learn More
+                                </div>
+
+                            </div>
+
+                            <!-- Slide 3 -->
+
+                            <div class="swiper-slide">
+
+                                <div class="relative h-[500px] md:h-[650px] lg:h-[750px]">
+
+                                    <img
+                                        src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200"
+                                        class="w-full h-full object-cover"
+                                        alt="Books">
+
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/60 to-transparent">
+
+                                    </div>
+
+                                    <div
+                                        class="absolute inset-0 flex flex-col justify-center px-6">
+
+                                        <span
+                                            class="hero-title uppercase tracking-[4px] text-sm font-semibold">
+
+                                            Knowledge Hub
+
+                                        </span>
+
+                                        <h2
+                                            class="hero-subtitle text-5xl font-bold">
+
+                                            Read. Learn. Grow.
+
+                                        </h2>
+
+                                        <p
+                                            class="text-gray-200 mt-4">
+
+                                            Books that inspire success and transformation.
+
+                                        </p>
+
+                                        <button
+                                            class="mt-6 bg-blue-700 text-white px-5 py-3 rounded-xl w-fit">
+
+                                            <i class="fas fa-book-open mr-2"></i>
+                                            Browse Books
 
                                         </button>
 
@@ -161,375 +271,359 @@
 
                         </div>
 
-                        <!-- Slide 2 -->
+                        <!-- Pagination -->
 
-                        <div class="swiper-slide">
-
-                            <div class="relative h-[500px] md:h-[650px] lg:h-[750px]">
-
-                                <img
-                                    src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1200"
-                                    class="w-full h-full object-cover"
-                                    alt="Electronics">
-
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/60 to-transparent">
-
-                                </div>
-
-                                <div
-                                    class="absolute inset-0 flex flex-col justify-center px-6">
-
-                                    <span
-                                        class="hero-title uppercase tracking-[4px] text-sm font-semibold">
-
-                                        Smart Technology
-
-                                    </span>
-
-                                    <h2
-                                        class="hero-subtitle text-5xl font-bold">
-
-                                        Future Starts Here
-
-                                    </h2>
-
-                                    <p
-                                        class="text-gray-200 mt-4">
-
-                                        Premium gadgets and electronics for modern living.
-
-                                    </p>
-
-                                    <button
-                                        class="mt-6 bg-blue-700 text-white px-5 py-3 rounded-xl w-fit">
-
-                                        <i class="fas fa-mobile-screen mr-2"></i>
-                                        Explore Tech
-
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Slide 3 -->
-
-                        <div class="swiper-slide">
-
-                            <div class="relative h-[500px] md:h-[650px] lg:h-[750px]">
-
-                                <img
-                                    src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200"
-                                    class="w-full h-full object-cover"
-                                    alt="Books">
-
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/60 to-transparent">
-
-                                </div>
-
-                                <div
-                                    class="absolute inset-0 flex flex-col justify-center px-6">
-
-                                    <span
-                                        class="hero-title uppercase tracking-[4px] text-sm font-semibold">
-
-                                        Knowledge Hub
-
-                                    </span>
-
-                                    <h2
-                                        class="hero-subtitle text-5xl font-bold">
-
-                                        Read. Learn. Grow.
-
-                                    </h2>
-
-                                    <p
-                                        class="text-gray-200 mt-4">
-
-                                        Books that inspire success and transformation.
-
-                                    </p>
-
-                                    <button
-                                        class="mt-6 bg-blue-700 text-white px-5 py-3 rounded-xl w-fit">
-
-                                        <i class="fas fa-book-open mr-2"></i>
-                                        Browse Books
-
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-                        </div>
+                        <div class="swiper-pagination"></div>
 
                     </div>
 
-                    <!-- Pagination -->
+                </section>
+                <!-- CATEGORIES -->
 
-                    <div class="swiper-pagination"></div>
+                <section class="max-w-md mx-auto px-3 mt-8">
 
-                </div>
+                    <!-- Section Header -->
 
-            </section>
-            <!-- CATEGORIES -->
+                    <div class="flex justify-between items-center mb-5">
 
-            <section class="max-w-md mx-auto px-3 mt-8">
+                        <div>
+                            <h2 class="text-2xl font-bold text-blue-950">
+                                Categories
+                            </h2>
 
-                <!-- Section Header -->
-
-                <div class="flex justify-between items-center mb-5">
-
-                    <div>
-                        <h2 class="text-2xl font-bold text-blue-950">
-                            Categories
-                        </h2>
-
-                        <p class="text-gray-500 text-sm">
-                            Explore our collections
-                        </p>
-                    </div>
-
-                    <button
-                        class="text-blue-700 font-medium text-sm">
-
-                        View All
-
-                    </button>
-
-                </div>
-
-                <!-- Grid -->
-
-                <div class="categories-grid grid grid-cols-2 gap-4">
-
-                    <!-- Shoes -->
-
-                    <div
-                        class="group relative overflow-hidden rounded-3xl h-52 shadow-xl cursor-pointer">
-
-                        <img
-                            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000"
-                            alt="Shoes"
-                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent">
-                        </div>
-
-                        <div
-                            class="absolute bottom-4 left-4">
-
-                            <i class="fas fa-shoe-prints text-white text-xl"></i>
-
-                            <h3
-                                class="text-white font-bold text-lg mt-2">
-
-                                Shoes
-
-                            </h3>
-
-                            <p
-                                class="text-gray-200 text-xs">
-
-                                Luxury footwear
-
+                            <p class="text-gray-500 text-sm">
+                                Explore our collections
                             </p>
-
                         </div>
+
+                        <button
+                            class="text-blue-700 font-medium text-sm">
+
+                            View All
+
+                        </button>
 
                     </div>
 
-                    <!-- Electronics -->
+                    <!-- Grid -->
 
-                    <div
-                        class="group relative overflow-hidden rounded-3xl h-52 shadow-xl cursor-pointer">
+                    <div class="categories-grid grid grid-cols-2 gap-4">
 
-                        <img
-                            src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1000"
-                            alt="Electronics"
-                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                        <!-- Shoes -->
 
                         <div
-                            class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent">
-                        </div>
+                            class="group relative overflow-hidden rounded-3xl h-52 shadow-xl cursor-pointer">
 
-                        <div
-                            class="absolute bottom-4 left-4">
-
-                            <i class="fas fa-laptop text-white text-xl"></i>
-
-                            <h3
-                                class="text-white font-bold text-lg mt-2">
-
-                                Electronics
-
-                            </h3>
-
-                            <p
-                                class="text-gray-200 text-xs">
-
-                                Smart devices
-
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <!-- Books -->
-
-                    <div
-                        class="group relative overflow-hidden rounded-3xl h-52 shadow-xl cursor-pointer">
-
-                        <img
-                            src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1000"
-                            alt="Books"
-                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent">
-                        </div>
-
-                        <div
-                            class="absolute bottom-4 left-4">
-
-                            <i class="fas fa-book-open text-white text-xl"></i>
-
-                            <h3
-                                class="text-white font-bold text-lg mt-2">
-
-                                Books
-
-                            </h3>
-
-                            <p
-                                class="text-gray-200 text-xs">
-
-                                Knowledge hub
-
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <!-- Special Orders -->
-
-                    <div
-                        class="group relative overflow-hidden rounded-3xl h-52 shadow-xl cursor-pointer">
-
-                        <img
-                            src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1000"
-                            alt="Special Orders"
-                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent">
-                        </div>
-
-                        <div
-                            class="absolute bottom-4 left-4">
-
-                            <i class="fas fa-gem text-white text-xl"></i>
-
-                            <h3
-                                class="text-white font-bold text-lg mt-2">
-
-                                Special Orders
-
-                            </h3>
-
-                            <p
-                                class="text-gray-200 text-xs">
-
-                                Custom requests
-
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-            <!-- LATEST PRODUCTS -->
-
-            <section class="max-w-md mx-auto px-3 mt-10">
-
-                <div class="flex justify-between items-center mb-4">
-
-                    <div>
-                        <h2 class="text-2xl font-bold text-blue-950">
-                            Latest Products
-                        </h2>
-
-                        <p class="text-gray-500 text-sm">
-                            Fresh arrivals for you
-                        </p>
-                    </div>
-
-                    <button class="text-blue-700 text-sm font-medium">
-                        See All
-                    </button>
-
-                </div>
-
-                <!-- Swiper -->
-                <div class="swiper productSwiper">
-
-                    <div class="swiper-wrapper">
-
-                        <!-- Product 1 -->
-                        <div class="swiper-slide">
+                            <img
+                                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000"
+                                alt="Shoes"
+                                class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
 
                             <div
-                                class="categories-grid bg-white rounded-3xl shadow-lg overflow-hidden relative">
+                                class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent">
+                            </div>
 
-                                <!-- Favorite -->
-                                <button
-                                    class="absolute top-3 right-3 bg-white/80 backdrop-blur p-2 rounded-full">
-                                    <i class="fas fa-heart text-gray-500"></i>
-                                </button>
+                            <div
+                                class="absolute bottom-4 left-4">
 
-                                <img
-                                    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800"
-                                    class="w-full h-44 object-cover"
-                                    alt="Nike Shoes">
+                                <i class="fas fa-shoe-prints text-white text-xl"></i>
 
-                                <div class="p-4">
+                                <h3
+                                    class="text-white font-bold text-lg mt-2">
 
-                                    <h3 class="font-semibold text-blue-950">
-                                        Nike Air Max
-                                    </h3>
+                                    Shoes
 
-                                    <!-- Rating -->
-                                    <div class="text-yellow-400 text-sm mt-1">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
+                                </h3>
+
+                                <p
+                                    class="text-gray-200 text-xs">
+
+                                    Luxury footwear
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Electronics -->
+
+                        <div
+                            class="group relative overflow-hidden rounded-3xl h-52 shadow-xl cursor-pointer">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1000"
+                                alt="Electronics"
+                                class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent">
+                            </div>
+
+                            <div
+                                class="absolute bottom-4 left-4">
+
+                                <i class="fas fa-laptop text-white text-xl"></i>
+
+                                <h3
+                                    class="text-white font-bold text-lg mt-2">
+
+                                    Electronics
+
+                                </h3>
+
+                                <p
+                                    class="text-gray-200 text-xs">
+
+                                    Smart devices
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Books -->
+
+                        <div
+                            class="group relative overflow-hidden rounded-3xl h-52 shadow-xl cursor-pointer">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1000"
+                                alt="Books"
+                                class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent">
+                            </div>
+
+                            <div
+                                class="absolute bottom-4 left-4">
+
+                                <i class="fas fa-book-open text-white text-xl"></i>
+
+                                <h3
+                                    class="text-white font-bold text-lg mt-2">
+
+                                    Books
+
+                                </h3>
+
+                                <p
+                                    class="text-gray-200 text-xs">
+
+                                    Knowledge hub
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Special Orders -->
+
+                        <div
+                            class="group relative overflow-hidden rounded-3xl h-52 shadow-xl cursor-pointer">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1000"
+                                alt="Special Orders"
+                                class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent">
+                            </div>
+
+                            <div
+                                class="absolute bottom-4 left-4">
+
+                                <i class="fas fa-gem text-white text-xl"></i>
+
+                                <h3
+                                    class="text-white font-bold text-lg mt-2">
+
+                                    Special Orders
+
+                                </h3>
+
+                                <p
+                                    class="text-gray-200 text-xs">
+
+                                    Custom requests
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- LATEST PRODUCTS -->
+
+                <section class="max-w-md mx-auto px-3 mt-10">
+
+                    <div class="flex justify-between items-center mb-4">
+
+                        <div>
+                            <h2 class="text-2xl font-bold text-blue-950">
+                                Latest Products
+                            </h2>
+
+                            <p class="text-gray-500 text-sm">
+                                Fresh arrivals for you
+                            </p>
+                        </div>
+
+                        <button class="text-blue-700 text-sm font-medium">
+                            See All
+                        </button>
+
+                    </div>
+
+                    <!-- Swiper -->
+                    <div class="swiper productSwiper">
+
+                        <div class="swiper-wrapper">
+
+                            <!-- Product 1 -->
+                            <div class="swiper-slide">
+
+                                <div
+                                    class="categories-grid bg-white rounded-3xl shadow-lg overflow-hidden relative">
+
+                                    <!-- Favorite -->
+                                    <button
+                                        class="absolute top-3 right-3 bg-white/80 backdrop-blur p-2 rounded-full">
+                                        <i class="fas fa-heart text-gray-500"></i>
+                                    </button>
+
+                                    <img
+                                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800"
+                                        class="w-full h-44 object-cover"
+                                        alt="Nike Shoes">
+
+                                    <div class="p-4">
+
+                                        <h3 class="font-semibold text-blue-950">
+                                            Nike Air Max
+                                        </h3>
+
+                                        <!-- Rating -->
+                                        <div class="text-yellow-400 text-sm mt-1">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+
+                                        <div class="flex justify-between items-center mt-3">
+
+                                            <span class="font-bold text-blue-900">
+                                                UGX 120,000
+                                            </span>
+
+                                            <button
+                                                class="bg-blue-900 text-white px-3 py-2 rounded-xl">
+                                                <i class="fas fa-cart-plus"></i>
+                                            </button>
+
+                                        </div>
+
                                     </div>
 
-                                    <div class="flex justify-between items-center mt-3">
+                                </div>
 
-                                        <span class="font-bold text-blue-900">
-                                            UGX 120,000
-                                        </span>
+                            </div>
 
-                                        <button
-                                            class="bg-blue-900 text-white px-3 py-2 rounded-xl">
-                                            <i class="fas fa-cart-plus"></i>
-                                        </button>
+                            <!-- Product 2 -->
+                            <div class="swiper-slide">
+
+                                <div class="categories-grid bg-white rounded-3xl shadow-lg overflow-hidden relative">
+
+                                    <button class="absolute top-3 right-3 bg-white/80 p-2 rounded-full">
+                                        <i class="fas fa-heart text-gray-500"></i>
+                                    </button>
+
+                                    <img
+                                        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800"
+                                        class="w-full h-44 object-cover"
+                                        alt="Laptop">
+
+                                    <div class="p-4">
+
+                                        <h3 class="font-semibold text-blue-950">
+                                            MacBook Pro
+                                        </h3>
+
+                                        <div class="text-yellow-400 text-sm mt-1">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+
+                                        <div class="flex justify-between items-center mt-3">
+
+                                            <span class="font-bold text-blue-900">
+                                                UGX 3,500,000
+                                            </span>
+
+                                            <button class="bg-blue-900 text-white px-3 py-2 rounded-xl">
+                                                <i class="fas fa-cart-plus"></i>
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Product 3 -->
+                            <div class="swiper-slide">
+
+                                <div class="categories-grid bg-white rounded-3xl shadow-lg overflow-hidden relative">
+
+                                    <button class="absolute top-3 right-3 bg-white/80 p-2 rounded-full">
+                                        <i class="fas fa-heart text-gray-500"></i>
+                                    </button>
+
+                                    <img
+                                        src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800"
+                                        class="w-full h-44 object-cover"
+                                        alt="Books">
+
+                                    <div class="p-4">
+
+                                        <h3 class="font-semibold text-blue-950">
+                                            Business Book Pack
+                                        </h3>
+
+                                        <div class="text-yellow-400 text-sm mt-1">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+
+                                        <div class="flex justify-between items-center mt-3">
+
+                                            <span class="font-bold text-blue-900">
+                                                UGX 45,000
+                                            </span>
+
+                                            <button class="bg-blue-900 text-white px-3 py-2 rounded-xl">
+                                                <i class="fas fa-cart-plus"></i>
+                                            </button>
+
+                                        </div>
 
                                     </div>
 
@@ -539,45 +633,138 @@
 
                         </div>
 
-                        <!-- Product 2 -->
-                        <div class="swiper-slide">
+                    </div>
 
-                            <div class="categories-grid bg-white rounded-3xl shadow-lg overflow-hidden relative">
+                </section>
 
-                                <button class="absolute top-3 right-3 bg-white/80 p-2 rounded-full">
-                                    <i class="fas fa-heart text-gray-500"></i>
-                                </button>
+            <!-- CONTACT SECTION -->
 
-                                <img
-                                    src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800"
-                                    class="w-full h-44 object-cover"
-                                    alt="Laptop">
+            <section class="max-w-md mx-auto px-3 mt-10 mb-8">
 
-                                <div class="p-4">
+                <!-- Heading -->
 
-                                    <h3 class="font-semibold text-blue-950">
-                                        MacBook Pro
-                                    </h3>
+                <div class="text-center mb-6">
 
-                                    <div class="text-yellow-400 text-sm mt-1">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                    </div>
+                    <h2 class="text-3xl font-bold text-blue-950">
+                        Get In Touch
+                    </h2>
 
-                                    <div class="flex justify-between items-center mt-3">
+                    <p class="text-gray-500 mt-2">
+                        We're always ready to help you shop better.
+                    </p>
 
-                                        <span class="font-bold text-blue-900">
-                                            UGX 3,500,000
-                                        </span>
+                </div>
 
-                                        <button class="bg-blue-900 text-white px-3 py-2 rounded-xl">
-                                            <i class="fas fa-cart-plus"></i>
-                                        </button>
+                <!-- Contact Card -->
 
-                                    </div>
+                <div class="contact-card relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700 p-6 shadow-2xl">
+
+                    <!-- Decorative Circles -->
+
+                    <div class="absolute -top-8 -right-8 w-32 h-32 bg-white/10 rounded-full"></div>
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-white/5 rounded-full"></div>
+
+                    <div class="relative z-10">
+
+                        <!-- Business Name -->
+
+                        <h3 class="text-white text-2xl font-bold">
+                            Kanye Series
+                        </h3>
+
+                        <p class="text-blue-100 mt-2">
+                            Luxury Shoes • Electronics • Books
+                        </p>
+
+                        <!-- Contact Information -->
+
+                        <div class="mt-6 space-y-4">
+
+                            <div class="flex items-center gap-4">
+
+                                <div class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center">
+
+                                    <i class="fas fa-phone text-white"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <p class="text-blue-200 text-sm">Phone</p>
+
+                                    <a href="tel:+256776150476"
+                                    class="text-white font-semibold hover:text-blue-200">
+
+                                        +256 776 150 476
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                            <div class="flex items-center gap-4">
+
+                                <div class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center">
+
+                                    <i class="fas fa-envelope text-white"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <p class="text-blue-200 text-sm">Email</p>
+
+                                    <a href="mailto:musiimentanoreda24@gmail.com"
+                                    class="text-white font-semibold hover:text-blue-200" style="width: 100px;">
+
+                                        musiimentanoreda24@gmail.com
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                            <div class="flex items-center gap-4">
+
+                                <div class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center">
+
+                                    <i class="fas fa-location-dot text-white"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <p class="text-blue-200 text-sm">Location</p>
+
+                                    <span class="text-white">
+
+                                        Kampala, Uganda
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="flex items-center gap-4">
+
+                                <div class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center">
+
+                                    <i class="fas fa-clock text-white"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <p class="text-blue-200 text-sm">Working Hours</p>
+
+                                    <span class="text-white">
+
+                                        Mon - Sat • 8:00 AM - 8:00 PM
+
+                                    </span>
 
                                 </div>
 
@@ -585,49 +772,62 @@
 
                         </div>
 
-                        <!-- Product 3 -->
-                        <div class="swiper-slide">
+                        <!-- Buttons -->
 
-                            <div class="categories-grid bg-white rounded-3xl shadow-lg overflow-hidden relative">
+                        <div class="grid grid-cols-2 gap-3 mt-8">
 
-                                <button class="absolute top-3 right-3 bg-white/80 p-2 rounded-full">
-                                    <i class="fas fa-heart text-gray-500"></i>
-                                </button>
+                            <a href="https://wa.me/256776150476"
+                            target="_blank"
+                            class="bg-green-500 hover:bg-green-600 rounded-xl py-3 text-white font-semibold flex items-center justify-center gap-2 transition">
 
-                                <img
-                                    src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800"
-                                    class="w-full h-44 object-cover"
-                                    alt="Books">
+                                <i class="fab fa-whatsapp"></i>
 
-                                <div class="p-4">
+                                WhatsApp
 
-                                    <h3 class="font-semibold text-blue-950">
-                                        Business Book Pack
-                                    </h3>
+                            </a>
 
-                                    <div class="text-yellow-400 text-sm mt-1">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
+                            <a href="tel:+256776150476"
+                            class="bg-white text-blue-900 hover:bg-gray-100 rounded-xl py-3 font-semibold flex items-center justify-center gap-2 transition">
 
-                                    <div class="flex justify-between items-center mt-3">
+                                <i class="fas fa-phone"></i>
 
-                                        <span class="font-bold text-blue-900">
-                                            UGX 45,000
-                                        </span>
+                                Call
 
-                                        <button class="bg-blue-900 text-white px-3 py-2 rounded-xl">
-                                            <i class="fas fa-cart-plus"></i>
-                                        </button>
+                            </a>
 
-                                    </div>
+                        </div>
 
-                                </div>
+                        <!-- Divider -->
 
-                            </div>
+                        <div class="border-t border-white/20 my-6"></div>
+
+                        <!-- Social Icons -->
+
+                        <div class="flex justify-center gap-5">
+
+                            <a href="#" class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition">
+
+                                <i class="fab fa-facebook-f"></i>
+
+                            </a>
+
+                            <a href="#" class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition">
+
+                                <i class="fab fa-instagram"></i>
+
+                            </a>
+
+                            <a href="#" class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition">
+
+                                <i class="fab fa-x-twitter"></i>
+
+                            </a>
+
+                            <a href="#" class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition">
+
+                                <i class="fab fa-tiktok"></i>
+
+                            </a>
 
                         </div>
 
@@ -636,250 +836,51 @@
                 </div>
 
             </section>
+            </main>
 
-        <!-- CONTACT SECTION -->
+            <!-- BOTTOM NAV -->
+            <nav
+                class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.08)] border-t" style="z-index:100;">
 
-        <section class="max-w-md mx-auto px-3 mt-10 mb-8">
+                <div
+                    class="max-w-md mx-auto flex justify-around py-3">
 
-            <!-- Heading -->
+                    <a href="#"
+                        class="flex flex-col items-center text-blue-900">
 
-            <div class="text-center mb-6">
+                        <i class="fas fa-house text-xl"></i>
+                        <span class="text-xs mt-1">Home</span>
 
-                <h2 class="text-3xl font-bold text-blue-950">
-                    Get In Touch
-                </h2>
+                    </a>
 
-                <p class="text-gray-500 mt-2">
-                    We're always ready to help you shop better.
-                </p>
+                    <a href="./products.html"
+                        class="flex flex-col items-center text-gray-500">
 
-            </div>
+                        <i class="fas fa-store text-xl"></i>
+                        <span class="text-xs mt-1">Products</span>
 
-            <!-- Contact Card -->
+                    </a>
 
-            <div class="contact-card relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700 p-6 shadow-2xl">
+                    <a href="#"
+                        class="flex flex-col items-center text-gray-500">
 
-                <!-- Decorative Circles -->
+                        <i class="fas fa-box text-xl"></i>
+                        <span class="text-xs mt-1">Orders</span>
 
-                <div class="absolute -top-8 -right-8 w-32 h-32 bg-white/10 rounded-full"></div>
-                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-white/5 rounded-full"></div>
+                    </a>
 
-                <div class="relative z-10">
+                    <a href="#"
+                        class="flex flex-col items-center text-gray-500">
 
-                    <!-- Business Name -->
+                        <i class="fas fa-user text-xl"></i>
+                        <span class="text-xs mt-1">Profile</span>
 
-                    <h3 class="text-white text-2xl font-bold">
-                        Kanye Series
-                    </h3>
-
-                    <p class="text-blue-100 mt-2">
-                        Luxury Shoes • Electronics • Books
-                    </p>
-
-                    <!-- Contact Information -->
-
-                    <div class="mt-6 space-y-4">
-
-                        <div class="flex items-center gap-4">
-
-                            <div class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center">
-
-                                <i class="fas fa-phone text-white"></i>
-
-                            </div>
-
-                            <div>
-
-                                <p class="text-blue-200 text-sm">Phone</p>
-
-                                <a href="tel:+256776150476"
-                                class="text-white font-semibold hover:text-blue-200">
-
-                                    +256 776 150 476
-
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                        <div class="flex items-center gap-4">
-
-                            <div class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center">
-
-                                <i class="fas fa-envelope text-white"></i>
-
-                            </div>
-
-                            <div>
-
-                                <p class="text-blue-200 text-sm">Email</p>
-
-                                <a href="mailto:musiimentanoreda24@gmail.com"
-                                class="text-white font-semibold hover:text-blue-200" style="width: 100px;">
-
-                                    musiimentanoreda24@gmail.com
-
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                        <div class="flex items-center gap-4">
-
-                            <div class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center">
-
-                                <i class="fas fa-location-dot text-white"></i>
-
-                            </div>
-
-                            <div>
-
-                                <p class="text-blue-200 text-sm">Location</p>
-
-                                <span class="text-white">
-
-                                    Kampala, Uganda
-
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="flex items-center gap-4">
-
-                            <div class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center">
-
-                                <i class="fas fa-clock text-white"></i>
-
-                            </div>
-
-                            <div>
-
-                                <p class="text-blue-200 text-sm">Working Hours</p>
-
-                                <span class="text-white">
-
-                                    Mon - Sat • 8:00 AM - 8:00 PM
-
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <!-- Buttons -->
-
-                    <div class="grid grid-cols-2 gap-3 mt-8">
-
-                        <a href="https://wa.me/256776150476"
-                        target="_blank"
-                        class="bg-green-500 hover:bg-green-600 rounded-xl py-3 text-white font-semibold flex items-center justify-center gap-2 transition">
-
-                            <i class="fab fa-whatsapp"></i>
-
-                            WhatsApp
-
-                        </a>
-
-                        <a href="tel:+256776150476"
-                        class="bg-white text-blue-900 hover:bg-gray-100 rounded-xl py-3 font-semibold flex items-center justify-center gap-2 transition">
-
-                            <i class="fas fa-phone"></i>
-
-                            Call
-
-                        </a>
-
-                    </div>
-
-                    <!-- Divider -->
-
-                    <div class="border-t border-white/20 my-6"></div>
-
-                    <!-- Social Icons -->
-
-                    <div class="flex justify-center gap-5">
-
-                        <a href="#" class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition">
-
-                            <i class="fab fa-facebook-f"></i>
-
-                        </a>
-
-                        <a href="#" class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition">
-
-                            <i class="fab fa-instagram"></i>
-
-                        </a>
-
-                        <a href="#" class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition">
-
-                            <i class="fab fa-x-twitter"></i>
-
-                        </a>
-
-                        <a href="#" class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition">
-
-                            <i class="fab fa-tiktok"></i>
-
-                        </a>
-
-                    </div>
+                    </a>
 
                 </div>
 
-            </div>
-
-        </section>
-        </main>
-
-        <!-- BOTTOM NAV -->
-        <nav
-            class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.08)] border-t" style="z-index:100;">
-
-            <div
-                class="max-w-md mx-auto flex justify-around py-3">
-
-                <a href="#"
-                    class="flex flex-col items-center text-blue-900">
-
-                    <i class="fas fa-house text-xl"></i>
-                    <span class="text-xs mt-1">Home</span>
-
-                </a>
-
-                <a href="./products.html"
-                    class="flex flex-col items-center text-gray-500">
-
-                    <i class="fas fa-store text-xl"></i>
-                    <span class="text-xs mt-1">Products</span>
-
-                </a>
-
-                <a href="#"
-                    class="flex flex-col items-center text-gray-500">
-
-                    <i class="fas fa-box text-xl"></i>
-                    <span class="text-xs mt-1">Orders</span>
-
-                </a>
-
-                <a href="#"
-                    class="flex flex-col items-center text-gray-500">
-
-                    <i class="fas fa-user text-xl"></i>
-                    <span class="text-xs mt-1">Profile</span>
-
-                </a>
-
-            </div>
-
-        </nav>
+            </nav>
+        </div>
     </div>   
     <!-- JS -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
