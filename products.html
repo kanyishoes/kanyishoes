@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kanye Series</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body class="bg-gray-100 pb-20">
+
+    <!-- TOP NAV -->
+    <header
+        class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+
+        <div class="max-w-md mx-auto">
+
+            <div class="flex items-center justify-between px-4 py-4">
+
+                <!-- Logo -->
+                <div data-aos="fade-right">
+                    <h1 style="color:black;" class="text-2xl font-bold">
+                        Kanye Series
+                    </h1>
+                </div>
+
+                <!-- Actions -->
+                <div
+                    class="flex items-center gap-5 text-blue-900 text-xl">
+
+                    <button id="searchBtn">
+                        <i class="fas fa-search"></i>
+                    </button>
+
+                    <button>
+                        <i class="fas fa-heart"></i>
+                    </button>
+
+                    <button class="relative">
+                        <i class="fas fa-shopping-cart"></i>
+
+                        <span
+                            class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                            0
+                        </span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- PAGE SPACING -->
+    <div class="h-20"></div>
+
+    <!-- SEARCH BAR -->
+    <div id="searchContainer"
+        class="hidden px-4 max-w-md mx-auto">
+
+        <div class="bg-white rounded-xl shadow p-3">
+
+            <input
+                type="text"
+                placeholder="Search shoes, books, electronics..."
+                class="w-full outline-none">
+
+        </div>
+
+    </div>
+
+    <!-- DEMO CONTENT -->
+    <main class="max-w-md mx-auto px-4 mt-5">
+        <!-- PRODUCTS HEADER -->
+
+        <section class="sticky top-16 z-40 bg-gray-100 pb-4">
+
+            <div class="max-w-md mx-auto px-4 pt-4">
+
+                <!-- Title -->
+
+                <div class="flex justify-between items-center">
+
+                    <div>
+
+                        <h1 class="text-3xl font-bold text-blue-950">
+                            Products
+                        </h1>
+
+                        <p class="text-gray-500 text-sm mt-1">
+
+                            Discover premium collections
+
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="w-12 h-12 rounded-2xl bg-white shadow-lg flex items-center justify-center hover:bg-blue-900 hover:text-white transition">
+
+                        <i class="fas fa-heart"></i>
+
+                    </button>
+
+                </div>
+
+                <!-- Search -->
+
+                <div class="mt-5 relative">
+
+                    <input
+                        type="text"
+                        placeholder="Search products..."
+                        class="w-full bg-white rounded-2xl py-4 pl-14 pr-5 shadow-md outline-none focus:ring-2 focus:ring-blue-700">
+
+                    <i
+                        class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+
+                </div>
+
+                <!-- Product Count -->
+
+                <div class="flex justify-between items-center mt-4">
+
+                    <span class="text-gray-600">
+
+                        <strong class="text-blue-900">120</strong> Products Available
+
+                    </span>
+
+                    <button
+                        class="text-blue-700 font-semibold">
+
+                        View Offers
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+<!-- BOTTOM NAV -->
+    <nav
+        class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.08)] border-t" style="z-index:100;">
+
+        <div
+            class="max-w-md mx-auto flex justify-around py-3">
+
+            <a href="#"
+                class="flex flex-col items-center text-blue-900">
+
+                <i class="fas fa-house text-xl"></i>
+                <span class="text-xs mt-1">Home</span>
+
+            </a>
+
+            <a href="#"
+                class="flex flex-col items-center text-gray-500">
+
+                <i class="fas fa-store text-xl"></i>
+                <span class="text-xs mt-1">Products</span>
+
+            </a>
+
+            <a href="#"
+                class="flex flex-col items-center text-gray-500">
+
+                <i class="fas fa-box text-xl"></i>
+                <span class="text-xs mt-1">Orders</span>
+
+            </a>
+
+            <a href="#"
+                class="flex flex-col items-center text-gray-500">
+
+                <i class="fas fa-user text-xl"></i>
+                <span class="text-xs mt-1">Profile</span>
+
+            </a>
+
+        </div>
+
+    </nav>
+    
+    <!-- JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
