@@ -28,3 +28,13 @@ body{
 .productSwiper .swiper-slide:hover{
     transform: scale(1.03);
 }
+.contact-card {
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,.15);
+    transition: all .4s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,.25);
+}
