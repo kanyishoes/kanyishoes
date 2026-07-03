@@ -38,6 +38,23 @@ button.classList.add("active-category");
 
 });
 
+const hearts=document.querySelectorAll(".wishlist-btn");
+
+hearts.forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+const icon=btn.querySelector("i");
+
+icon.classList.toggle("far");
+icon.classList.toggle("fas");
+
+icon.classList.toggle("text-red-500");
+
+});
+
+});
+
 AOS.init({
     duration:800,
     once:true
