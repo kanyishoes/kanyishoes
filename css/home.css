@@ -38,3 +38,15 @@ body{
     transform: translateY(-6px);
     box-shadow: 0 20px 40px rgba(0,0,0,.25);
 }
+
+@media (min-width: 1024px) {
+
+    body {
+        background: #f3f4f6;
+    }
+
+    section {
+        margin-bottom: 40px;
+    }
+
+}

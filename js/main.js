@@ -1,6 +1,22 @@
 const productSwiper = new Swiper(".productSwiper", {
 
     slidesPerView: 1.2,
+
+    breakpoints: {
+        640: {
+            slidesPerView: 2,
+            spaceBetween: 15
+        },
+        1024: {
+            slidesPerView: 3,
+            spaceBetween: 20
+        },
+        1280: {
+            slidesPerView: 4,
+            spaceBetween: 25
+        }
+    },
+
     spaceBetween: 15,
 
     autoplay: {
@@ -9,7 +25,6 @@ const productSwiper = new Swiper(".productSwiper", {
     },
 
     loop: true,
-
 });
 
 const searchBtn =
