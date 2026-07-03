@@ -1,3 +1,15 @@
+const searchBtn =
+document.getElementById("searchBtn");
+
+const searchContainer =
+document.getElementById("searchContainer");
+
+searchBtn.addEventListener("click", () => {
+
+    searchContainer.classList.toggle("hidden");
+
+});
+
 const categorySwiper = new Swiper(".categorySwiper",{
 
     slidesPerView:"auto",
