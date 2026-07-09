@@ -21,865 +21,580 @@
     href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
     <link rel="stylesheet" href="css/home.css">
+    <style>
+        /* Smooth transitions for luxury feel */
+        * {
+            transition: all 0.3s ease;
+        }
+        
+        /* Sidebar hover effects */
+        .nav-item {
+            @apply relative px-4 py-4 flex flex-col lg:flex-row lg:items-center gap-3 text-gray-600 hover:text-blue-900 hover:bg-blue-50 transition-all duration-300 cursor-pointer group;
+        }
+        
+        .nav-item.active {
+            @apply bg-gradient-to-r from-blue-900 to-blue-800 text-white shadow-lg;
+        }
+        
+        .nav-item i {
+            @apply text-xl lg:text-2xl group-hover:scale-110 transition-transform;
+        }
+        
+        .nav-label {
+            @apply text-xs lg:text-sm font-medium;
+        }
+        
+        /* Product card hover effect */
+        .product-card {
+            @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
+        }
+        
+        /* Category card enhanced */
+        .category-card {
+            @apply transition-all duration-300 hover:shadow-2xl;
+        }
+        
+        /* Contact info card */
+        .contact-info-item {
+            @apply p-4 lg:p-6 rounded-2xl bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 transform hover:scale-105;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 pb-20">
-    <div class="bg-gray-100 min-h-screen">
-        <div class="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+<body class="bg-gray-50">
+    <div class="flex min-h-screen">
+        
+        <!-- DESKTOP LEFT SIDEBAR NAVIGATION -->
+        <nav class="hidden lg:flex fixed left-0 top-0 h-screen w-24 bg-gradient-to-b from-blue-950 via-blue-900 to-blue-950 shadow-2xl flex-col items-center pt-8 pb-8 z-40 border-r border-blue-800">
+            
+            <!-- Logo -->
+            <div class="mb-12 text-center">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-lg">
+                    <i class="fas fa-crown text-white text-2xl"></i>
+                </div>
+            </div>
+
+            <!-- Navigation Items -->
+            <div class="flex flex-col gap-4 flex-1">
+                
+                <!-- Home -->
+                <a href="#home" class="nav-item active group">
+                    <div class="flex flex-col items-center gap-2">
+                        <i class="fas fa-home text-2xl"></i>
+                        <span class="nav-label text-center w-full">Home</span>
+                    </div>
+                </a>
+
+                <!-- Products -->
+                <a href="./products.html" class="nav-item group">
+                    <div class="flex flex-col items-center gap-2">
+                        <i class="fas fa-store text-2xl"></i>
+                        <span class="nav-label text-center w-full">Shop</span>
+                    </div>
+                </a>
+
+                <!-- Orders -->
+                <a href="#orders" class="nav-item group">
+                    <div class="flex flex-col items-center gap-2">
+                        <i class="fas fa-bag-shopping text-2xl"></i>
+                        <span class="nav-label text-center w-full">Orders</span>
+                    </div>
+                </a>
+
+                <!-- Profile -->
+                <a href="#profile" class="nav-item group">
+                    <div class="flex flex-col items-center gap-2">
+                        <i class="fas fa-user-circle text-2xl"></i>
+                        <span class="nav-label text-center w-full">Profile</span>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- Bottom Settings -->
+            <div class="border-t border-blue-800 pt-4 mt-4">
+                <a href="#settings" class="nav-item group">
+                    <div class="flex flex-col items-center gap-2">
+                        <i class="fas fa-gear text-2xl"></i>
+                        <span class="nav-label text-center w-full text-xs">Settings</span>
+                    </div>
+                </a>
+            </div>
+
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <main class="w-full lg:ml-24 min-h-screen">
+            
             <!-- TOP NAV -->
-            <header
-                class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+            <header class="fixed top-0 left-0 right-0 lg:left-24 z-50 bg-white shadow-md backdrop-blur-sm bg-opacity-95">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between py-4 md:py-5">
+                        <!-- Logo (Mobile/Tablet) -->
+                        <div class="lg:hidden" data-aos="fade-right">
+                            <h1 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">
+                                Kanye Series
+                            </h1>
+                        </div>
 
-                <div class="max-w-md mx-auto">
-
-                    <div class="flex items-center justify-between px-4 md:px-10 py-4">
-
-                        <!-- Logo -->
-                        <div data-aos="fade-right">
-                            <h1 class="text-2xl md:text-3xl font-bold text-blue-900">
+                        <!-- Desktop Centered Title -->
+                        <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2">
+                            <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">
                                 Kanye Series
                             </h1>
                         </div>
 
                         <!-- Actions -->
-                        <div class="flex items-center gap-5 md:gap-8 text-blue-900 text-xl">
-
-                            <button id="searchBtn">
-                                <i class="fas fa-search"></i>
+                        <div class="flex items-center gap-4 md:gap-8 text-blue-900">
+                            <button id="searchBtn" class="p-2 hover:bg-blue-50 rounded-lg transition">
+                                <i class="fas fa-search text-lg md:text-xl"></i>
                             </button>
 
-                            <button>
-                                <i class="fas fa-heart"></i>
+                            <button class="p-2 hover:bg-blue-50 rounded-lg transition relative">
+                                <i class="fas fa-heart text-lg md:text-xl"></i>
+                                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
                             </button>
 
-                            <button class="relative">
-                                <i class="fas fa-shopping-cart"></i>
-
-                                <span
-                                    class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
-                                    0
-                                </span>
+                            <button class="p-2 hover:bg-blue-50 rounded-lg transition relative">
+                                <i class="fas fa-shopping-cart text-lg md:text-xl"></i>
+                                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
                             </button>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </header>
 
             <!-- PAGE SPACING -->
-            <div class="h-20"></div>
+            <div class="h-20 md:h-24"></div>
 
             <!-- SEARCH BAR -->
-            <div id="searchContainer"
-                class="hidden px-4 max-w-md mx-auto">
-
-                <div class="bg-white rounded-xl shadow p-3">
-
-                    <input
-                        type="text"
-                        placeholder="Search shoes, books, electronics..."
-                        class="w-full outline-none">
-
+            <div id="searchContainer" class="hidden px-4 py-4 sticky top-20 lg:top-24 z-40 bg-white/95 backdrop-blur-sm shadow-sm">
+                <div class="max-w-7xl mx-auto">
+                    <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl shadow-md p-4">
+                        <input
+                            type="text"
+                            placeholder="Search shoes, books, electronics..."
+                            class="w-full bg-transparent outline-none text-gray-800 placeholder-gray-500 text-sm md:text-base">
+                    </div>
                 </div>
+            </div>
+
+            <!-- PAGE CONTENT -->
+            <div id="home" class="w-full">
+                
+                <!-- HERO SECTION -->
+                <section class="px-4 sm:px-6 lg:px-8 mt-4 md:mt-6 lg:mt-8 mb-8 md:mb-12 lg:mb-16">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="swiper heroSwiper rounded-3xl overflow-hidden shadow-2xl">
+                            <div class="swiper-wrapper">
+
+                                <!-- Slide 1 -->
+                                <div class="swiper-slide">
+                                    <div class="relative h-[500px] md:h-[600px] lg:h-[750px]">
+                                        <img
+                                            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1200"
+                                            class="w-full h-full object-cover"
+                                            alt="Luxury Shoes">
+
+                                        <div class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/60 to-transparent"></div>
+
+                                        <div class="absolute inset-0 flex flex-col justify-center px-6 md:px-8 lg:px-12">
+                                            <span class="text-blue-300 uppercase tracking-[4px] text-xs md:text-sm font-semibold">Premium Collection</span>
+                                            <h2 class="text-white text-3xl md:text-5xl lg:text-6xl font-bold mt-2 md:mt-4">Walk In Luxury</h2>
+                                            <p class="text-gray-200 mt-3 md:mt-4 text-sm md:text-base lg:text-lg max-w-xl">Discover premium shoes crafted for style and comfort.</p>
+                                            <div class="flex flex-col sm:flex-row gap-3 mt-6 md:mt-8 lg:mt-10">
+                                                <button class="bg-gradient-to-r from-blue-700 to-blue-800 hover:shadow-lg hover:shadow-blue-700/50 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-medium transition-all transform hover:scale-105">
+                                                    <i class="fas fa-bag-shopping mr-2"></i>Shop Now
+                                                </button>
+                                                <button class="bg-white text-blue-900 px-6 md:px-8 py-3 md:py-4 rounded-xl font-medium hover:shadow-lg transition-all transform hover:scale-105">
+                                                    Learn More
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Slide 2 -->
+                                <div class="swiper-slide">
+                                    <div class="relative h-[500px] md:h-[600px] lg:h-[750px]">
+                                        <img
+                                            src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1200"
+                                            class="w-full h-full object-cover"
+                                            alt="Electronics">
+
+                                        <div class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/60 to-transparent"></div>
+
+                                        <div class="absolute inset-0 flex flex-col justify-center px-6 md:px-8 lg:px-12">
+                                            <span class="text-blue-300 uppercase tracking-[4px] text-xs md:text-sm font-semibold">Smart Technology</span>
+                                            <h2 class="text-white text-3xl md:text-5xl lg:text-6xl font-bold mt-2 md:mt-4">Future Starts Here</h2>
+                                            <p class="text-gray-200 mt-3 md:mt-4 text-sm md:text-base lg:text-lg max-w-xl">Premium gadgets and electronics for modern living.</p>
+                                            <button class="mt-6 md:mt-8 lg:mt-10 bg-gradient-to-r from-blue-700 to-blue-800 hover:shadow-lg hover:shadow-blue-700/50 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl w-fit font-medium transition-all transform hover:scale-105">
+                                                <i class="fas fa-mobile-screen mr-2"></i>Explore Tech
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Slide 3 -->
+                                <div class="swiper-slide">
+                                    <div class="relative h-[500px] md:h-[600px] lg:h-[750px]">
+                                        <img
+                                            src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200"
+                                            class="w-full h-full object-cover"
+                                            alt="Books">
+
+                                        <div class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/60 to-transparent"></div>
+
+                                        <div class="absolute inset-0 flex flex-col justify-center px-6 md:px-8 lg:px-12">
+                                            <span class="text-blue-300 uppercase tracking-[4px] text-xs md:text-sm font-semibold">Knowledge Hub</span>
+                                            <h2 class="text-white text-3xl md:text-5xl lg:text-6xl font-bold mt-2 md:mt-4">Read. Learn. Grow.</h2>
+                                            <p class="text-gray-200 mt-3 md:mt-4 text-sm md:text-base lg:text-lg max-w-xl">Books that inspire success and transformation.</p>
+                                            <button class="mt-6 md:mt-8 lg:mt-10 bg-gradient-to-r from-blue-700 to-blue-800 hover:shadow-lg hover:shadow-blue-700/50 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl w-fit font-medium transition-all transform hover:scale-105">
+                                                <i class="fas fa-book-open mr-2"></i>Browse Books
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CATEGORIES SECTION -->
+                <section class="px-4 sm:px-6 lg:px-8 mb-12 md:mb-16 lg:mb-20">
+                    <div class="max-w-7xl mx-auto">
+                        <!-- Section Header -->
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-8 lg:mb-12">
+                            <div>
+                                <h2 class="text-3xl md:text-4xl font-bold text-blue-950" data-aos="fade-up">Categories</h2>
+                                <p class="text-gray-500 text-sm md:text-base mt-2">Explore our curated collections</p>
+                            </div>
+                            <button class="text-blue-700 font-semibold text-sm md:text-base mt-4 md:mt-0 hover:text-blue-900 transition inline-flex items-center gap-2">
+                                View All <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+
+                        <!-- Categories Grid -->
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+                            
+                            <!-- Shoes -->
+                            <div class="category-card group relative overflow-hidden rounded-3xl h-48 md:h-56 lg:h-64 shadow-xl cursor-pointer" data-aos="fade-up">
+                                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000" alt="Shoes" class="w-full h-full object-cover group-hover:scale-125 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent"></div>
+                                <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6">
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center mb-2">
+                                        <i class="fas fa-shoe-prints text-white text-xl"></i>
+                                    </div>
+                                    <h3 class="text-white font-bold text-lg md:text-xl">Shoes</h3>
+                                    <p class="text-gray-200 text-xs md:text-sm">Luxury footwear</p>
+                                </div>
+                            </div>
+
+                            <!-- Electronics -->
+                            <div class="category-card group relative overflow-hidden rounded-3xl h-48 md:h-56 lg:h-64 shadow-xl cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+                                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1000" alt="Electronics" class="w-full h-full object-cover group-hover:scale-125 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent"></div>
+                                <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6">
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center mb-2">
+                                        <i class="fas fa-laptop text-white text-xl"></i>
+                                    </div>
+                                    <h3 class="text-white font-bold text-lg md:text-xl">Electronics</h3>
+                                    <p class="text-gray-200 text-xs md:text-sm">Smart devices</p>
+                                </div>
+                            </div>
+
+                            <!-- Books -->
+                            <div class="category-card group relative overflow-hidden rounded-3xl h-48 md:h-56 lg:h-64 shadow-xl cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1000" alt="Books" class="w-full h-full object-cover group-hover:scale-125 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent"></div>
+                                <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6">
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center mb-2">
+                                        <i class="fas fa-book-open text-white text-xl"></i>
+                                    </div>
+                                    <h3 class="text-white font-bold text-lg md:text-xl">Books</h3>
+                                    <p class="text-gray-200 text-xs md:text-sm">Knowledge hub</p>
+                                </div>
+                            </div>
+
+                            <!-- Special Orders -->
+                            <div class="category-card group relative overflow-hidden rounded-3xl h-48 md:h-56 lg:h-64 shadow-xl cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+                                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1000" alt="Special Orders" class="w-full h-full object-cover group-hover:scale-125 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent"></div>
+                                <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6">
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center mb-2">
+                                        <i class="fas fa-gem text-white text-xl"></i>
+                                    </div>
+                                    <h3 class="text-white font-bold text-lg md:text-xl">Special Orders</h3>
+                                    <p class="text-gray-200 text-xs md:text-sm">Custom requests</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- LATEST PRODUCTS SECTION -->
+                <section class="px-4 sm:px-6 lg:px-8 mb-12 md:mb-16 lg:mb-20">
+                    <div class="max-w-7xl mx-auto">
+                        <!-- Section Header -->
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-8 lg:mb-12">
+                            <div>
+                                <h2 class="text-3xl md:text-4xl font-bold text-blue-950" data-aos="fade-up">Latest Products</h2>
+                                <p class="text-gray-500 text-sm md:text-base mt-2">Fresh arrivals just for you</p>
+                            </div>
+                            <button class="text-blue-700 font-semibold text-sm md:text-base mt-4 md:mt-0 hover:text-blue-900 transition inline-flex items-center gap-2">
+                                See All <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+
+                        <!-- Products Carousel -->
+                        <div class="swiper productSwiper">
+                            <div class="swiper-wrapper">
+
+                                <!-- Product 1 -->
+                                <div class="swiper-slide">
+                                    <div class="product-card bg-white rounded-3xl shadow-lg overflow-hidden relative group">
+                                        <button class="absolute top-4 right-4 bg-white/80 backdrop-blur p-3 rounded-full hover:bg-white shadow-md transition-all z-10 group-hover:scale-110">
+                                            <i class="fas fa-heart text-gray-400 group-hover:text-red-500 transition"></i>
+                                        </button>
+                                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800" class="w-full h-48 md:h-52 object-cover" alt="Nike Shoes">
+                                        <div class="p-4 md:p-6">
+                                            <h3 class="font-semibold text-blue-950 text-lg">Nike Air Max</h3>
+                                            <div class="text-yellow-400 text-sm mt-2">
+                                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                            </div>
+                                            <div class="flex justify-between items-center mt-4">
+                                                <span class="font-bold text-blue-900 text-lg">UGX 120,000</span>
+                                                <button class="bg-gradient-to-r from-blue-700 to-blue-900 text-white p-2 md:p-3 rounded-xl hover:shadow-lg transition-all transform hover:scale-110">
+                                                    <i class="fas fa-cart-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Product 2 -->
+                                <div class="swiper-slide">
+                                    <div class="product-card bg-white rounded-3xl shadow-lg overflow-hidden relative group">
+                                        <button class="absolute top-4 right-4 bg-white/80 backdrop-blur p-3 rounded-full hover:bg-white shadow-md transition-all z-10 group-hover:scale-110">
+                                            <i class="fas fa-heart text-gray-400 group-hover:text-red-500 transition"></i>
+                                        </button>
+                                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800" class="w-full h-48 md:h-52 object-cover" alt="MacBook Pro">
+                                        <div class="p-4 md:p-6">
+                                            <h3 class="font-semibold text-blue-950 text-lg">MacBook Pro</h3>
+                                            <div class="text-yellow-400 text-sm mt-2">
+                                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                            <div class="flex justify-between items-center mt-4">
+                                                <span class="font-bold text-blue-900 text-lg">UGX 3,500,000</span>
+                                                <button class="bg-gradient-to-r from-blue-700 to-blue-900 text-white p-2 md:p-3 rounded-xl hover:shadow-lg transition-all transform hover:scale-110">
+                                                    <i class="fas fa-cart-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Product 3 -->
+                                <div class="swiper-slide">
+                                    <div class="product-card bg-white rounded-3xl shadow-lg overflow-hidden relative group">
+                                        <button class="absolute top-4 right-4 bg-white/80 backdrop-blur p-3 rounded-full hover:bg-white shadow-md transition-all z-10 group-hover:scale-110">
+                                            <i class="fas fa-heart text-gray-400 group-hover:text-red-500 transition"></i>
+                                        </button>
+                                        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800" class="w-full h-48 md:h-52 object-cover" alt="Business Books">
+                                        <div class="p-4 md:p-6">
+                                            <h3 class="font-semibold text-blue-950 text-lg">Business Book Pack</h3>
+                                            <div class="text-yellow-400 text-sm mt-2">
+                                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                                            </div>
+                                            <div class="flex justify-between items-center mt-4">
+                                                <span class="font-bold text-blue-900 text-lg">UGX 45,000</span>
+                                                <button class="bg-gradient-to-r from-blue-700 to-blue-900 text-white p-2 md:p-3 rounded-xl hover:shadow-lg transition-all transform hover:scale-110">
+                                                    <i class="fas fa-cart-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Product 4 -->
+                                <div class="swiper-slide">
+                                    <div class="product-card bg-white rounded-3xl shadow-lg overflow-hidden relative group">
+                                        <button class="absolute top-4 right-4 bg-white/80 backdrop-blur p-3 rounded-full hover:bg-white shadow-md transition-all z-10 group-hover:scale-110">
+                                            <i class="fas fa-heart text-gray-400 group-hover:text-red-500 transition"></i>
+                                        </button>
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800" class="w-full h-48 md:h-52 object-cover" alt="Product">
+                                        <div class="p-4 md:p-6">
+                                            <h3 class="font-semibold text-blue-950 text-lg">Premium Watch</h3>
+                                            <div class="text-yellow-400 text-sm mt-2">
+                                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="flex justify-between items-center mt-4">
+                                                <span class="font-bold text-blue-900 text-lg">UGX 250,000</span>
+                                                <button class="bg-gradient-to-r from-blue-700 to-blue-900 text-white p-2 md:p-3 rounded-xl hover:shadow-lg transition-all transform hover:scale-110">
+                                                    <i class="fas fa-cart-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CONTACT SECTION -->
+                <section class="px-4 sm:px-6 lg:px-8 mb-12 md:mb-16 lg:mb-20">
+                    <div class="max-w-7xl mx-auto">
+                        <!-- Section Header -->
+                        <div class="text-center mb-12 lg:mb-16">
+                            <h2 class="text-3xl md:text-4xl font-bold text-blue-950" data-aos="fade-up">Get In Touch</h2>
+                            <p class="text-gray-500 text-sm md:text-base mt-3">We're always ready to help you shop better</p>
+                        </div>
+
+                        <!-- Contact Card -->
+                        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 p-8 md:p-12 lg:p-16 shadow-2xl" data-aos="fade-up">
+                            
+                            <!-- Decorative Elements -->
+                            <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
+                            <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-blue-500/5 rounded-full blur-3xl"></div>
+
+                            <div class="relative z-10">
+                                <!-- Header -->
+                                <div class="mb-10 md:mb-12">
+                                    <h3 class="text-white text-3xl md:text-4xl font-bold">Kanye Series</h3>
+                                    <p class="text-blue-200 mt-2 text-sm md:text-base">Luxury Shoes • Electronics • Books</p>
+                                </div>
+
+                                <!-- Contact Information Grid -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-10 md:mb-12">
+                                    
+                                    <!-- Phone -->
+                                    <div class="contact-info-item">
+                                        <div class="flex items-start gap-3">
+                                            <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                                                <i class="fas fa-phone text-white text-lg"></i>
+                                            </div>
+                                            <div>
+                                                <p class="text-blue-200 text-xs md:text-sm font-semibold">Phone</p>
+                                                <a href="tel:+256776150476" class="text-white font-bold text-sm md:text-base mt-1 hover:text-blue-300 transition">+256 776 150 476</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Email -->
+                                    <div class="contact-info-item">
+                                        <div class="flex items-start gap-3">
+                                            <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                                                <i class="fas fa-envelope text-white text-lg"></i>
+                                            </div>
+                                            <div>
+                                                <p class="text-blue-200 text-xs md:text-sm font-semibold">Email</p>
+                                                <a href="mailto:musiimentanoreda24@gmail.com" class="text-white font-bold text-sm md:text-base mt-1 hover:text-blue-300 transition truncate">musiimentanoreda24@gmail.com</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="contact-info-item">
+                                        <div class="flex items-start gap-3">
+                                            <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                                                <i class="fas fa-location-dot text-white text-lg"></i>
+                                            </div>
+                                            <div>
+                                                <p class="text-blue-200 text-xs md:text-sm font-semibold">Location</p>
+                                                <span class="text-white font-bold text-sm md:text-base block mt-1">Kampala, Uganda</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Hours -->
+                                    <div class="contact-info-item">
+                                        <div class="flex items-start gap-3">
+                                            <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                                                <i class="fas fa-clock text-white text-lg"></i>
+                                            </div>
+                                            <div>
+                                                <p class="text-blue-200 text-xs md:text-sm font-semibold">Hours</p>
+                                                <span class="text-white font-bold text-sm md:text-base block mt-1">8:00 AM - 8:00 PM</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- CTA Buttons -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-10 md:mb-12">
+                                    <a href="https://wa.me/256776150476" target="_blank" class="bg-gradient-to-r from-green-500 to-green-600 hover:shadow-lg hover:shadow-green-500/50 text-white font-semibold py-4 rounded-xl flex items-center justify-center gap-3 transition-all transform hover:scale-105">
+                                        <i class="fab fa-whatsapp text-xl"></i>WhatsApp
+                                    </a>
+                                    <a href="tel:+256776150476" class="bg-white text-blue-900 hover:shadow-lg font-semibold py-4 rounded-xl flex items-center justify-center gap-3 transition-all transform hover:scale-105">
+                                        <i class="fas fa-phone text-xl"></i>Call Now
+                                    </a>
+                                </div>
+
+                                <!-- Divider -->
+                                <div class="border-t border-white/20 mb-8 md:mb-10"></div>
+
+                                <!-- Social Links -->
+                                <div class="flex justify-center gap-6">
+                                    <a href="#" class="w-12 h-12 rounded-full bg-white/20 hover:bg-white flex items-center justify-center text-white hover:text-blue-900 transition-all transform hover:scale-110">
+                                        <i class="fab fa-facebook-f text-lg"></i>
+                                    </a>
+                                    <a href="#" class="w-12 h-12 rounded-full bg-white/20 hover:bg-white flex items-center justify-center text-white hover:text-blue-900 transition-all transform hover:scale-110">
+                                        <i class="fab fa-instagram text-lg"></i>
+                                    </a>
+                                    <a href="#" class="w-12 h-12 rounded-full bg-white/20 hover:bg-white flex items-center justify-center text-white hover:text-blue-900 transition-all transform hover:scale-110">
+                                        <i class="fab fa-x-twitter text-lg"></i>
+                                    </a>
+                                    <a href="#" class="w-12 h-12 rounded-full bg-white/20 hover:bg-white flex items-center justify-center text-white hover:text-blue-900 transition-all transform hover:scale-110">
+                                        <i class="fab fa-tiktok text-lg"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </section>
 
             </div>
 
-            <!-- DEMO CONTENT -->
-            <main class="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- HERO SECTION -->
+        </main>
+
+        <!-- MOBILE BOTTOM NAV -->
+        <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.08)] border-t z-30">
+            <div class="flex justify-around py-3 px-2">
+                <a href="#home" class="flex flex-col items-center text-blue-900 hover:text-blue-700 transition p-2">
+                    <i class="fas fa-house text-2xl"></i>
+                    <span class="text-xs mt-1 font-semibold">Home</span>
+                </a>
+                <a href="./products.html" class="flex flex-col items-center text-gray-500 hover:text-blue-700 transition p-2">
+                    <i class="fas fa-store text-2xl"></i>
+                    <span class="text-xs mt-1 font-semibold">Shop</span>
+                </a>
+                <a href="#orders" class="flex flex-col items-center text-gray-500 hover:text-blue-700 transition p-2">
+                    <i class="fas fa-bag-shopping text-2xl"></i>
+                    <span class="text-xs mt-1 font-semibold">Orders</span>
+                </a>
+                <a href="#profile" class="flex flex-col items-center text-gray-500 hover:text-blue-700 transition p-2">
+                    <i class="fas fa-user text-2xl"></i>
+                    <span class="text-xs mt-1 font-semibold">Profile</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Mobile Bottom Spacing -->
+        <div class="lg:hidden h-20"></div>
+
+    </div>
 
-                <section class="max-w-md mx-auto px-3 mt-3">
-
-                    <div class="swiper heroSwiper rounded-3xl overflow-hidden shadow-xl">
-
-                        <div class="swiper-wrapper">
-
-                            <!-- Slide 1 -->
-
-                            <div class="swiper-slide">
-
-                                <div class="relative h-[500px] md:h-[650px] lg:h-[750px]">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1200"
-                                        class="w-full h-full object-cover"
-                                        alt="Luxury Shoes">
-
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/60 to-transparent">
-
-                                    </div>
-
-                                    <div
-                                        class="absolute inset-0 flex flex-col justify-center px-6">
-
-                                        <span
-                                            class="text-blue-300 uppercase tracking-[4px] text-sm font-semibold">
-
-                                            Premium Collection
-
-                                        </span>
-
-                                        <h2 class="text-white text-3xl md:text-5xl lg:text-6xl font-bold">
-                                            Walk In Luxury
-
-                                        </h2>
-
-                                        <p class="text-gray-200 mt-4 text-sm md:text-base lg:text-lg">
-
-                                            Discover premium shoes crafted for style and comfort.
-
-                                        </p>
-
-                                        <div class="flex flex-col md:flex-row gap-3 mt-6">
-
-                                            <button
-                                                class="bg-blue-700 hover:bg-blue-800 text-white px-5 py-3 rounded-xl font-medium">
-
-                                                <i class="fas fa-bag-shopping mr-2"></i>
-                                                Shop Now
-
-                                            </button>
-
-                                            <button
-                                                class="bg-white text-blue-900 px-5 py-3 rounded-xl font-medium">
-
-                                                Learn More
-
-                                            </button>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Slide 2 -->
-
-                            <div class="swiper-slide">
-
-                                <div class="relative h-[500px] md:h-[650px] lg:h-[750px]">
-
-                                    <img
-                                        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1200"
-                                        class="w-full h-full object-cover"
-                                        alt="Electronics">
-
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/60 to-transparent">
-
-                                    </div>
-
-                                    <div
-                                        class="absolute inset-0 flex flex-col justify-center px-6">
-
-                                        <span
-                                            class="text-blue-300 uppercase tracking-[4px] text-sm font-semibold">
-
-                                            Smart Technology
-
-                                        </span>
-
-                                        <h2 class="text-white text-3xl md:text-5xl lg:text-6xl font-bold">
-
-                                            Future Starts Here
-
-                                        </h2>
-
-                                        <p class="text-gray-200 mt-4 text-sm md:text-base lg:text-lg">
-
-
-                                            Premium gadgets and electronics for modern living.
-
-                                        </p>
-
-                                        <button
-                                            class="mt-6 bg-blue-700 text-white px-5 py-3 rounded-xl w-fit">
-
-                                            <i class="fas fa-mobile-screen mr-2"></i>
-                                            Explore Tech
-
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Slide 3 -->
-
-                            <div class="swiper-slide">
-
-                                <div class="relative h-[500px] md:h-[650px] lg:h-[750px]">
-
-                                    <img
-                                        src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200"
-                                        class="w-full h-full object-cover"
-                                        alt="Books">
-
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/60 to-transparent">
-
-                                    </div>
-
-                                    <div
-                                        class="absolute inset-0 flex flex-col justify-center px-6">
-
-                                        <span
-                                            class="uppercase tracking-[4px] text-sm font-semibold">
-
-                                            Knowledge Hub
-
-                                        </span>
-
-                                        <h2 class="text-white text-3xl md:text-5xl lg:text-6xl font-bold">
-                                            Read. Learn. Grow.
-
-                                        </h2>
-
-                                        <p class="text-gray-200 mt-4 text-sm md:text-base lg:text-lg">
-
-
-                                            Books that inspire success and transformation.
-
-                                        </p>
-
-                                        <button
-                                            class="mt-6 bg-blue-700 text-white px-5 py-3 rounded-xl w-fit">
-
-                                            <i class="fas fa-book-open mr-2"></i>
-                                            Browse Books
-
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Pagination -->
-
-                        <div class="swiper-pagination"></div>
-
-                    </div>
-
-                </section>
-                <!-- CATEGORIES -->
-
-                <section class="max-w-md mx-auto px-3 mt-8">
-
-                    <!-- Section Header -->
-
-                    <div class="flex justify-between items-center mb-5">
-
-                        <div>
-                            <h2 class="text-2xl font-bold text-blue-950">
-                                Categories
-                            </h2>
-
-                            <p class="text-gray-500 text-sm">
-                                Explore our collections
-                            </p>
-                        </div>
-
-                        <button
-                            class="text-blue-700 font-medium text-sm">
-
-                            View All
-
-                        </button>
-
-                    </div>
-
-                    <!-- Grid -->
-
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        <!-- Shoes -->
-
-                        <div
-                            class="group relative overflow-hidden rounded-3xl h-52 md:h-60 lg:h-64 shadow-xl cursor-pointer">
-
-                            <img
-                                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000"
-                                alt="Shoes"
-                                class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent">
-                            </div>
-
-                            <div
-                                class="absolute bottom-4 left-4">
-
-                                <i class="fas fa-shoe-prints text-white text-xl"></i>
-
-                                <h3
-                                    class="text-white font-bold text-lg mt-2">
-
-                                    Shoes
-
-                                </h3>
-
-                                <p
-                                    class="text-gray-200 text-xs">
-
-                                    Luxury footwear
-
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Electronics -->
-
-                        <div
-                            class="group relative overflow-hidden rounded-3xl h-52 md:h-60 lg:h-64 shadow-xl cursor-pointer">
-
-                            <img
-                                src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1000"
-                                alt="Electronics"
-                                class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent">
-                            </div>
-
-                            <div
-                                class="absolute bottom-4 left-4">
-
-                                <i class="fas fa-laptop text-white text-xl"></i>
-
-                                <h3
-                                    class="text-white font-bold text-lg mt-2">
-
-                                    Electronics
-
-                                </h3>
-
-                                <p
-                                    class="text-gray-200 text-xs">
-
-                                    Smart devices
-
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Books -->
-
-                        <div
-                            class="group relative overflow-hidden rounded-3xl h-52 md:h-60 lg:h-64 shadow-xl cursor-pointer">
-
-                            <img
-                                src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1000"
-                                alt="Books"
-                                class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent">
-                            </div>
-
-                            <div
-                                class="absolute bottom-4 left-4">
-
-                                <i class="fas fa-book-open text-white text-xl"></i>
-
-                                <h3
-                                    class="text-white font-bold text-lg mt-2">
-
-                                    Books
-
-                                </h3>
-
-                                <p
-                                    class="text-gray-200 text-xs">
-
-                                    Knowledge hub
-
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Special Orders -->
-
-                        <div
-                            class="group relative overflow-hidden rounded-3xl h-52 md:h-60 lg:h-64 shadow-xl cursor-pointer">
-
-                            <img
-                                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1000"
-                                alt="Special Orders"
-                                class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent">
-                            </div>
-
-                            <div
-                                class="absolute bottom-4 left-4">
-
-                                <i class="fas fa-gem text-white text-xl"></i>
-
-                                <h3
-                                    class="text-white font-bold text-lg mt-2">
-
-                                    Special Orders
-
-                                </h3>
-
-                                <p
-                                    class="text-gray-200 text-xs">
-
-                                    Custom requests
-
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-                <!-- LATEST PRODUCTS -->
-
-                <section class="max-w-md mx-auto px-3 mt-10">
-
-                    <div class="flex justify-between items-center mb-4">
-
-                        <div>
-                            <h2 class="text-2xl font-bold text-blue-950">
-                                Latest Products
-                            </h2>
-
-                            <p class="text-gray-500 text-sm">
-                                Fresh arrivals for you
-                            </p>
-                        </div>
-
-                        <button class="text-blue-700 text-sm font-medium">
-                            See All
-                        </button>
-
-                    </div>
-
-                    <!-- Swiper -->
-                    <div class="swiper productSwiper">
-
-                        <div class="swiper-wrapper">
-
-                            <!-- Product 1 -->
-                            <div class="swiper-slide">
-
-                                <div
-                                    class="bg-white rounded-3xl shadow-lg overflow-hidden relative">
-
-                                    <!-- Favorite -->
-                                    <button
-                                        class="absolute top-3 right-3 bg-white/80 backdrop-blur p-2 rounded-full">
-                                        <i class="fas fa-heart text-gray-500"></i>
-                                    </button>
-
-                                    <img
-                                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800"
-                                        class="w-full h-44 object-cover"
-                                        alt="Nike Shoes">
-
-                                    <div class="p-4">
-
-                                        <h3 class="font-semibold text-blue-950">
-                                            Nike Air Max
-                                        </h3>
-
-                                        <!-- Rating -->
-                                        <div class="text-yellow-400 text-sm mt-1">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </div>
-
-                                        <div class="flex justify-between items-center mt-3">
-
-                                            <span class="font-bold text-blue-900">
-                                                UGX 120,000
-                                            </span>
-
-                                            <button
-                                                class="bg-blue-900 text-white px-3 py-2 rounded-xl">
-                                                <i class="fas fa-cart-plus"></i>
-                                            </button>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Product 2 -->
-                            <div class="swiper-slide">
-
-                                <div class="bg-white rounded-3xl shadow-lg overflow-hidden relative">
-
-                                    <button class="absolute top-3 right-3 bg-white/80 p-2 rounded-full">
-                                        <i class="fas fa-heart text-gray-500"></i>
-                                    </button>
-
-                                    <img
-                                        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800"
-                                        class="w-full h-44 object-cover"
-                                        alt="Laptop">
-
-                                    <div class="p-4">
-
-                                        <h3 class="font-semibold text-blue-950">
-                                            MacBook Pro
-                                        </h3>
-
-                                        <div class="text-yellow-400 text-sm mt-1">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-
-                                        <div class="flex justify-between items-center mt-3">
-
-                                            <span class="font-bold text-blue-900">
-                                                UGX 3,500,000
-                                            </span>
-
-                                            <button class="bg-blue-900 text-white px-3 py-2 rounded-xl">
-                                                <i class="fas fa-cart-plus"></i>
-                                            </button>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Product 3 -->
-                            <div class="swiper-slide">
-
-                                <div class="bg-white rounded-3xl shadow-lg overflow-hidden relative">
-
-                                    <button class="absolute top-3 right-3 bg-white/80 p-2 rounded-full">
-                                        <i class="fas fa-heart text-gray-500"></i>
-                                    </button>
-
-                                    <img
-                                        src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800"
-                                        class="w-full h-44 object-cover"
-                                        alt="Books">
-
-                                    <div class="p-4">
-
-                                        <h3 class="font-semibold text-blue-950">
-                                            Business Book Pack
-                                        </h3>
-
-                                        <div class="text-yellow-400 text-sm mt-1">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </div>
-
-                                        <div class="flex justify-between items-center mt-3">
-
-                                            <span class="font-bold text-blue-900">
-                                                UGX 45,000
-                                            </span>
-
-                                            <button class="bg-blue-900 text-white px-3 py-2 rounded-xl">
-                                                <i class="fas fa-cart-plus"></i>
-                                            </button>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-            <!-- CONTACT SECTION -->
-
-            <section class="max-w-md md:max-w-2xl lg:max-w-4xl mx-auto px-3 mt-10 mb-8">
-
-                <!-- Heading -->
-
-                <div class="text-center mb-6">
-
-                    <h2 class="text-3xl font-bold text-blue-950">
-                        Get In Touch
-                    </h2>
-
-                    <p class="text-gray-500 mt-2">
-                        We're always ready to help you shop better.
-                    </p>
-
-                </div>
-
-                <!-- Contact Card -->
-
-                <div class="contact-card relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700 p-6 shadow-2xl">
-
-                    <!-- Decorative Circles -->
-
-                    <div class="absolute -top-8 -right-8 w-32 h-32 bg-white/10 rounded-full"></div>
-                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-white/5 rounded-full"></div>
-
-                    <div class="relative z-10">
-
-                        <!-- Business Name -->
-
-                        <h3 class="text-white text-2xl font-bold">
-                            Kanye Series
-                        </h3>
-
-                        <p class="text-blue-100 mt-2">
-                            Luxury Shoes • Electronics • Books
-                        </p>
-
-                        <!-- Contact Information -->
-
-                        <div class="mt-6 space-y-4">
-
-                            <div class="flex items-center gap-4">
-
-                                <div class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center">
-
-                                    <i class="fas fa-phone text-white"></i>
-
-                                </div>
-
-                                <div>
-
-                                    <p class="text-blue-200 text-sm">Phone</p>
-
-                                    <a href="tel:+256776150476"
-                                    class="text-white font-semibold hover:text-blue-200">
-
-                                        +256 776 150 476
-
-                                    </a>
-
-                                </div>
-
-                            </div>
-
-                            <div class="flex items-center gap-4">
-
-                                <div class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center">
-
-                                    <i class="fas fa-envelope text-white"></i>
-
-                                </div>
-
-                                <div>
-
-                                    <p class="text-blue-200 text-sm">Email</p>
-
-                                    <a href="mailto:musiimentanoreda24@gmail.com"
-                                    class="text-white font-semibold hover:text-blue-200" style="width: 100px;">
-
-                                        musiimentanoreda24@gmail.com
-
-                                    </a>
-
-                                </div>
-
-                            </div>
-
-                            <div class="flex items-center gap-4">
-
-                                <div class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center">
-
-                                    <i class="fas fa-location-dot text-white"></i>
-
-                                </div>
-
-                                <div>
-
-                                    <p class="text-blue-200 text-sm">Location</p>
-
-                                    <span class="text-white">
-
-                                        Kampala, Uganda
-
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                            <div class="flex items-center gap-4">
-
-                                <div class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center">
-
-                                    <i class="fas fa-clock text-white"></i>
-
-                                </div>
-
-                                <div>
-
-                                    <p class="text-blue-200 text-sm">Working Hours</p>
-
-                                    <span class="text-white">
-
-                                        Mon - Sat • 8:00 AM - 8:00 PM
-
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Buttons -->
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-8">
-
-                            <a href="https://wa.me/256776150476"
-                            target="_blank"
-                            class="bg-green-500 hover:bg-green-600 rounded-xl py-3 text-white font-semibold flex items-center justify-center gap-2 transition">
-
-                                <i class="fab fa-whatsapp"></i>
-
-                                WhatsApp
-
-                            </a>
-
-                            <a href="tel:+256776150476"
-                            class="bg-white text-blue-900 hover:bg-gray-100 rounded-xl py-3 font-semibold flex items-center justify-center gap-2 transition">
-
-                                <i class="fas fa-phone"></i>
-
-                                Call
-
-                            </a>
-
-                        </div>
-
-                        <!-- Divider -->
-
-                        <div class="border-t border-white/20 my-6"></div>
-
-                        <!-- Social Icons -->
-
-                        <div class="flex justify-center gap-5">
-
-                            <a href="#" class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition">
-
-                                <i class="fab fa-facebook-f"></i>
-
-                            </a>
-
-                            <a href="#" class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition">
-
-                                <i class="fab fa-instagram"></i>
-
-                            </a>
-
-                            <a href="#" class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition">
-
-                                <i class="fab fa-x-twitter"></i>
-
-                            </a>
-
-                            <a href="#" class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition">
-
-                                <i class="fab fa-tiktok"></i>
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-            </main>
-
-            <!-- BOTTOM NAV -->
-            <nav
-                class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.08)] border-t" style="z-index:100;">
-
-                <div
-                    class="max-w-md mx-auto flex justify-around py-3">
-
-                    <a href="#"
-                        class="flex flex-col items-center text-blue-900">
-
-                        <i class="fas fa-house text-xl"></i>
-                        <span class="text-xs mt-1">Home</span>
-
-                    </a>
-
-                    <a href="./products.html"
-                        class="flex flex-col items-center text-gray-500">
-
-                        <i class="fas fa-store text-xl"></i>
-                        <span class="text-xs mt-1">Products</span>
-
-                    </a>
-
-                    <a href="#"
-                        class="flex flex-col items-center text-gray-500">
-
-                        <i class="fas fa-box text-xl"></i>
-                        <span class="text-xs mt-1">Orders</span>
-
-                    </a>
-
-                    <a href="#"
-                        class="flex flex-col items-center text-gray-500">
-
-                        <i class="fas fa-user text-xl"></i>
-                        <span class="text-xs mt-1">Profile</span>
-
-                    </a>
-
-                </div>
-
-            </nav>
-        </div>
-    </div>   
     <!-- JS -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    
-    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
     <script src="js/main.js"></script>
 </body>
 </html>
