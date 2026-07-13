@@ -20,49 +20,43 @@
 </head>
 <body class="bg-gray-100 pb-20">
 
-    <!-- TOP NAV -->
-    <header
-        class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+     <!-- TOP NAV -->
+            <header class="fixed top-0 left-0 right-0 lg:left-24 z-50 bg-white shadow-md backdrop-blur-sm bg-opacity-95">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between py-4 md:py-5">
+                        <!-- Logo (Mobile/Tablet) -->
+                        <div class="lg:hidden" data-aos="fade-right">
+                            <h1 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">
+                                Kanye Series
+                            </h1>
+                        </div>
 
-        <div class="max-w-md mx-auto">
+                        <!-- Desktop Centered Title -->
+                        <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2">
+                            <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">
+                                Kanye Series
+                            </h1>
+                        </div>
 
-            <div class="flex items-center justify-between px-4 py-4">
+                        <!-- Actions -->
+                        <div class="flex items-center gap-4 md:gap-8 text-blue-900">
+                            <button id="searchBtn" class="p-2 hover:bg-blue-50 rounded-lg transition">
+                                <i class="fas fa-search text-lg md:text-xl"></i>
+                            </button>
 
-                <!-- Logo -->
-                <div data-aos="fade-right">
-                    <h1 style="color:black;" class="text-2xl font-bold">
-                        Kanye Series
-                    </h1>
+                            <button class="p-2 hover:bg-blue-50 rounded-lg transition relative">
+                                <i class="fas fa-heart text-lg md:text-xl"></i>
+                                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                            </button>
+
+                            <button class="p-2 hover:bg-blue-50 rounded-lg transition relative">
+                                <i class="fas fa-shopping-cart text-lg md:text-xl"></i>
+                                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- Actions -->
-                <div
-                    class="flex items-center gap-5 text-blue-900 text-xl">
-
-                    <button id="searchBtn">
-                        <i class="fas fa-search"></i>
-                    </button>
-
-                    <button>
-                        <i class="fas fa-heart"></i>
-                    </button>
-
-                    <button class="relative">
-                        <i class="fas fa-shopping-cart"></i>
-
-                        <span
-                            class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
-                            0
-                        </span>
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </header>
+            </header>
 
     <!-- PAGE SPACING -->
     <div class="h-20"></div>
