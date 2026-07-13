@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist | Kanye Series</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="bg-gray-100">
+
+<!-- Header -->
+
+<header class="bg-white shadow sticky top-0 z-50">
+
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+
+        <div>
+            <h1 class="text-2xl font-bold text-blue-950">
+                My Wishlist
+            </h1>
+
+            <p class="text-gray-500 text-sm">
+                <span id="wishlistCount">8</span> Saved Products
+            </p>
+        </div>
+
+        <button
+        class="w-12 h-12 rounded-full bg-blue-900 text-white">
+
+            <i class="fas fa-heart"></i>
+
+        </button>
+
+    </div>
+
+</header>
+
+<!-- Search -->
+
+<section class="max-w-7xl mx-auto px-4 mt-6">
+
+    <div class="relative">
+
+        <i class="fas fa-search absolute left-4 top-4 text-gray-400"></i>
+
+        <input
+        type="text"
+        placeholder="Search wishlist..."
+        class="w-full bg-white rounded-2xl py-4 pl-12 pr-4 shadow outline-none">
+
+    </div>
+
+</section>
+
+<!-- Products -->
+
+<section class="max-w-7xl mx-auto px-4 py-8">
+
+<div
+class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+
+<!-- CARD -->
+
+<div
+class="bg-white rounded-3xl shadow hover:shadow-xl transition overflow-hidden">
+
+<div class="relative">
+
+<img
+src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800"
+class="w-full h-52 object-cover">
+
+<button
+class="absolute top-3 right-3 w-10 h-10 rounded-full bg-white text-red-500 shadow">
+
+<i class="fas fa-heart"></i>
+
+</button>
+
+</div>
+
+<div class="p-4">
+
+<h3
+class="font-semibold text-blue-950">
+
+Nike Air Max
+
+</h3>
+
+<div
+class="text-yellow-400 text-sm mt-2">
+
+★★★★★
+
+</div>
+
+<h2
+class="text-blue-900 font-bold text-xl mt-2">
+
+UGX 120,000
+
+</h2>
+
+<div
+class="grid grid-cols-2 gap-2 mt-5">
+
+<button
+class="bg-blue-900 text-white rounded-xl py-3">
+
+<i class="fas fa-cart-plus"></i>
+
+</button>
+
+<button
+class="bg-red-500 text-white rounded-xl py-3">
+
+<i class="fas fa-trash"></i>
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Duplicate this card for more products -->
+
+</div>
+
+</section>
+
+<!-- Empty State -->
+
+<section
+id="emptyWishlist"
+class="hidden max-w-4xl mx-auto text-center py-24">
+
+<i
+class="fas fa-heart-crack text-7xl text-gray-300"></i>
+
+<h2
+class="text-3xl font-bold mt-6">
+
+Your Wishlist is Empty
+
+</h2>
+
+<p
+class="text-gray-500 mt-3">
+
+Save products you love to find them quickly later.
+
+</p>
+
+<a
+href="products.html"
+class="inline-block mt-8 bg-blue-900 text-white px-8 py-4 rounded-xl">
+
+Continue Shopping
+
+</a>
+
+</section>
+
+ <!-- MOBILE BOTTOM NAV -->
+        <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.08)] border-t z-30">
+            <div class="flex justify-around py-3 px-2">
+                <a href="./index.html" class="flex flex-col items-center text-gray-500 hover:text-blue-700 transition p-2">
+                    <i class="fas fa-house text-2xl"></i>
+                    <span class="text-xs mt-1 font-semibold">Home</span>
+                </a>
+                <a href="#products" class="flex flex-col items-center text-blue-900 transition p-2">
+                    <i class="fas fa-store text-2xl"></i>
+                    <span class="text-xs mt-1 font-semibold">Shop</span>
+                </a>
+                <a href="./orders.html" class="flex flex-col items-center text-gray-500 hover:text-blue-700 transition p-2">
+                    <i class="fas fa-bag-shopping text-2xl"></i>
+                    <span class="text-xs mt-1 font-semibold">Orders</span>
+                </a>
+                <a href="./profile.html" class="flex flex-col items-center text-gray-500 hover:text-blue-700 transition p-2">
+                    <i class="fas fa-user text-2xl"></i>
+                    <span class="text-xs mt-1 font-semibold">Profile</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Mobile Bottom Spacing -->
+        <div class="lg:hidden h-20"></div>
+
+
+</body>
+</html>
