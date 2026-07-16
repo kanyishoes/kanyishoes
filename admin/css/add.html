@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Product | Kanye Series</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body class="bg-gray-100">
+
+<!-- Header -->
+
+<header class="bg-white shadow sticky top-0 z-50">
+
+<div class="max-w-5xl mx-auto px-4 py-4 flex items-center gap-4">
+
+<button
+onclick="history.back()"
+class="w-10 h-10 rounded-full bg-gray-100 hover:bg-blue-900 hover:text-white transition">
+
+<i class="fas fa-arrow-left"></i>
+
+</button>
+
+<div>
+
+<h1 class="text-2xl font-bold text-blue-950">
+
+Add Product
+
+</h1>
+
+<p class="text-gray-500 text-sm">
+
+Create a new product
+
+</p>
+
+</div>
+
+</div>
+
+</header>
+
+<!-- Form -->
+
+<section class="max-w-5xl mx-auto p-4 md:p-6">
+
+<form class="bg-white rounded-3xl shadow-lg p-6 space-y-6">
+
+<!-- Product Images -->
+
+<div>
+
+    <div class="flex items-center justify-between mb-3">
+
+        <label class="text-lg font-semibold text-blue-950">
+
+            Product Images
+
+        </label>
+
+        <span class="text-sm text-gray-500">
+
+            Max 5 Images
+
+        </span>
+
+    </div>
+
+    <!-- Upload Area -->
+
+    <label
+        for="productImages"
+        class="border-2 border-dashed border-blue-300 hover:border-blue-900 bg-blue-50 rounded-2xl h-52 flex flex-col justify-center items-center cursor-pointer transition">
+
+        <i class="fas fa-cloud-upload-alt text-5xl text-blue-900"></i>
+
+        <h3 class="font-semibold text-blue-950 mt-4">
+
+            Click to Upload Images
+
+        </h3>
+
+        <p class="text-gray-500 text-sm mt-1">
+
+            JPG, PNG or WEBP
+
+        </p>
+
+        <input
+            id="productImages"
+            type="file"
+            accept="image/*"
+            multiple
+            class="hidden">
+
+    </label>
+
+    <!-- Image Preview -->
+
+    <div
+        id="previewContainer"
+        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-6">
+
+    </div>
+
+</div>
+
+<!-- Grid -->
+
+<div class="grid md:grid-cols-2 gap-5">
+
+<div>
+
+<label class="font-semibold">
+
+Product Name
+
+</label>
+
+<input
+type="text"
+placeholder="Nike Air Max"
+class="w-full mt-2 border rounded-xl p-3 focus:ring-2 focus:ring-blue-900 outline-none">
+
+</div>
+
+<div>
+
+<label class="font-semibold">
+
+Category
+
+</label>
+
+<select
+class="w-full mt-2 border rounded-xl p-3">
+
+<option>Shoes</option>
+
+<option>Electronics</option>
+
+<option>Books</option>
+
+<option>Special Orders</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label class="font-semibold">
+
+Brand
+
+</label>
+
+<input
+type="text"
+placeholder="Nike"
+class="w-full mt-2 border rounded-xl p-3">
+
+</div>
+
+<div>
+
+<label class="font-semibold">
+
+Price (UGX)
+
+</label>
+
+<input
+type="number"
+placeholder="120000"
+class="w-full mt-2 border rounded-xl p-3">
+
+</div>
+
+<div>
+
+<label class="font-semibold">
+
+Discount %
+
+</label>
+
+<input
+type="number"
+placeholder="10"
+class="w-full mt-2 border rounded-xl p-3">
+
+</div>
+
+<div>
+
+<label class="font-semibold">
+
+Stock Quantity
+
+</label>
+
+<input
+type="number"
+placeholder="50"
+class="w-full mt-2 border rounded-xl p-3">
+
+</div>
+
+</div>
+
+<!-- Description -->
+
+<div>
+
+<label class="font-semibold">
+
+Description
+
+</label>
+
+<textarea
+rows="5"
+placeholder="Enter product description..."
+class="w-full mt-2 border rounded-xl p-3 resize-none"></textarea>
+
+</div>
+
+<!-- Switches -->
+
+<div class="grid md:grid-cols-2 gap-6">
+
+<label class="flex justify-between items-center bg-gray-50 rounded-xl p-4">
+
+<span class="font-medium">
+
+Featured Product
+
+</span>
+
+<input
+type="checkbox"
+class="w-5 h-5">
+
+</label>
+
+<label class="flex justify-between items-center bg-gray-50 rounded-xl p-4">
+
+<span class="font-medium">
+
+In Stock
+
+</span>
+
+<input
+type="checkbox"
+checked
+class="w-5 h-5">
+
+</label>
+
+</div>
+
+<!-- Buttons -->
+
+<div class="flex flex-col md:flex-row gap-4 pt-4">
+
+<button
+type="submit"
+class="flex-1 bg-blue-900 hover:bg-blue-800 text-white py-4 rounded-xl font-semibold">
+
+<i class="fas fa-save mr-2"></i>
+
+Save Product
+
+</button>
+
+<button
+type="reset"
+class="flex-1 bg-gray-200 hover:bg-gray-300 py-4 rounded-xl font-semibold">
+
+Reset
+
+</button>
+
+</div>
+
+</form>
+
+</section>
+
+<script>
+    const imageInput = document.getElementById("productImages");
+const previewContainer = document.getElementById("previewContainer");
+
+let selectedImages = [];
+
+imageInput.addEventListener("change", function () {
+
+    const files = Array.from(this.files);
+
+    if ((selectedImages.length + files.length) > 5) {
+        alert("Maximum 5 images allowed.");
+        return;
+    }
+
+    files.forEach(file => {
+
+        selectedImages.push(file);
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+
+            const card = document.createElement("div");
+
+            card.className =
+                "relative rounded-2xl overflow-hidden shadow bg-white";
+
+            card.innerHTML = `
+            
+                <img src="${e.target.result}"
+                     class="w-full h-40 object-cover">
+
+                <button
+                    class="removeBtn absolute top-2 right-2 bg-red-500 text-white w-8 h-8 rounded-full">
+
+                    <i class="fas fa-times"></i>
+
+                </button>
+
+                <button
+                    class="absolute bottom-2 left-2 bg-blue-900 text-white text-xs px-3 py-1 rounded-full">
+
+                    Cover
+
+                </button>
+
+            `;
+
+            previewContainer.appendChild(card);
+
+            card.querySelector(".removeBtn").onclick = function () {
+
+                card.remove();
+
+            };
+
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+});
+</script>
+</body>
+</html>
