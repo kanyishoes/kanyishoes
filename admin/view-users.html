@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>View Users | Kanye Series</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body class="bg-gray-100">
+
+<!-- HEADER -->
+
+<header class="bg-white shadow sticky top-0 z-50">
+
+<div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+
+<div class="flex items-center gap-4">
+
+<button
+onclick="history.back()"
+class="w-11 h-11 rounded-full bg-gray-100 hover:bg-blue-900 hover:text-white transition">
+
+<i class="fas fa-arrow-left"></i>
+
+</button>
+
+<div>
+
+<h1 class="text-2xl font-bold text-blue-950">
+
+View Users
+
+</h1>
+
+<p class="text-gray-500 text-sm">
+
+Manage registered users
+
+</p>
+
+</div>
+
+</div>
+
+<div
+class="bg-blue-100 text-blue-900 px-4 py-2 rounded-full font-semibold">
+
+245 Users
+
+</div>
+
+</div>
+
+</header>
+
+<!-- SEARCH -->
+
+<section class="max-w-7xl mx-auto px-4 mt-6">
+
+<div class="grid md:grid-cols-2 gap-4">
+
+<input
+type="text"
+placeholder="Search users..."
+class="w-full rounded-xl border p-3">
+
+<select
+class="rounded-xl border p-3">
+
+<option>All Roles</option>
+<option>Admin</option>
+<option>Customer</option>
+
+</select>
+
+</div>
+
+</section>
+
+<!-- USERS -->
+
+<section class="max-w-7xl mx-auto px-4 py-8">
+
+<div
+class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+
+<!-- Users Section -->
+<section class="max-w-7xl mx-auto px-4 py-6">
+
+    <div class="bg-white rounded-3xl shadow-lg overflow-hidden">
+
+        <!-- Table Header -->
+        <div class="overflow-x-auto">
+
+            <table class="min-w-full">
+
+                <thead class="bg-blue-950 text-white">
+
+                    <tr>
+
+                        <th class="text-left px-6 py-4">User</th>
+
+                        <th class="text-left px-6 py-4">Phone</th>
+
+                        <th class="text-left px-6 py-4">Role</th>
+
+                        <th class="text-left px-6 py-4">Status</th>
+
+                        <th class="text-center px-6 py-4">Contact</th>
+
+                        <th class="text-center px-6 py-4">Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <!-- User Row -->
+
+                    <tr class="border-b hover:bg-gray-50 transition">
+
+                        <td class="px-6 py-4">
+
+                            <div class="flex items-center gap-3">
+
+                                <img
+                                    src="https://ui-avatars.com/api/?name=John+Doe&background=1E3A8A&color=fff"
+                                    class="w-12 h-12 rounded-full">
+
+                                <div>
+
+                                    <h3 class="font-semibold text-blue-950">
+                                        John Doe
+                                    </h3>
+
+                                    <p class="text-gray-500 text-sm">
+                                        john@example.com
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td class="px-6 py-4">
+                            +256 700 123 456
+                        </td>
+
+                        <td class="px-6 py-4">
+
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">
+
+                                Customer
+
+                            </span>
+
+                        </td>
+
+                        <td class="px-6 py-4">
+
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+
+                                Active
+
+                            </span>
+
+                        </td>
+
+                        <!-- Contact Buttons -->
+
+                        <td class="px-6 py-4">
+
+                            <div class="flex justify-center gap-2">
+
+                                <!-- Call -->
+                                <a href="tel:+256700123456"
+                                   class="w-10 h-10 rounded-xl bg-blue-100 text-blue-900 hover:bg-blue-900 hover:text-white transition flex items-center justify-center">
+
+                                    <i class="fas fa-phone"></i>
+
+                                </a>
+
+                                <!-- WhatsApp -->
+                                <a href="https://wa.me/256700123456"
+                                   target="_blank"
+                                   class="w-10 h-10 rounded-xl bg-green-100 text-green-700 hover:bg-green-600 hover:text-white transition flex items-center justify-center">
+
+                                    <i class="fab fa-whatsapp"></i>
+
+                                </a>
+
+                                <!-- Email -->
+                                <a href="mailto:john@example.com"
+                                   class="w-10 h-10 rounded-xl bg-red-100 text-red-600 hover:bg-red-600 hover:text-white transition flex items-center justify-center">
+
+                                    <i class="fas fa-envelope"></i>
+
+                                </a>
+
+                            </div>
+
+                        </td>
+
+                        <!-- Admin Actions -->
+
+                        <td class="px-6 py-4">
+
+                            <div class="flex justify-center gap-2">
+
+                                <button class="w-10 h-10 rounded-xl bg-blue-100 text-blue-900 hover:bg-blue-900 hover:text-white transition">
+
+                                    <i class="fas fa-eye"></i>
+
+                                </button>
+
+                                <button class="w-10 h-10 rounded-xl bg-yellow-100 text-yellow-700 hover:bg-yellow-500 hover:text-white transition">
+
+                                    <i class="fas fa-pen"></i>
+
+                                </button>
+
+                                <button class="w-10 h-10 rounded-xl bg-red-100 text-red-600 hover:bg-red-600 hover:text-white transition">
+
+                                    <i class="fas fa-trash"></i>
+
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    <!-- Repeat rows dynamically -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Duplicate this card for more users -->
+
+</div>
+
+</section>
+
+</body>
+
+</html>
