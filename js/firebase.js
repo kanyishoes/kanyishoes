@@ -23,9 +23,13 @@ const firebaseConfig = {
     appId: "YOUR_APP_ID"
 
 };
+import { getFirestore } from
+"https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
 
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
 
 export const auth = getAuth(app);
+export const db = getFirestore(app);
