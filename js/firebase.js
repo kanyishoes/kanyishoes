@@ -10,7 +10,7 @@ import {
 
 const firebaseConfig = {
 
-    apiKey: "YOUR_API_KEY",
+    apiKey: "AIzaSyDGpgx9033X1K_UiodxLsT3J5lKB4hQTJc",
 
     authDomain: "kanye-series.firebaseapp.com",
 
@@ -20,7 +20,7 @@ const firebaseConfig = {
 
     messagingSenderId: "518877515683",
 
-    appId: "YOUR_APP_ID"
+    appId: "1:518877515683:web:672b69c89fe89a882fd416"
 
 };
 import { getFirestore } from
