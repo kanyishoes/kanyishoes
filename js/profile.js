@@ -1,9 +1,17 @@
-// Profile Page JavaScript
+// js/profile.js
+import { auth, db } from './firebase.js';
+import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js';
+import { doc, getDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js';
+
+let currentUser = null;
+
+// Profile Page JavaScript (keeps existing behaviors and adds Firebase integration)
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeTabs();
     initializeSearch();
     initializeAnimations();
+    hookProfileButtons();
 });
 
 // Initialize Tab Switching
@@ -99,10 +107,10 @@ function removeFromWishlist(productId) {
 function addToCart(productName, price) {
     console.log('Added to cart:', productName, price);
     
-    // Update cart count in header
-    const cartCount = document.querySelector('.relative span');
+    // Update cart count in header (best-effort)
+    const cartCount = document.getElementById('cartCount') || document.querySelector('.relative span');
     if (cartCount) {
-        const currentCount = parseInt(cartCount.textContent);
+        const currentCount = parseInt(cartCount.textContent) || 0;
         cartCount.textContent = currentCount + 1;
     }
     
@@ -112,114 +120,205 @@ function addToCart(productName, price) {
 // Show Notification
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
-    notification.className = `notification notification-${type} fixed top-4 right-4 bg-${type === 'success' ? 'green' : 'blue'}-500 text-white px-6 py-3 rounded-lg shadow-lg z-[999] animation-slide-in`;
+    notification.className = `notification notification-${type} fixed top-4 right-4 ${type === 'success' ? 'bg-green-500' : 'bg-blue-500'} text-white px-6 py-3 rounded-lg shadow-lg z-[999]`;
     notification.textContent = message;
     
     document.body.appendChild(notification);
     
     setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease-out';
+        notification.style.opacity = '0';
         setTimeout(() => notification.remove(), 300);
     }, 3000);
 }
 
-// Save Profile Changes
-function saveProfileChanges() {
-    const fullName = document.querySelector('input[value="John Doe"]');
-    const email = document.querySelector('input[value*="@example.com"]');
-    const phone = document.querySelector('input[value*="+256"]');
-    
-    if (fullName && email && phone) {
-        console.log('Saving profile:', {
-            name: fullName.value,
-            email: email.value,
-            phone: phone.value
-        });
-        
-        showNotification('Profile updated successfully!', 'success');
+// --- FIREBASE INTEGRATION ---
+
+// react to auth state: if not signed in redirect to signin, otherwise load profile
+onAuthStateChanged(auth, async (user) => {
+    currentUser = user;
+    if (!user) {
+        // If not signed in, send visitor to signin page
+        // Only redirect if this page requires auth (profile page does)
+        if (location.pathname.endsWith('profile.html') || location.pathname.endsWith('/')) {
+            window.location.href = 'signin.html';
+        }
+        return;
+    }
+
+    // load user profile from Firestore
+    try {
+        await loadProfile();
+    } catch (err) {
+        console.error('Failed loading profile:', err);
+    }
+});
+
+async function loadProfile() {
+    if (!currentUser) return;
+    const uid = currentUser.uid;
+    const userRef = doc(db, 'users', uid);
+
+    try {
+        const snap = await getDoc(userRef);
+        const data = snap.exists() ? snap.data() : {};
+
+        // populate UI fields (ids added in profile.html)
+        const nameInput = document.getElementById('profileFullName');
+        if (nameInput) nameInput.value = data.name || currentUser.displayName || '';
+
+        const emailInput = document.getElementById('profileEmail');
+        if (emailInput) emailInput.value = data.email || currentUser.email || '';
+
+        const phoneInput = document.getElementById('profilePhone');
+        if (phoneInput) phoneInput.value = data.phone || data.phoneNumber || '';
+
+        const street = document.getElementById('profileStreet');
+        if (street) street.value = (data.address && data.address.street) || '';
+
+        const city = document.getElementById('profileCity');
+        if (city) city.value = (data.address && data.address.city) || '';
+
+        const postal = document.getElementById('profilePostal');
+        if (postal) postal.value = (data.address && data.address.postal) || '';
+
+        const profileName = document.getElementById('profileName');
+        if (profileName) profileName.textContent = data.name || currentUser.displayName || '—';
+
+        const memberSince = document.getElementById('memberSince');
+        if (memberSince) {
+            const created = data.createdAt || currentUser.metadata?.creationTime;
+            if (created) memberSince.textContent = 'Member since ' + new Date(created).toLocaleDateString();
+        }
+
+        const profileLocation = document.getElementById('profileLocation');
+        if (profileLocation && data.location) profileLocation.innerHTML = `<i class="fas fa-map-pin mr-1"></i> ${data.location}`;
+
+        // If you track orders/wishlist/spent in Firestore, load them here. For now, best-effort placeholders remain.
+
+    } catch (err) {
+        console.error('Error reading user profile from Firestore', err);
     }
 }
 
-// Update Address
-function updateAddress() {
-    const street = document.querySelector('input[value="123 Main Street"]');
-    const city = document.querySelector('input[value="Kampala"]');
-    const postal = document.querySelector('input[value="256000"]');
-    
-    if (street && city && postal) {
-        console.log('Updating address:', {
-            street: street.value,
-            city: city.value,
-            postal: postal.value
+// Save profile changes (writes to Firestore users/{uid})
+async function saveProfileChanges() {
+    if (!currentUser) return alert('User not loaded yet. Please sign in.');
+
+    const name = (document.getElementById('profileFullName') || {}).value;
+    const phone = (document.getElementById('profilePhone') || {}).value;
+
+    const userDocRef = doc(db, 'users', currentUser.uid);
+    try {
+        await updateDoc(userDocRef, {
+            name: name || null,
+            phone: phone || null,
+            updatedAt: new Date().toISOString()
         });
-        
+        showNotification('Profile updated', 'success');
+        // refresh header name
+        const profileName = document.getElementById('profileName');
+        if (profileName) profileName.textContent = name || profileName.textContent;
+    } catch (err) {
+        console.error('Error saving profile:', err);
+        alert('Could not save profile: ' + err.message);
+    }
+}
+
+// Update address
+async function updateAddress() {
+    if (!currentUser) return alert('User not loaded yet. Please sign in.');
+
+    const street = (document.getElementById('profileStreet') || {}).value;
+    const city = (document.getElementById('profileCity') || {}).value;
+    const postal = (document.getElementById('profilePostal') || {}).value;
+
+    const userDocRef = doc(db, 'users', currentUser.uid);
+    try {
+        await updateDoc(userDocRef, {
+            address: {
+                street: street || null,
+                city: city || null,
+                postal: postal || null
+            },
+            updatedAt: new Date().toISOString()
+        });
         showNotification('Address updated successfully!', 'success');
+    } catch (err) {
+        console.error('Error updating address:', err);
+        alert('Could not update address: ' + err.message);
     }
 }
 
-// Change Password
-function changePassword() {
-    console.log('Redirecting to password change page');
-    // This would typically navigate to a separate page or show a modal
-    alert('Password change page would open here');
-}
-
-// Toggle Two-Factor Authentication
-function toggleTwoFA() {
-    console.log('Toggling 2FA');
-    alert('Two-Factor Authentication settings would open here');
-}
-
-// Handle Logout
-function handleLogout() {
-    if (confirm('Are you sure you want to logout?')) {
-        console.log('User logging out');
-        // In a real application, this would clear session and redirect
-        localStorage.clear();
-        window.location.href = './index.html';
+// Logout
+async function handleLogout() {
+    if (!confirm('Are you sure you want to logout?')) return;
+    try {
+        await signOut(auth);
+        window.location.href = 'signin.html';
+    } catch (err) {
+        console.error('Sign-out error', err);
+        alert('Logout failed: ' + err.message);
     }
 }
 
-// Add event listeners to buttons
+// Hook profile UI buttons
+function hookProfileButtons() {
+    const saveBtn = document.getElementById('saveProfileBtn');
+    if (saveBtn) saveBtn.addEventListener('click', (e) => { e.preventDefault(); saveProfileChanges(); });
+
+    const updateAddressBtn = document.getElementById('updateAddressBtn');
+    if (updateAddressBtn) updateAddressBtn.addEventListener('click', (e) => { e.preventDefault(); updateAddress(); });
+
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) logoutBtn.addEventListener('click', (e) => { e.preventDefault(); handleLogout(); });
+
+    // wishlist and cart/tracking buttons in header already have anchors; we still guard clicks globally below
+}
+
+// Global nav guard: redirect to signin if trying to access protected pages while not signed in
+document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a');
+    if (!a) return;
+    const href = a.getAttribute('href') || '';
+    // ignore external links and anchors
+    if (!href || href.startsWith('#') || href.startsWith('http')) return;
+
+    // pages that require authentication
+    const protectedPatterns = ['cart', 'order', 'orders', 'wishlist', 'profile'];
+    const matches = protectedPatterns.some(p => href.toLowerCase().includes(p));
+    if (!matches) return;
+
+    if (!currentUser) {
+        e.preventDefault();
+        // navigate to signin; keep relative path same style as link
+        const redirectTo = (href.startsWith('../')) ? '../signin.html' : 'signin.html';
+        window.location.href = redirectTo;
+    }
+});
+
+// Add event listeners that were present in original file
 document.addEventListener('DOMContentLoaded', function() {
-    // Save buttons
-    const saveButtons = document.querySelectorAll('button');
-    saveButtons.forEach(button => {
-        if (button.textContent.includes('Save Changes')) {
-            button.addEventListener('click', saveProfileChanges);
-        }
-        if (button.textContent.includes('Update Address')) {
-            button.addEventListener('click', updateAddress);
-        }
-        if (button.textContent.includes('Change Password')) {
-            button.addEventListener('click', changePassword);
-        }
-        if (button.textContent.includes('Two-Factor')) {
-            button.addEventListener('click', toggleTwoFA);
-        }
-        if (button.textContent.includes('Logout')) {
-            button.addEventListener('click', handleLogout);
-        }
-    });
-
     // Remove from wishlist buttons
     const trashButtons = document.querySelectorAll('.fa-trash');
     trashButtons.forEach((button, index) => {
-        button.closest('button').addEventListener('click', () => removeFromWishlist(index));
+        const btnParent = button.closest('button');
+        if (btnParent) btnParent.addEventListener('click', () => removeFromWishlist(index));
     });
 
     // Add to cart buttons from wishlist
     const addToCartButtons = document.querySelectorAll('.wishlist-card button.bg-blue-900');
     addToCartButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const productName = this.closest('.wishlist-card').querySelector('h3').textContent;
-            const price = this.closest('.wishlist-card').querySelector('.font-bold').textContent;
+            const productNameEl = this.closest('.wishlist-card')?.querySelector('h3');
+            const priceEl = this.closest('.wishlist-card')?.querySelector('.font-bold');
+            const productName = productNameEl ? productNameEl.textContent : 'Item';
+            const price = priceEl ? priceEl.textContent : '';
             addToCart(productName, price);
         });
     });
 });
 
-// Fade out animation
+// Fade out animation (unchanged)
 const style = document.createElement('style');
 style.textContent = `
     @keyframes fadeOut {
