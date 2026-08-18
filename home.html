@@ -1,0 +1,2329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Kanye Series — Shoes, Electronics, Secondary Science Books and Special Orders.">
+    <meta name="theme-color" content="#1d4ed8">
+
+    <title>Kanye Series | Home</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        royal: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a'
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    >
+
+    <!-- Swiper -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    >
+
+    <!-- AOS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/aos@2.3.4/dist/aos.css"
+    >
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f8fafc;
+            color: #111827;
+            overflow-x: hidden;
+        }
+
+        .swiper-pagination-bullet {
+            width: 8px;
+            height: 8px;
+            opacity: .6;
+            background: white;
+        }
+
+        .swiper-pagination-bullet-active {
+            width: 24px;
+            border-radius: 999px;
+            opacity: 1;
+        }
+
+        .hero-overlay {
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(15, 23, 42, .92) 0%,
+                    rgba(15, 23, 42, .68) 45%,
+                    rgba(15, 23, 42, .15) 100%
+                );
+        }
+
+        .product-image {
+            transition: transform .35s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .category-card {
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease,
+                border-color .25s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .bottom-nav {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        .skeleton {
+            background: linear-gradient(
+                90deg,
+                #e5e7eb 25%,
+                #f3f4f6 37%,
+                #e5e7eb 63%
+            );
+            background-size: 400% 100%;
+            animation: skeleton-loading 1.4s ease infinite;
+        }
+
+        @keyframes skeleton-loading {
+            0% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0 50%;
+            }
+        }
+
+        .search-panel {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 767px) {
+            body {
+                padding-bottom: 72px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================
+         HEADER
+    ============================================================ -->
+    <header
+        id="siteHeader"
+        class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-md"
+    >
+        <div class="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:px-6 lg:px-8">
+
+            <!-- Brand -->
+            <a
+                href="index.html"
+                class="flex min-w-0 items-center gap-2"
+                aria-label="Kanye Series Home"
+            >
+                <div
+                    class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-royal-700 text-white shadow-sm"
+                >
+                    <i class="bi bi-bag-check-fill text-lg"></i>
+                </div>
+
+                <div class="hidden min-[360px]:block">
+                    <p class="text-sm font-black tracking-[0.18em] text-gray-900">
+                        KANYE
+                    </p>
+                    <p class="-mt-1 text-[10px] font-bold tracking-[0.28em] text-royal-700">
+                        SERIES
+                    </p>
+                </div>
+            </a>
+
+            <!-- Desktop Search -->
+            <div class="relative mx-auto hidden max-w-xl flex-1 md:block">
+
+                <label for="desktopSearch" class="sr-only">
+                    Search products
+                </label>
+
+                <div class="relative">
+                    <i
+                        class="bi bi-search pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                    ></i>
+
+                    <input
+                        id="desktopSearch"
+                        type="search"
+                        autocomplete="off"
+                        placeholder="Search products or categories..."
+                        class="w-full rounded-full border border-gray-200 bg-gray-50 py-2.5 pl-11 pr-4 text-sm outline-none transition focus:border-royal-500 focus:bg-white focus:ring-4 focus:ring-royal-100"
+                    >
+                </div>
+
+                <div
+                    id="desktopSearchResults"
+                    class="search-panel absolute left-0 right-0 top-14 hidden rounded-2xl border border-gray-200 bg-white p-2 shadow-2xl"
+                ></div>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="ml-auto flex items-center gap-1 sm:gap-2">
+
+                <!-- Mobile Search -->
+                <button
+                    id="mobileSearchButton"
+                    type="button"
+                    aria-label="Open search"
+                    class="flex h-10 w-10 items-center justify-center rounded-full text-gray-700 transition hover:bg-gray-100 md:hidden"
+                >
+                    <i class="bi bi-search text-lg"></i>
+                </button>
+
+                <!-- Wishlist -->
+                <a
+                    href="wishlist.html"
+                    aria-label="Wishlist"
+                    class="relative flex h-10 w-10 items-center justify-center rounded-full text-gray-700 transition hover:bg-gray-100"
+                >
+                    <i class="bi bi-heart text-lg"></i>
+                </a>
+
+                <!-- Cart -->
+                <a
+                    href="cart.html"
+                    aria-label="Shopping cart"
+                    class="relative flex h-10 w-10 items-center justify-center rounded-full text-gray-700 transition hover:bg-gray-100"
+                >
+                    <i class="bi bi-cart3 text-lg"></i>
+
+                    <span
+                        id="cartCount"
+                        class="absolute right-0.5 top-0.5 hidden min-w-[18px] rounded-full bg-royal-700 px-1 text-center text-[10px] font-bold leading-[18px] text-white"
+                    >
+                        0
+                    </span>
+                </a>
+
+                <!-- Account -->
+                <button
+                    id="accountButton"
+                    type="button"
+                    aria-label="Account"
+                    class="flex h-10 w-10 items-center justify-center rounded-full text-gray-700 transition hover:bg-gray-100"
+                >
+                    <i class="bi bi-person-circle text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Search Area -->
+        <div
+            id="mobileSearchArea"
+            class="hidden border-t border-gray-100 bg-white px-4 py-3 md:hidden"
+        >
+            <div class="relative">
+
+                <label for="mobileSearch" class="sr-only">
+                    Search products
+                </label>
+
+                <i
+                    class="bi bi-search pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                ></i>
+
+                <input
+                    id="mobileSearch"
+                    type="search"
+                    autocomplete="off"
+                    placeholder="Search products or categories..."
+                    class="w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pl-11 pr-4 text-sm outline-none focus:border-royal-500 focus:ring-4 focus:ring-royal-100"
+                >
+            </div>
+
+            <div
+                id="mobileSearchResults"
+                class="search-panel mt-2 hidden rounded-xl border border-gray-200 bg-white p-2 shadow-xl"
+            ></div>
+        </div>
+    </header>
+
+
+    <!-- ============================================================
+         ACCOUNT MENU
+    ============================================================ -->
+    <div
+        id="accountMenu"
+        class="fixed right-4 top-20 z-[60] hidden w-64 rounded-2xl border border-gray-200 bg-white p-3 shadow-2xl"
+    >
+        <div class="mb-2 border-b border-gray-100 px-3 pb-3">
+            <p class="text-xs font-medium text-gray-500">
+                ACCOUNT
+            </p>
+
+            <p
+                id="accountStatus"
+                class="mt-1 truncate text-sm font-bold text-gray-900"
+            >
+                Checking account...
+            </p>
+        </div>
+
+        <div class="space-y-1">
+            <a
+                href="profile.html"
+                class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+                <i class="bi bi-person"></i>
+                Profile
+            </a>
+
+            <a
+                href="orders.html"
+                class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+                <i class="bi bi-box-seam"></i>
+                Orders
+            </a>
+
+            <a
+                href="wishlist.html"
+                class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+                <i class="bi bi-heart"></i>
+                Wishlist
+            </a>
+
+            <button
+                id="logoutButton"
+                type="button"
+                class="hidden w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-red-600 hover:bg-red-50"
+            >
+                <i class="bi bi-box-arrow-right"></i>
+                Sign Out
+            </button>
+
+            <a
+                id="loginButton"
+                href="login.html"
+                class="flex items-center gap-3 rounded-xl bg-royal-700 px-3 py-2.5 text-sm font-semibold text-white hover:bg-royal-800"
+            >
+                <i class="bi bi-box-arrow-in-right"></i>
+                Login
+            </a>
+        </div>
+    </div>
+
+
+    <!-- ============================================================
+         MAIN
+    ============================================================ -->
+    <main>
+
+        <!-- ========================================================
+             HERO
+        ======================================================== -->
+        <section class="relative">
+            <div class="swiper heroSwiper h-[440px] sm:h-[500px] lg:h-[560px]">
+                <div class="swiper-wrapper">
+
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide relative overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1800&q=85"
+                            alt="Modern footwear collection"
+                            class="absolute inset-0 h-full w-full object-cover"
+                            fetchpriority="high"
+                        >
+
+                        <div class="hero-overlay absolute inset-0"></div>
+
+                        <div class="relative z-10 mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+                            <div class="max-w-xl text-white">
+                                <span class="mb-4 inline-flex rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest backdrop-blur-sm">
+                                    Kanye Series
+                                </span>
+
+                                <h1 class="text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
+                                    Step Into
+                                    <span class="text-blue-300">
+                                        Something Better
+                                    </span>
+                                </h1>
+
+                                <p class="mt-5 max-w-lg text-sm leading-7 text-gray-200 sm:text-base">
+                                    Discover carefully selected shoes, electronics,
+                                    science books and more in one modern shopping
+                                    destination.
+                                </p>
+
+                                <a
+                                    href="products.html"
+                                    class="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-royal-800 shadow-lg transition hover:bg-gray-100"
+                                >
+                                    SHOP NOW
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide relative overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1800&q=85"
+                            alt="Modern electronics collection"
+                            class="absolute inset-0 h-full w-full object-cover"
+                            loading="lazy"
+                        >
+
+                        <div class="hero-overlay absolute inset-0"></div>
+
+                        <div class="relative z-10 mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+                            <div class="max-w-xl text-white">
+                                <span class="mb-4 inline-flex rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest backdrop-blur-sm">
+                                    Explore More
+                                </span>
+
+                                <h2 class="text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
+                                    Technology
+                                    <span class="text-blue-300">
+                                        Made Simple
+                                    </span>
+                                </h2>
+
+                                <p class="mt-5 max-w-lg text-sm leading-7 text-gray-200 sm:text-base">
+                                    Explore electronics selected for everyday use,
+                                    study and modern living.
+                                </p>
+
+                                <a
+                                    href="products.html?category=Electronics"
+                                    class="mt-7 inline-flex items-center gap-2 rounded-full bg-royal-600 px-6 py-3 text-sm font-bold text-white shadow-lg transition hover:bg-royal-700"
+                                >
+                                    EXPLORE PRODUCTS
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide relative overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=1800&q=85"
+                            alt="Books and study materials"
+                            class="absolute inset-0 h-full w-full object-cover"
+                            loading="lazy"
+                        >
+
+                        <div class="hero-overlay absolute inset-0"></div>
+
+                        <div class="relative z-10 mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+                            <div class="max-w-xl text-white">
+                                <span class="mb-4 inline-flex rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest backdrop-blur-sm">
+                                    For Students
+                                </span>
+
+                                <h2 class="text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
+                                    Learn.
+                                    <span class="text-blue-300">
+                                        Grow.
+                                    </span>
+                                    Achieve.
+                                </h2>
+
+                                <p class="mt-5 max-w-lg text-sm leading-7 text-gray-200 sm:text-base">
+                                    Find secondary science books and study materials
+                                    for your academic journey.
+                                </p>
+
+                                <a
+                                    href="products.html?category=Books"
+                                    class="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-royal-800 shadow-lg transition hover:bg-gray-100"
+                                >
+                                    VIEW COLLECTION
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+
+        <!-- ========================================================
+             CATEGORIES
+        ======================================================== -->
+        <section
+            id="categories"
+            class="py-12 sm:py-16"
+        >
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+                <div
+                    class="mb-7 flex items-end justify-between gap-4"
+                    data-aos="fade-up"
+                >
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-royal-700">
+                            Shop by category
+                        </p>
+
+                        <h2 class="mt-1 text-2xl font-black text-gray-900 sm:text-3xl">
+                            Explore Categories
+                        </h2>
+                    </div>
+
+                    <a
+                        href="products.html"
+                        class="hidden items-center gap-1 text-sm font-bold text-royal-700 sm:flex"
+                    >
+                        View All
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+
+
+                <div class="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">
+
+                    <a
+                        href="products.html?category=Shoes"
+                        class="category-card group rounded-2xl border border-gray-200 bg-white p-4 shadow-sm hover:border-royal-200 hover:shadow-lg sm:p-5"
+                        data-aos="fade-up"
+                        data-aos-delay="0"
+                    >
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-royal-50 text-royal-700 transition group-hover:bg-royal-700 group-hover:text-white">
+                            <i class="bi bi-bootstrap-fill text-2xl"></i>
+                        </div>
+
+                        <h3 class="mt-4 font-bold text-gray-900">
+                            Shoes
+                        </h3>
+
+                        <p class="mt-1 text-xs text-gray-500">
+                            Step up your style
+                        </p>
+                    </a>
+
+
+                    <a
+                        href="products.html?category=Electronics"
+                        class="category-card group rounded-2xl border border-gray-200 bg-white p-4 shadow-sm hover:border-royal-200 hover:shadow-lg sm:p-5"
+                        data-aos="fade-up"
+                        data-aos-delay="75"
+                    >
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-royal-50 text-royal-700 transition group-hover:bg-royal-700 group-hover:text-white">
+                            <i class="bi bi-phone text-2xl"></i>
+                        </div>
+
+                        <h3 class="mt-4 font-bold text-gray-900">
+                            Electronics
+                        </h3>
+
+                        <p class="mt-1 text-xs text-gray-500">
+                            Everyday technology
+                        </p>
+                    </a>
+
+
+                    <a
+                        href="products.html?category=Books"
+                        class="category-card group rounded-2xl border border-gray-200 bg-white p-4 shadow-sm hover:border-royal-200 hover:shadow-lg sm:p-5"
+                        data-aos="fade-up"
+                        data-aos-delay="150"
+                    >
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-royal-50 text-royal-700 transition group-hover:bg-royal-700 group-hover:text-white">
+                            <i class="bi bi-book text-2xl"></i>
+                        </div>
+
+                        <h3 class="mt-4 font-bold text-gray-900">
+                            Books
+                        </h3>
+
+                        <p class="mt-1 text-xs text-gray-500">
+                            Study and grow
+                        </p>
+                    </a>
+
+
+                    <a
+                        href="special-orders.html"
+                        class="category-card group rounded-2xl border border-gray-200 bg-white p-4 shadow-sm hover:border-royal-200 hover:shadow-lg sm:p-5"
+                        data-aos="fade-up"
+                        data-aos-delay="225"
+                    >
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-royal-50 text-royal-700 transition group-hover:bg-royal-700 group-hover:text-white">
+                            <i class="bi bi-box2-heart text-2xl"></i>
+                        </div>
+
+                        <h3 class="mt-4 font-bold text-gray-900">
+                            Special Orders
+                        </h3>
+
+                        <p class="mt-1 text-xs text-gray-500">
+                            Request what you need
+                        </p>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================================
+             FEATURED PRODUCTS
+        ======================================================== -->
+        <section class="bg-white py-12 sm:py-16">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+                <div
+                    class="mb-7 flex items-end justify-between gap-4"
+                    data-aos="fade-up"
+                >
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-royal-700">
+                            Selected for you
+                        </p>
+
+                        <h2 class="mt-1 text-2xl font-black text-gray-900 sm:text-3xl">
+                            Featured Products
+                        </h2>
+                    </div>
+
+                    <a
+                        href="products.html"
+                        class="flex items-center gap-1 text-sm font-bold text-royal-700"
+                    >
+                        View All
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+
+
+                <!-- Featured Loading -->
+                <div
+                    id="featuredLoading"
+                    class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4"
+                >
+                    <div class="overflow-hidden rounded-2xl bg-white shadow-sm">
+                        <div class="skeleton aspect-square"></div>
+                        <div class="space-y-2 p-3">
+                            <div class="skeleton h-3 w-2/3 rounded"></div>
+                            <div class="skeleton h-4 w-full rounded"></div>
+                            <div class="skeleton h-4 w-1/2 rounded"></div>
+                        </div>
+                    </div>
+
+                    <div class="overflow-hidden rounded-2xl bg-white shadow-sm">
+                        <div class="skeleton aspect-square"></div>
+                        <div class="space-y-2 p-3">
+                            <div class="skeleton h-3 w-2/3 rounded"></div>
+                            <div class="skeleton h-4 w-full rounded"></div>
+                            <div class="skeleton h-4 w-1/2 rounded"></div>
+                        </div>
+                    </div>
+
+                    <div class="hidden overflow-hidden rounded-2xl bg-white shadow-sm md:block">
+                        <div class="skeleton aspect-square"></div>
+                        <div class="space-y-2 p-3">
+                            <div class="skeleton h-3 w-2/3 rounded"></div>
+                            <div class="skeleton h-4 w-full rounded"></div>
+                            <div class="skeleton h-4 w-1/2 rounded"></div>
+                        </div>
+                    </div>
+
+                    <div class="hidden overflow-hidden rounded-2xl bg-white shadow-sm lg:block">
+                        <div class="skeleton aspect-square"></div>
+                        <div class="space-y-2 p-3">
+                            <div class="skeleton h-3 w-2/3 rounded"></div>
+                            <div class="skeleton h-4 w-full rounded"></div>
+                            <div class="skeleton h-4 w-1/2 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div
+                    id="featuredProducts"
+                    class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4"
+                ></div>
+
+                <div
+                    id="featuredEmpty"
+                    class="hidden rounded-2xl border border-dashed border-gray-300 bg-gray-50 px-5 py-12 text-center"
+                >
+                    <i class="bi bi-box-seam text-3xl text-gray-400"></i>
+
+                    <p class="mt-3 font-semibold text-gray-700">
+                        No featured products available right now.
+                    </p>
+
+                    <a
+                        href="products.html"
+                        class="mt-4 inline-flex items-center gap-2 text-sm font-bold text-royal-700"
+                    >
+                        Browse Products
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================================
+             SPECIAL ORDER
+        ======================================================== -->
+        <section class="py-12 sm:py-16">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+                <div
+                    class="relative overflow-hidden rounded-3xl bg-royal-900 px-6 py-10 text-white shadow-xl sm:px-10 sm:py-14"
+                    data-aos="fade-up"
+                >
+                    <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-royal-700/50"></div>
+                    <div class="absolute -bottom-32 -left-20 h-72 w-72 rounded-full bg-blue-400/10"></div>
+
+                    <div class="relative z-10 grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
+
+                        <div class="max-w-2xl">
+                            <p class="text-xs font-bold uppercase tracking-[0.2em] text-blue-200">
+                                Can't find what you need?
+                            </p>
+
+                            <h2 class="mt-2 text-3xl font-black sm:text-4xl">
+                                Request a Special Order
+                            </h2>
+
+                            <p class="mt-4 max-w-xl text-sm leading-7 text-blue-100 sm:text-base">
+                                Tell us what you are looking for and we can help you
+                                request products that are not currently listed in our
+                                store.
+                            </p>
+                        </div>
+
+                        <a
+                            href="special-orders.html"
+                            class="inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-royal-800 transition hover:bg-gray-100"
+                        >
+                            REQUEST SPECIAL ORDER
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================================
+             LATEST PRODUCTS
+        ======================================================== -->
+        <section class="bg-white py-12 sm:py-16">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+                <div
+                    class="mb-7 flex items-end justify-between gap-4"
+                    data-aos="fade-up"
+                >
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-royal-700">
+                            Fresh arrivals
+                        </p>
+
+                        <h2 class="mt-1 text-2xl font-black text-gray-900 sm:text-3xl">
+                            Latest Products
+                        </h2>
+                    </div>
+
+                    <a
+                        href="products.html"
+                        class="flex items-center gap-1 text-sm font-bold text-royal-700"
+                    >
+                        View All
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+
+
+                <!-- Latest Loading -->
+                <div
+                    id="latestLoading"
+                    class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4"
+                >
+                    <div class="overflow-hidden rounded-2xl bg-white shadow-sm">
+                        <div class="skeleton aspect-square"></div>
+                        <div class="space-y-2 p-3">
+                            <div class="skeleton h-3 w-2/3 rounded"></div>
+                            <div class="skeleton h-4 w-full rounded"></div>
+                            <div class="skeleton h-4 w-1/2 rounded"></div>
+                        </div>
+                    </div>
+
+                    <div class="overflow-hidden rounded-2xl bg-white shadow-sm">
+                        <div class="skeleton aspect-square"></div>
+                        <div class="space-y-2 p-3">
+                            <div class="skeleton h-3 w-2/3 rounded"></div>
+                            <div class="skeleton h-4 w-full rounded"></div>
+                            <div class="skeleton h-4 w-1/2 rounded"></div>
+                        </div>
+                    </div>
+
+                    <div class="hidden overflow-hidden rounded-2xl bg-white shadow-sm md:block">
+                        <div class="skeleton aspect-square"></div>
+                        <div class="space-y-2 p-3">
+                            <div class="skeleton h-3 w-2/3 rounded"></div>
+                            <div class="skeleton h-4 w-full rounded"></div>
+                            <div class="skeleton h-4 w-1/2 rounded"></div>
+                        </div>
+                    </div>
+
+                    <div class="hidden overflow-hidden rounded-2xl bg-white shadow-sm lg:block">
+                        <div class="skeleton aspect-square"></div>
+                        <div class="space-y-2 p-3">
+                            <div class="skeleton h-3 w-2/3 rounded"></div>
+                            <div class="skeleton h-4 w-full rounded"></div>
+                            <div class="skeleton h-4 w-1/2 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div
+                    id="latestProducts"
+                    class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4"
+                ></div>
+
+                <div
+                    id="latestEmpty"
+                    class="hidden rounded-2xl border border-dashed border-gray-300 bg-gray-50 px-5 py-12 text-center"
+                >
+                    <i class="bi bi-box-seam text-3xl text-gray-400"></i>
+
+                    <p class="mt-3 font-semibold text-gray-700">
+                        No products available yet.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================================
+             CONTACT
+        ======================================================== -->
+        <section
+            id="contact"
+            class="py-12 sm:py-16"
+        >
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+                <div
+                    class="rounded-3xl border border-gray-200 bg-gray-50 p-6 sm:p-10"
+                    data-aos="fade-up"
+                >
+                    <div class="grid gap-8 lg:grid-cols-[1fr_1.5fr] lg:items-center">
+
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-[0.2em] text-royal-700">
+                                Need assistance?
+                            </p>
+
+                            <h2 class="mt-2 text-3xl font-black text-gray-900">
+                                Contact Kanye Series
+                            </h2>
+
+                            <p class="mt-3 max-w-md text-sm leading-7 text-gray-600">
+                                Have a question about a product, an order or a
+                                special request? Contact us using the available
+                                channels.
+                            </p>
+                        </div>
+
+
+                        <div class="grid gap-3 sm:grid-cols-3">
+
+                            <!-- Replace placeholder values with actual project details -->
+                            <a
+                                href="mailto:YOUR_EMAIL@example.com"
+                                class="rounded-2xl border border-gray-200 bg-white p-5 transition hover:border-royal-200 hover:shadow-md"
+                            >
+                                <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-royal-50 text-royal-700">
+                                    <i class="bi bi-envelope text-xl"></i>
+                                </div>
+
+                                <p class="mt-4 text-xs font-bold uppercase tracking-wide text-gray-500">
+                                    Email
+                                </p>
+
+                                <p class="mt-1 break-all text-sm font-semibold text-gray-900">
+                                    YOUR_EMAIL@example.com
+                                </p>
+                            </a>
+
+
+                            <a
+                                href="https://wa.me/YOUR_WHATSAPP_NUMBER"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="rounded-2xl border border-gray-200 bg-white p-5 transition hover:border-royal-200 hover:shadow-md"
+                            >
+                                <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-royal-50 text-royal-700">
+                                    <i class="bi bi-whatsapp text-xl"></i>
+                                </div>
+
+                                <p class="mt-4 text-xs font-bold uppercase tracking-wide text-gray-500">
+                                    WhatsApp
+                                </p>
+
+                                <p class="mt-1 text-sm font-semibold text-gray-900">
+                                    Chat With Us
+                                </p>
+                            </a>
+
+
+                            <a
+                                href="tel:YOUR_PHONE_NUMBER"
+                                class="rounded-2xl border border-gray-200 bg-white p-5 transition hover:border-royal-200 hover:shadow-md"
+                            >
+                                <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-royal-50 text-royal-700">
+                                    <i class="bi bi-telephone text-xl"></i>
+                                </div>
+
+                                <p class="mt-4 text-xs font-bold uppercase tracking-wide text-gray-500">
+                                    Phone
+                                </p>
+
+                                <p class="mt-1 text-sm font-semibold text-gray-900">
+                                    Call Us
+                                </p>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ============================================================
+         FOOTER
+    ============================================================ -->
+    <footer class="border-t border-gray-200 bg-gray-950 text-gray-300">
+
+        <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+
+            <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+
+                <div>
+                    <div class="flex items-center gap-2">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-royal-700 text-white">
+                            <i class="bi bi-bag-check-fill"></i>
+                        </div>
+
+                        <div>
+                            <p class="text-sm font-black tracking-[0.18em] text-white">
+                                KANYE
+                            </p>
+
+                            <p class="-mt-1 text-[10px] font-bold tracking-[0.28em] text-blue-400">
+                                SERIES
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="mt-5 max-w-sm text-sm leading-7 text-gray-400">
+                        A modern shopping destination for shoes, electronics,
+                        secondary science books and special orders.
+                    </p>
+                </div>
+
+
+                <div>
+                    <h3 class="font-bold text-white">
+                        Quick Links
+                    </h3>
+
+                    <div class="mt-4 space-y-3 text-sm">
+                        <a href="index.html" class="block transition hover:text-white">
+                            Home
+                        </a>
+
+                        <a href="products.html" class="block transition hover:text-white">
+                            Products
+                        </a>
+
+                        <a href="orders.html" class="block transition hover:text-white">
+                            Orders
+                        </a>
+
+                        <a href="profile.html" class="block transition hover:text-white">
+                            Profile
+                        </a>
+                    </div>
+                </div>
+
+
+                <div>
+                    <h3 class="font-bold text-white">
+                        Categories
+                    </h3>
+
+                    <div class="mt-4 space-y-3 text-sm">
+                        <a href="products.html?category=Shoes" class="block transition hover:text-white">
+                            Shoes
+                        </a>
+
+                        <a href="products.html?category=Electronics" class="block transition hover:text-white">
+                            Electronics
+                        </a>
+
+                        <a href="products.html?category=Books" class="block transition hover:text-white">
+                            Books
+                        </a>
+
+                        <a href="special-orders.html" class="block transition hover:text-white">
+                            Special Orders
+                        </a>
+                    </div>
+                </div>
+
+
+                <div>
+                    <h3 class="font-bold text-white">
+                        Contact
+                    </h3>
+
+                    <div class="mt-4 space-y-3 text-sm">
+                        <a
+                            href="mailto:YOUR_EMAIL@example.com"
+                            class="flex items-center gap-3 transition hover:text-white"
+                        >
+                            <i class="bi bi-envelope"></i>
+                            YOUR_EMAIL@example.com
+                        </a>
+
+                        <a
+                            href="https://wa.me/YOUR_WHATSAPP_NUMBER"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex items-center gap-3 transition hover:text-white"
+                        >
+                            <i class="bi bi-whatsapp"></i>
+                            WhatsApp
+                        </a>
+
+                        <a
+                            href="tel:YOUR_PHONE_NUMBER"
+                            class="flex items-center gap-3 transition hover:text-white"
+                        >
+                            <i class="bi bi-telephone"></i>
+                            Phone
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="mt-10 flex flex-col gap-4 border-t border-gray-800 pt-6 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between">
+
+                <p>
+                    &copy; <span id="currentYear"></span> Kanye Series.
+                    All rights reserved.
+                </p>
+
+                <div class="flex items-center gap-4">
+                    <a href="#contact" class="hover:text-gray-300">
+                        Contact
+                    </a>
+
+                    <a href="products.html" class="hover:text-gray-300">
+                        Shop
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ============================================================
+         MOBILE BOTTOM NAVIGATION
+    ============================================================ -->
+    <nav
+        class="bottom-nav fixed bottom-0 left-0 right-0 z-50 border-t border-gray-200 bg-white/95 backdrop-blur-md md:hidden"
+        aria-label="Mobile navigation"
+    >
+        <div class="mx-auto grid h-16 max-w-md grid-cols-4">
+
+            <a
+                href="index.html"
+                class="flex flex-col items-center justify-center gap-1 text-royal-700"
+                aria-current="page"
+            >
+                <i class="bi bi-house-door-fill text-lg"></i>
+                <span class="text-[10px] font-bold">
+                    HOME
+                </span>
+            </a>
+
+            <a
+                href="products.html"
+                class="flex flex-col items-center justify-center gap-1 text-gray-500 transition hover:text-royal-700"
+            >
+                <i class="bi bi-grid text-lg"></i>
+                <span class="text-[10px] font-bold">
+                    PRODUCTS
+                </span>
+            </a>
+
+            <a
+                href="orders.html"
+                class="flex flex-col items-center justify-center gap-1 text-gray-500 transition hover:text-royal-700"
+            >
+                <i class="bi bi-box-seam text-lg"></i>
+                <span class="text-[10px] font-bold">
+                    ORDERS
+                </span>
+            </a>
+
+            <a
+                href="profile.html"
+                class="flex flex-col items-center justify-center gap-1 text-gray-500 transition hover:text-royal-700"
+            >
+                <i class="bi bi-person text-lg"></i>
+                <span class="text-[10px] font-bold">
+                    PROFILE
+                </span>
+            </a>
+
+        </div>
+    </nav>
+
+
+    <!-- ============================================================
+         EXTERNAL LIBRARIES
+    ============================================================ -->
+
+    <!-- Swiper -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <!-- ============================================================
+         FIREBASE + HOME PAGE JAVASCRIPT
+    ============================================================ -->
+    <script type="module">
+
+        // ============================================================
+        // FIREBASE IMPORTS
+        // ============================================================
+
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+
+        import {
+            getAuth,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+        import {
+            getDatabase,
+            ref,
+            get,
+            set,
+            remove
+        } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
+
+
+        // ============================================================
+        // FIREBASE CONFIGURATION
+        // ============================================================
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDGpgx9033X1_KUiodxLsT3J5lKB4hQTJc",
+            authDomain: "kanye-series.firebaseapp.com",
+            projectId: "kanye-series",
+            storageBucket: "kanye-series.firebasestorage.app",
+            messagingSenderId: "518877515683",
+            appId: "1:518877515683:web:672b69c89fe89a882fd416",
+            measurementId: "G-MCMYRNCWVC"
+        };
+
+
+        // ============================================================
+        // FIREBASE INITIALIZATION
+        // ============================================================
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
+
+
+        // ============================================================
+        // CLOUDINARY CONFIGURATION
+        // ============================================================
+
+        const CLOUDINARY_CLOUD_NAME = "fjifvpsp";
+        const CLOUDINARY_UPLOAD_PRESET = "kanye_products";
+        const CLOUDINARY_UPLOAD_URL =
+            `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
+
+        // Cloudinary is intentionally READ-ONLY on this page.
+        // Product images are read from URLs already stored in Firebase.
+
+
+        // ============================================================
+        // DOM ELEMENTS
+        // ============================================================
+
+        const featuredProductsContainer =
+            document.getElementById("featuredProducts");
+
+        const latestProductsContainer =
+            document.getElementById("latestProducts");
+
+        const featuredLoading =
+            document.getElementById("featuredLoading");
+
+        const latestLoading =
+            document.getElementById("latestLoading");
+
+        const featuredEmpty =
+            document.getElementById("featuredEmpty");
+
+        const latestEmpty =
+            document.getElementById("latestEmpty");
+
+        const cartCount =
+            document.getElementById("cartCount");
+
+        const accountButton =
+            document.getElementById("accountButton");
+
+        const accountMenu =
+            document.getElementById("accountMenu");
+
+        const accountStatus =
+            document.getElementById("accountStatus");
+
+        const loginButton =
+            document.getElementById("loginButton");
+
+        const logoutButton =
+            document.getElementById("logoutButton");
+
+        const mobileSearchButton =
+            document.getElementById("mobileSearchButton");
+
+        const mobileSearchArea =
+            document.getElementById("mobileSearchArea");
+
+        const desktopSearch =
+            document.getElementById("desktopSearch");
+
+        const mobileSearch =
+            document.getElementById("mobileSearch");
+
+        const desktopSearchResults =
+            document.getElementById("desktopSearchResults");
+
+        const mobileSearchResults =
+            document.getElementById("mobileSearchResults");
+
+        const currentYear =
+            document.getElementById("currentYear");
+
+
+        // ============================================================
+        // APPLICATION STATE
+        // ============================================================
+
+        let currentUser = null;
+        let allProducts = [];
+        let wishlistIds = new Set();
+
+
+        // ============================================================
+        // UTILITY FUNCTIONS
+        // ============================================================
+
+        function escapeHTML(value) {
+            return String(value ?? "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+        }
+
+
+        function formatPrice(price) {
+            const numericPrice = Number(price);
+
+            if (!Number.isFinite(numericPrice)) {
+                return "Price unavailable";
+            }
+
+            return `UGX ${numericPrice.toLocaleString("en-UG")}`;
+        }
+
+
+        function getProductImage(product) {
+            if (
+                Array.isArray(product.images) &&
+                product.images.length > 0 &&
+                typeof product.images[0] === "string" &&
+                product.images[0].trim()
+            ) {
+                return product.images[0];
+            }
+
+            if (
+                typeof product.image === "string" &&
+                product.image.trim()
+            ) {
+                return product.image;
+            }
+
+            return "https://placehold.co/800x800/e5e7eb/6b7280?text=Kanye+Series";
+        }
+
+
+        function isProductAvailable(product) {
+            if (product.stock === undefined || product.stock === null) {
+                return true;
+            }
+
+            return Number(product.stock) > 0;
+        }
+
+
+        // ============================================================
+        // PRODUCT CARD
+        // ============================================================
+
+        function createProductCard(product) {
+
+            const productId = product.id;
+            const image = getProductImage(product);
+            const isWishlisted = wishlistIds.has(productId);
+            const available = isProductAvailable(product);
+
+            return `
+                <article
+                    class="product-card group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                    data-aos="fade-up"
+                >
+
+                    <div class="relative overflow-hidden bg-gray-100">
+
+                        <a
+                            href="product.html?id=${encodeURIComponent(productId)}"
+                            aria-label="View ${escapeHTML(product.name || "product")}"
+                            class="block aspect-square"
+                        >
+                            <img
+                                src="${escapeHTML(image)}"
+                                alt="${escapeHTML(product.name || "Kanye Series product")}"
+                                class="product-image h-full w-full object-cover"
+                                loading="lazy"
+                                decoding="async"
+                                onerror="this.src='https://placehold.co/800x800/e5e7eb/6b7280?text=Image+Unavailable'"
+                            >
+                        </a>
+
+                        ${
+                            product.featured
+                            ? `
+                                <span class="absolute left-2 top-2 rounded-full bg-royal-700 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wide text-white">
+                                    Featured
+                                </span>
+                            `
+                            : ""
+                        }
+
+                        ${
+                            !available
+                            ? `
+                                <span class="absolute bottom-2 left-2 rounded-full bg-gray-900/85 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wide text-white">
+                                    Out of Stock
+                                </span>
+                            `
+                            : ""
+                        }
+
+                        <button
+                            type="button"
+                            class="wishlist-button absolute right-2 top-2 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 shadow-sm backdrop-blur transition hover:bg-white"
+                            data-product-id="${escapeHTML(productId)}"
+                            aria-label="${isWishlisted ? "Remove from wishlist" : "Add to wishlist"}"
+                            aria-pressed="${isWishlisted}"
+                        >
+                            <i class="bi ${isWishlisted ? "bi-heart-fill text-red-500" : "bi-heart text-gray-700"}"></i>
+                        </button>
+
+                    </div>
+
+
+                    <div class="p-3">
+
+                        <p class="text-[10px] font-bold uppercase tracking-wide text-royal-700">
+                            ${escapeHTML(product.category || "Product")}
+                        </p>
+
+                        <a
+                            href="product.html?id=${encodeURIComponent(productId)}"
+                            class="mt-1 block"
+                        >
+                            <h3 class="line-clamp-2 min-h-[40px] text-sm font-bold leading-5 text-gray-900">
+                                ${escapeHTML(product.name || "Unnamed Product")}
+                            </h3>
+                        </a>
+
+                        <div class="mt-2">
+                            <p class="text-sm font-black text-gray-900">
+                                ${formatPrice(product.price)}
+                            </p>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="add-cart-button mt-3 flex w-full items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-xs font-bold transition ${
+                                available
+                                    ? "bg-royal-700 text-white hover:bg-royal-800"
+                                    : "cursor-not-allowed bg-gray-100 text-gray-400"
+                            }"
+                            data-product-id="${escapeHTML(productId)}"
+                            ${available ? "" : "disabled"}
+                        >
+                            <i class="bi bi-cart-plus"></i>
+                            ${available ? "ADD TO CART" : "UNAVAILABLE"}
+                        </button>
+
+                    </div>
+                </article>
+            `;
+        }
+
+
+        // ============================================================
+        // LOAD PRODUCTS
+        // ============================================================
+
+        async function loadProducts() {
+
+            try {
+
+                featuredLoading.classList.remove("hidden");
+                latestLoading.classList.remove("hidden");
+
+                const productsSnapshot =
+                    await get(ref(db, "products"));
+
+                if (!productsSnapshot.exists()) {
+                    allProducts = [];
+                } else {
+
+                    const productsData =
+                        productsSnapshot.val();
+
+                    allProducts =
+                        Object.entries(productsData)
+                            .map(([id, product]) => ({
+                                id,
+                                ...(product || {})
+                            }))
+                            .filter(product => product.id);
+                }
+
+                renderFeaturedProducts();
+                renderLatestProducts();
+
+            } catch (error) {
+
+                console.error(error);
+
+                featuredProductsContainer.innerHTML = "";
+                latestProductsContainer.innerHTML = "";
+
+                featuredLoading.classList.add("hidden");
+                latestLoading.classList.add("hidden");
+
+                featuredEmpty.classList.remove("hidden");
+                latestEmpty.classList.remove("hidden");
+
+                featuredEmpty.innerHTML = `
+                    <i class="bi bi-exclamation-circle text-3xl text-gray-400"></i>
+                    <p class="mt-3 font-semibold text-gray-700">
+                        Unable to load products right now.
+                    </p>
+                    <button
+                        id="retryProductsButton"
+                        type="button"
+                        class="mt-4 inline-flex items-center gap-2 rounded-full bg-royal-700 px-5 py-2.5 text-xs font-bold text-white hover:bg-royal-800"
+                    >
+                        <i class="bi bi-arrow-clockwise"></i>
+                        TRY AGAIN
+                    </button>
+                `;
+
+                latestEmpty.innerHTML = `
+                    <i class="bi bi-exclamation-circle text-3xl text-gray-400"></i>
+                    <p class="mt-3 font-semibold text-gray-700">
+                        Unable to load products right now. Please try again.
+                    </p>
+                `;
+
+                document
+                    .getElementById("retryProductsButton")
+                    ?.addEventListener("click", loadProducts);
+            }
+        }
+
+
+        // ============================================================
+        // FEATURED PRODUCTS
+        // ============================================================
+
+        function renderFeaturedProducts() {
+
+            featuredLoading.classList.add("hidden");
+
+            const featured =
+                allProducts
+                    .filter(product =>
+                        product.featured === true &&
+                        isProductAvailable(product)
+                    )
+                    .slice(0, 6);
+
+            if (featured.length === 0) {
+
+                featuredProductsContainer.innerHTML = "";
+                featuredEmpty.classList.remove("hidden");
+
+                return;
+            }
+
+            featuredEmpty.classList.add("hidden");
+
+            featuredProductsContainer.innerHTML =
+                featured.map(createProductCard).join("");
+        }
+
+
+        // ============================================================
+        // LATEST PRODUCTS
+        // ============================================================
+
+        function renderLatestProducts() {
+
+            latestLoading.classList.add("hidden");
+
+            const latest =
+                [...allProducts]
+                    .filter(product => isProductAvailable(product))
+                    .sort((a, b) => {
+                        const dateA = Number(a.createdAt) || 0;
+                        const dateB = Number(b.createdAt) || 0;
+
+                        return dateB - dateA;
+                    })
+                    .slice(0, 4);
+
+            if (latest.length === 0) {
+
+                latestProductsContainer.innerHTML = "";
+                latestEmpty.classList.remove("hidden");
+
+                return;
+            }
+
+            latestEmpty.classList.add("hidden");
+
+            latestProductsContainer.innerHTML =
+                latest.map(createProductCard).join("");
+        }
+
+
+        // ============================================================
+        // AUTHENTICATION STATE
+        // ============================================================
+
+        onAuthStateChanged(auth, async (user) => {
+
+            currentUser = user;
+
+            if (user) {
+
+                accountStatus.textContent =
+                    user.displayName ||
+                    user.email ||
+                    "Signed-in customer";
+
+                loginButton.classList.add("hidden");
+
+                logoutButton.classList.remove("hidden");
+                logoutButton.classList.add("flex");
+
+                await loadUserCart();
+                await loadWishlist();
+
+            } else {
+
+                accountStatus.textContent =
+                    "Not signed in";
+
+                loginButton.classList.remove("hidden");
+
+                logoutButton.classList.add("hidden");
+                logoutButton.classList.remove("flex");
+
+                wishlistIds = new Set();
+
+                updateCartCount(0);
+
+                if (allProducts.length > 0) {
+                    renderFeaturedProducts();
+                    renderLatestProducts();
+                }
+            }
+        });
+
+
+        // ============================================================
+        // CART
+        // ============================================================
+
+        async function loadUserCart() {
+
+            if (!currentUser) {
+                updateCartCount(0);
+                return;
+            }
+
+            try {
+
+                const cartSnapshot =
+                    await get(
+                        ref(db, `carts/${currentUser.uid}`)
+                    );
+
+                if (!cartSnapshot.exists()) {
+                    updateCartCount(0);
+                    return;
+                }
+
+                const cartData =
+                    cartSnapshot.val();
+
+                let totalQuantity = 0;
+
+                Object.values(cartData).forEach(item => {
+
+                    const quantity =
+                        Number(item?.quantity) || 0;
+
+                    totalQuantity += quantity;
+                });
+
+                updateCartCount(totalQuantity);
+
+            } catch (error) {
+
+                console.error(error);
+                updateCartCount(0);
+            }
+        }
+
+
+        function updateCartCount(count) {
+
+            const safeCount =
+                Math.max(0, Number(count) || 0);
+
+            if (safeCount > 0) {
+
+                cartCount.textContent =
+                    safeCount > 99 ? "99+" : safeCount;
+
+                cartCount.classList.remove("hidden");
+
+            } else {
+
+                cartCount.textContent = "0";
+                cartCount.classList.add("hidden");
+            }
+        }
+
+
+        async function addToCart(productId) {
+
+            if (!currentUser) {
+
+                const result =
+                    await Swal.fire({
+                        title: "Login Required",
+                        text: "Please log in to add products to your cart.",
+                        icon: "info",
+                        showCancelButton: true,
+                        confirmButtonText: "LOGIN",
+                        cancelButtonText: "CANCEL",
+                        confirmButtonColor: "#1d4ed8"
+                    });
+
+                if (result.isConfirmed) {
+                    window.location.href = "login.html";
+                }
+
+                return;
+            }
+
+            const product =
+                allProducts.find(item => item.id === productId);
+
+            if (!product) {
+                return;
+            }
+
+            if (!isProductAvailable(product)) {
+
+                await Swal.fire({
+                    title: "Unavailable",
+                    text: "This product is currently out of stock.",
+                    icon: "warning",
+                    confirmButtonColor: "#1d4ed8"
+                });
+
+                return;
+            }
+
+            try {
+
+                const cartItemRef =
+                    ref(
+                        db,
+                        `carts/${currentUser.uid}/${productId}`
+                    );
+
+                const existingSnapshot =
+                    await get(cartItemRef);
+
+                const existingQuantity =
+                    existingSnapshot.exists()
+                        ? Number(existingSnapshot.val()?.quantity) || 0
+                        : 0;
+
+                const stock =
+                    Number(product.stock);
+
+                const nextQuantity =
+                    existingQuantity + 1;
+
+                if (
+                    Number.isFinite(stock) &&
+                    stock >= 0 &&
+                    nextQuantity > stock
+                ) {
+
+                    await Swal.fire({
+                        title: "Stock Limit Reached",
+                        text: "You cannot add more than the available stock.",
+                        icon: "warning",
+                        confirmButtonColor: "#1d4ed8"
+                    });
+
+                    return;
+                }
+
+                await set(cartItemRef, {
+                    productId,
+                    name: product.name || "",
+                    price: Number(product.price) || 0,
+                    image: getProductImage(product),
+                    quantity: nextQuantity,
+                    addedAt:
+                        existingSnapshot.exists()
+                            ? existingSnapshot.val()?.addedAt || Date.now()
+                            : Date.now()
+                });
+
+                await loadUserCart();
+
+                await Swal.fire({
+                    title: "Added to Cart",
+                    text: `${product.name || "Product"} has been added to your cart.`,
+                    icon: "success",
+                    timer: 1300,
+                    showConfirmButton: false
+                });
+
+            } catch (error) {
+
+                console.error(error);
+
+                await Swal.fire({
+                    title: "Unable to Add",
+                    text: "We couldn't add this product to your cart. Please try again.",
+                    icon: "error",
+                    confirmButtonColor: "#1d4ed8"
+                });
+            }
+        }
+
+
+        // ============================================================
+        // WISHLIST
+        // ============================================================
+
+        async function loadWishlist() {
+
+            if (!currentUser) {
+                wishlistIds = new Set();
+                return;
+            }
+
+            try {
+
+                const wishlistSnapshot =
+                    await get(
+                        ref(db, `wishlists/${currentUser.uid}`)
+                    );
+
+                if (!wishlistSnapshot.exists()) {
+
+                    wishlistIds = new Set();
+
+                } else {
+
+                    const wishlistData =
+                        wishlistSnapshot.val();
+
+                    wishlistIds =
+                        new Set(
+                            Object.entries(wishlistData)
+                                .filter(([, value]) => value === true)
+                                .map(([productId]) => productId)
+                        );
+                }
+
+                if (allProducts.length > 0) {
+                    renderFeaturedProducts();
+                    renderLatestProducts();
+                }
+
+            } catch (error) {
+
+                console.error(error);
+                wishlistIds = new Set();
+            }
+        }
+
+
+        async function toggleWishlist(productId, button) {
+
+            if (!currentUser) {
+
+                const result =
+                    await Swal.fire({
+                        title: "Login Required",
+                        text: "Please log in to use your wishlist.",
+                        icon: "info",
+                        showCancelButton: true,
+                        confirmButtonText: "LOGIN",
+                        cancelButtonText: "CANCEL",
+                        confirmButtonColor: "#1d4ed8"
+                    });
+
+                if (result.isConfirmed) {
+                    window.location.href = "login.html";
+                }
+
+                return;
+            }
+
+            try {
+
+                const wishlistRef =
+                    ref(
+                        db,
+                        `wishlists/${currentUser.uid}/${productId}`
+                    );
+
+                if (wishlistIds.has(productId)) {
+
+                    await remove(wishlistRef);
+
+                    wishlistIds.delete(productId);
+
+                } else {
+
+                    await set(wishlistRef, true);
+
+                    wishlistIds.add(productId);
+                }
+
+                updateWishlistButton(
+                    button,
+                    wishlistIds.has(productId)
+                );
+
+            } catch (error) {
+
+                console.error(error);
+
+                await Swal.fire({
+                    title: "Unable to Update Wishlist",
+                    text: "Please try again.",
+                    icon: "error",
+                    confirmButtonColor: "#1d4ed8"
+                });
+            }
+        }
+
+
+        function updateWishlistButton(button, active) {
+
+            if (!button) {
+                return;
+            }
+
+            const icon =
+                button.querySelector("i");
+
+            if (!icon) {
+                return;
+            }
+
+            icon.className =
+                active
+                    ? "bi bi-heart-fill text-red-500"
+                    : "bi bi-heart text-gray-700";
+
+            button.setAttribute(
+                "aria-pressed",
+                String(active)
+            );
+
+            button.setAttribute(
+                "aria-label",
+                active
+                    ? "Remove from wishlist"
+                    : "Add to wishlist"
+            );
+        }
+
+
+        // ============================================================
+        // PRODUCT CARD EVENTS
+        // ============================================================
+
+        document.addEventListener("click", async (event) => {
+
+            const cartButton =
+                event.target.closest(".add-cart-button");
+
+            if (cartButton) {
+
+                const productId =
+                    cartButton.dataset.productId;
+
+                if (productId) {
+                    await addToCart(productId);
+                }
+
+                return;
+            }
+
+
+            const wishlistButton =
+                event.target.closest(".wishlist-button");
+
+            if (wishlistButton) {
+
+                const productId =
+                    wishlistButton.dataset.productId;
+
+                if (productId) {
+                    await toggleWishlist(
+                        productId,
+                        wishlistButton
+                    );
+                }
+            }
+        });
+
+
+        // ============================================================
+        // SEARCH
+        // ============================================================
+
+        function searchProducts(query) {
+
+            const normalizedQuery =
+                query.trim().toLowerCase();
+
+            if (!normalizedQuery) {
+                return [];
+            }
+
+            return allProducts
+                .filter(product => {
+
+                    const name =
+                        String(product.name || "").toLowerCase();
+
+                    const category =
+                        String(product.category || "").toLowerCase();
+
+                    return (
+                        name.includes(normalizedQuery) ||
+                        category.includes(normalizedQuery)
+                    );
+                })
+                .slice(0, 8);
+        }
+
+
+        function renderSearchResults(query, container) {
+
+            const normalizedQuery =
+                query.trim();
+
+            if (!normalizedQuery) {
+
+                container.innerHTML = "";
+                container.classList.add("hidden");
+
+                return;
+            }
+
+            const results =
+                searchProducts(normalizedQuery);
+
+            if (results.length === 0) {
+
+                container.innerHTML = `
+                    <div class="px-4 py-7 text-center">
+                        <i class="bi bi-search text-2xl text-gray-300"></i>
+                        <p class="mt-2 text-sm font-semibold text-gray-600">
+                            No products found.
+                        </p>
+                        <p class="mt-1 text-xs text-gray-400">
+                            Try another product name or category.
+                        </p>
+                    </div>
+                `;
+
+                container.classList.remove("hidden");
+
+                return;
+            }
+
+
+            container.innerHTML =
+                results.map(product => {
+
+                    const image =
+                        getProductImage(product);
+
+                    return `
+                        <a
+                            href="product.html?id=${encodeURIComponent(product.id)}"
+                            class="flex items-center gap-3 rounded-xl p-2 transition hover:bg-gray-50"
+                        >
+                            <img
+                                src="${escapeHTML(image)}"
+                                alt="${escapeHTML(product.name || "Product")}"
+                                class="h-12 w-12 rounded-lg object-cover"
+                                loading="lazy"
+                            >
+
+                            <div class="min-w-0 flex-1">
+                                <p class="truncate text-sm font-bold text-gray-900">
+                                    ${escapeHTML(product.name || "Unnamed Product")}
+                                </p>
+
+                                <p class="mt-0.5 text-xs text-gray-500">
+                                    ${escapeHTML(product.category || "Product")}
+                                </p>
+                            </div>
+
+                            <p class="shrink-0 text-xs font-bold text-royal-700">
+                                ${formatPrice(product.price)}
+                            </p>
+                        </a>
+                    `;
+                })
+                .join("");
+
+            container.classList.remove("hidden");
+        }
+
+
+        desktopSearch.addEventListener("input", () => {
+
+            renderSearchResults(
+                desktopSearch.value,
+                desktopSearchResults
+            );
+        });
+
+
+        mobileSearch.addEventListener("input", () => {
+
+            renderSearchResults(
+                mobileSearch.value,
+                mobileSearchResults
+            );
+        });
+
+
+        mobileSearchButton.addEventListener("click", () => {
+
+            mobileSearchArea.classList.toggle("hidden");
+
+            if (!mobileSearchArea.classList.contains("hidden")) {
+                mobileSearch.focus();
+            } else {
+                mobileSearchResults.classList.add("hidden");
+            }
+        });
+
+
+        document.addEventListener("click", (event) => {
+
+            if (
+                !event.target.closest("#desktopSearch") &&
+                !event.target.closest("#desktopSearchResults")
+            ) {
+                desktopSearchResults.classList.add("hidden");
+            }
+
+            if (
+                !event.target.closest("#mobileSearch") &&
+                !event.target.closest("#mobileSearchResults") &&
+                !event.target.closest("#mobileSearchButton")
+            ) {
+                mobileSearchResults.classList.add("hidden");
+            }
+
+            if (
+                !event.target.closest("#accountButton") &&
+                !event.target.closest("#accountMenu")
+            ) {
+                accountMenu.classList.add("hidden");
+            }
+        });
+
+
+        // ============================================================
+        // ACCOUNT MENU
+        // ============================================================
+
+        accountButton.addEventListener("click", () => {
+
+            accountMenu.classList.toggle("hidden");
+        });
+
+
+        logoutButton.addEventListener("click", async () => {
+
+            try {
+
+                await signOut(auth);
+
+                accountMenu.classList.add("hidden");
+
+                await Swal.fire({
+                    title: "Signed Out",
+                    text: "You have been signed out successfully.",
+                    icon: "success",
+                    timer: 1200,
+                    showConfirmButton: false
+                });
+
+            } catch (error) {
+
+                console.error(error);
+
+                await Swal.fire({
+                    title: "Sign Out Failed",
+                    text: "Please try again.",
+                    icon: "error",
+                    confirmButtonColor: "#1d4ed8"
+                });
+            }
+        });
+
+
+        // ============================================================
+        // SWIPER
+        // ============================================================
+
+        const heroSwiper =
+            new Swiper(".heroSwiper", {
+                loop: true,
+
+                speed: 650,
+
+                autoplay: {
+                    delay: 4500,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true
+                },
+
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true
+                },
+
+                touchRatio: 1,
+
+                grabCursor: true
+            });
+
+
+        // ============================================================
+        // AOS
+        // ============================================================
+
+        AOS.init({
+            duration: 600,
+            easing: "ease-out-cubic",
+            once: true,
+            offset: 60,
+            disable: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        });
+
+
+        // ============================================================
+        // YEAR
+        // ============================================================
+
+        currentYear.textContent =
+            new Date().getFullYear();
+
+
+        // ============================================================
+        // INITIAL LOAD
+        // ============================================================
+
+        loadProducts();
+
+
+        // ============================================================
+        // REDUCE MOTION SUPPORT
+        // ============================================================
+
+        if (
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+            heroSwiper.autoplay.stop();
+        }
+
+
+        // ============================================================
+        // KEYBOARD ACCESSIBILITY
+        // ============================================================
+
+        document.addEventListener("keydown", (event) => {
+
+            if (event.key === "Escape") {
+
+                accountMenu.classList.add("hidden");
+                desktopSearchResults.classList.add("hidden");
+                mobileSearchResults.classList.add("hidden");
+            }
+        });
+
+
+        // ============================================================
+        // CLOUDINARY REFERENCES
+        // ============================================================
+        // These constants document the permanent Kanye Series image
+        // backend. The home page does not perform uploads.
+        //
+        // CLOUDINARY_CLOUD_NAME
+        // CLOUDINARY_UPLOAD_PRESET
+        // CLOUDINARY_UPLOAD_URL
+        //
+        // Product images are read from:
+        // Firebase Realtime Database -> products/{productId}/images
+        //
+        // No Firebase Storage is used.
+        // No Firestore is used.
+
+
+        // ============================================================
+        // END OF KANYE SERIES HOME PAGE
+        // ============================================================
+
+    </script>
+
+</body>
+</html>
