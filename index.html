@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Kanye Series</title>
+    <title>Kanye Series - Premium Shoes, Electronics & Books</title>
+    <meta name="description" content="Discover premium shoes, electronics, and educational books at Kanye Series. Quality products, affordable prices, and reliable service.">
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Font Awesome -->
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
     <!-- Swiper CSS -->
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
     <style>
         /* Smooth transitions for luxury feel */
@@ -26,36 +24,194 @@
             transition: all 0.3s ease;
         }
         
-        /* Sidebar hover effects (Tailwind @apply isn't available in-browser so expand necessary rules) */
-        .nav-item{
-            position:relative; padding:1rem 1rem; display:flex; flex-direction:column; gap:.75rem; color:#4b5563; cursor:pointer; border-radius:0.5rem;
+        /* Sidebar nav items */
+        .nav-item {
+            position: relative;
+            padding: 1rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            color: #4b5563;
+            cursor: pointer;
+            border-radius: 0.5rem;
         }
-        .nav-item:hover{ color:#1e3a8a; background-color:#ebf8ff; }
-        .nav-item.active{ background:linear-gradient(90deg,#1e3a8a,#1e40af); color:white; box-shadow:0 10px 25px rgba(2,6,23,.6); }
-        .nav-item i{ font-size:1.25rem; transition:transform .2s; }
-        .nav-label{ font-size:.75rem; font-weight:600; }
+        
+        .nav-item:hover {
+            color: #1e3a8a;
+            background-color: #ebf8ff;
+        }
+        
+        .nav-item.active {
+            background: linear-gradient(90deg, #1e3a8a, #1e40af);
+            color: white;
+            box-shadow: 0 10px 25px rgba(2, 6, 23, 0.6);
+        }
+        
+        .nav-item i {
+            font-size: 1.25rem;
+            transition: transform 0.2s;
+        }
+        
+        .nav-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        @media (min-width: 1024px) {
+            .nav-item {
+                flex-direction: row;
+                align-items: center;
+            }
+            .nav-item i {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Bottom navigation for mobile/tablet */
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            padding: 0.5rem;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .bottom-nav-item:hover {
+            color: #1e3a8a;
+        }
+
+        .bottom-nav-item.active {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        .bottom-nav-item i {
+            font-size: 1.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .bottom-nav-item.active i {
+            transform: scale(1.1);
+        }
 
         /* Product card hover effect */
-        .product-card{ transition:all .3s ease; }
-        .product-card:hover{ box-shadow:0 30px 60px rgba(2,6,23,.12); transform:translateY(-.5rem); }
+        .product-card {
+            transition: all 0.3s ease;
+            border-radius: 1rem;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+        }
 
-        /* Category card enhanced */
-        .category-card{ transition:all .3s ease; }
-        .category-card:hover{ box-shadow:0 20px 40px rgba(2,6,23,.08); }
+        .product-card:hover {
+            box-shadow: 0 20px 40px rgba(2, 6, 23, 0.12);
+            transform: translateY(-0.5rem);
+        }
 
-        /* Contact info card */
-        .contact-info-item{ padding:1rem; border-radius:1rem; background:rgba(255,255,255,.06); backdrop-filter:blur(6px); transition:all .3s ease; }
-        .contact-info-item:hover{ background:rgba(255,255,255,.12); transform:scale(1.03); }
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
 
-        /* Utility for truncated text where original used Tailwind truncate */
-        .truncate{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
 
-        /* Responsive fixes for elements that used @apply and Tailwind variants in original */
-        @media(min-width:1024px){ .nav-item{ flex-direction:row; align-items:center; } .nav-item i{ font-size:1.5rem; } }
+        /* Category card */
+        .category-card {
+            transition: all 0.3s ease;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .category-card:hover {
+            box-shadow: 0 15px 30px rgba(2, 6, 23, 0.12);
+            transform: translateY(-0.25rem);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Utility classes */
+        .truncate {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 10px 25px rgba(30, 58, 138, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #1e3a8a;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #1e3a8a;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #1e3a8a;
+            color: white;
+        }
+
+        /* Skeleton loading */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .skeleton-card {
+            border-radius: 1rem;
+            height: 350px;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
-    <div class="flex min-h-screen">
+    <div class="flex min-h-screen flex-col lg:flex-row">
         
         <!-- DESKTOP LEFT SIDEBAR NAVIGATION -->
         <nav class="hidden lg:flex fixed left-0 top-0 h-screen w-24 bg-gradient-to-b from-blue-950 via-blue-900 to-blue-950 shadow-2xl flex-col items-center pt-8 pb-8 z-40 border-r border-blue-800">
@@ -71,7 +227,7 @@
             <div class="flex flex-col gap-4 flex-1">
                 
                 <!-- Home -->
-                <a href="#home" class="nav-item active group">
+                <a href="index.html" class="nav-item active group" aria-label="Home">
                     <div class="flex flex-col items-center gap-2">
                         <i class="fas fa-home text-2xl"></i>
                         <span class="nav-label text-center w-full">Home</span>
@@ -79,7 +235,7 @@
                 </a>
 
                 <!-- Products -->
-                <a href="./products.html" class="nav-item group">
+                <a href="products.html" class="nav-item group" aria-label="Products">
                     <div class="flex flex-col items-center gap-2">
                         <i class="fas fa-store text-2xl"></i>
                         <span class="nav-label text-center w-full">Shop</span>
@@ -87,7 +243,7 @@
                 </a>
 
                 <!-- Orders -->
-                <a href="./orders.html" class="nav-item group">
+                <a href="orders.html" class="nav-item group" aria-label="Orders">
                     <div class="flex flex-col items-center gap-2">
                         <i class="fas fa-bag-shopping text-2xl"></i>
                         <span class="nav-label text-center w-full">Orders</span>
@@ -95,7 +251,7 @@
                 </a>
 
                 <!-- Profile -->
-                <a href="./profile.html" class="nav-item group">
+                <a href="profile.html" class="nav-item group" aria-label="Profile">
                     <div class="flex flex-col items-center gap-2">
                         <i class="fas fa-user-circle text-2xl"></i>
                         <span class="nav-label text-center w-full">Profile</span>
@@ -104,29 +260,19 @@
 
             </div>
 
-            <!-- Bottom Settings -->
-            <div class="border-t border-blue-800 pt-4 mt-4">
-                <a href="#settings" class="nav-item group">
-                    <div class="flex flex-col items-center gap-2">
-                        <i class="fas fa-gear text-2xl"></i>
-                        <span class="nav-label text-center w-full text-xs">Settings</span>
-                    </div>
-                </a>
-            </div>
-
         </nav>
 
         <!-- MAIN CONTENT -->
-        <main class="w-full lg:ml-24 min-h-screen">
+        <main class="w-full lg:ml-24 min-h-screen flex flex-col">
             
-            <!-- TOP NAV -->
+            <!-- TOP HEADER -->
             <header class="fixed top-0 left-0 right-0 lg:left-24 z-50 bg-white shadow-md backdrop-blur-sm bg-opacity-95">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex items-center justify-between py-4 md:py-5">
                         <!-- Logo (Mobile/Tablet) -->
-                        <div class="lg:hidden" data-aos="fade-right">
+                        <div class="lg:hidden">
                             <h1 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">
-                                Kanye Series
+                                Kanye
                             </h1>
                         </div>
 
@@ -139,28 +285,28 @@
 
                         <!-- Actions -->
                         <div class="flex items-center gap-4 md:gap-8 text-blue-900">
-                            <button id="searchBtn" class="p-2 hover:bg-blue-50 rounded-lg transition">
+                            <button id="searchBtn" class="p-2 hover:bg-blue-50 rounded-lg transition" aria-label="Search products">
                                 <i class="fas fa-search text-lg md:text-xl"></i>
                             </button>
 
-                            <button class="p-2 hover:bg-blue-50 rounded-lg transition relative">
-                                <a href="./wishlist.html"><i class="fas fa-heart text-lg md:text-xl"></i></a>
-                                <span id="wishlistCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
-                            </button>
+                            <a href="wishlist.html" class="p-2 hover:bg-blue-50 rounded-lg transition relative" aria-label="Wishlist">
+                                <i class="fas fa-heart text-lg md:text-xl"></i>
+                                <span id="wishlistCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                            </a>
 
-                            <button class="p-2 hover:bg-blue-50 rounded-lg transition relative">
-                                <a href="./cart.html"><i class="fas fa-shopping-cart text-lg md:text-xl"></i></a>
-                                <span id="cartCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
-                            </button>
+                            <a href="cart.html" class="p-2 hover:bg-blue-50 rounded-lg transition relative" aria-label="Shopping cart">
+                                <i class="fas fa-shopping-cart text-lg md:text-xl"></i>
+                                <span id="cartCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                            </a>
                         </div>
                     </div>
                 </div>
             </header>
 
-            <!-- PAGE SPACING -->
+            <!-- PAGE SPACING FOR FIXED HEADER -->
             <div class="h-20 md:h-24"></div>
 
-            <!-- SEARCH BAR -->
+            <!-- SEARCH BAR (hidden by default) -->
             <div id="searchContainer" class="hidden px-4 py-4 sticky top-20 lg:top-24 z-40 bg-white/95 backdrop-blur-sm shadow-sm">
                 <div class="max-w-7xl mx-auto">
                     <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl shadow-md p-4">
@@ -168,64 +314,67 @@
                             id="searchInput"
                             type="text"
                             placeholder="Search shoes, books, electronics..."
-                            class="w-full bg-transparent outline-none text-gray-800 placeholder-gray-500 text-sm md:text-base">
+                            class="w-full bg-transparent outline-none text-gray-800 placeholder-gray-500 text-sm md:text-base"
+                            aria-label="Product search">
                     </div>
                 </div>
             </div>
 
             <!-- PAGE CONTENT -->
-            <div id="home" class="w-full">
+            <div class="w-full flex-1 pb-24 md:pb-0">
                 
-                <!-- HERO SECTION (dynamic 3-slide Swiper) -->
-                <section class="px-4 sm:px-6 lg:px-8 mt-4 md:mt-6 lg:mt-8 mb-8 md:mb-12 lg:mb-16">
+                <!-- HERO SECTION -->
+                <section class="px-4 sm:px-6 lg:px-8 mt-4 md:mt-6 lg:mt-8 mb-12 md:mb-16 lg:mb-20">
                     <div class="max-w-7xl mx-auto">
                         <div class="swiper heroSwiper rounded-3xl overflow-hidden shadow-2xl">
-                            <div class="swiper-wrapper" id="heroSlides">
+                            <div class="swiper-wrapper">
 
-                                <!-- Slide A -->
+                                <!-- Slide 1: Shoes -->
                                 <div class="swiper-slide">
-                                    <div class="relative h-[400px] md:h-[500px] lg:h-[600px]">
-                                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600&auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Luxury Shoes">
+                                    <div class="relative h-[400px] md:h-[500px] lg:h-[600px] bg-blue-900">
+                                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600&auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Luxury Shoes Collection">
                                         <div class="absolute inset-0 bg-gradient-to-r from-blue-950/85 via-blue-900/50 to-transparent"></div>
                                         <div class="absolute inset-0 flex flex-col justify-center px-6 md:px-8 lg:px-12">
-                                            <span class="text-blue-300 uppercase tracking-[4px] text-xs md:text-sm font-semibold">Premium Collection</span>
-                                            <h2 class="text-white text-3xl md:text-5xl lg:text-6xl font-bold mt-2 md:mt-4">Walk In Luxury</h2>
-                                            <p class="text-gray-200 mt-3 md:mt-4 text-sm md:text-base lg:text-lg max-w-xl">Discover premium shoes crafted for style and comfort.</p>
-                                            <div class="flex flex-col sm:flex-row gap-3 mt-6 md:mt-8 lg:mt-10">
-                                                <a href="products.html" class="bg-gradient-to-r from-blue-700 to-blue-800 hover:shadow-lg text-white px-6 md:px-8 py-3 md:py-4 rounded-xl inline-fl[...]
-                                                <button class="bg-white text-blue-900 px-6 md:px-8 py-3 md:py-4 rounded-xl font-medium hover:shadow-lg transition-all transform hover:scale-105">Le[...]
+                                            <span class="text-blue-300 uppercase tracking-[4px] text-xs md:text-sm font-semibold" data-aos="fade-up">Premium Collection</span>
+                                            <h2 class="text-white text-3xl md:text-5xl lg:text-6xl font-bold mt-2 md:mt-4" data-aos="fade-up" data-aos-delay="100">Walk In Luxury</h2>
+                                            <p class="text-gray-200 mt-3 md:mt-4 text-sm md:text-base lg:text-lg max-w-xl" data-aos="fade-up" data-aos-delay="200">Discover premium shoes crafted for style and comfort.</p>
+                                            <div class="flex flex-col sm:flex-row gap-3 mt-6 md:mt-8 lg:mt-10" data-aos="fade-up" data-aos-delay="300">
+                                                <a href="products.html?category=shoes" class="btn-primary text-center">Shop Shoes</a>
+                                                <button class="btn-secondary">Learn More</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Slide B -->
+                                <!-- Slide 2: Electronics -->
                                 <div class="swiper-slide">
-                                    <div class="relative h-[400px] md:h-[500px] lg:h-[600px]">
-                                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1600&auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Electronic[...]
+                                    <div class="relative h-[400px] md:h-[500px] lg:h-[600px] bg-blue-900">
+                                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1600&auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Smart Electronics">
                                         <div class="absolute inset-0 bg-gradient-to-r from-blue-950/85 via-blue-900/50 to-transparent"></div>
                                         <div class="absolute inset-0 flex flex-col justify-center px-6 md:px-8 lg:px-12">
-                                            <span class="text-blue-300 uppercase tracking-[4px] text-xs md:text-sm font-semibold">Smart Technology</span>
-                                            <h2 class="text-white text-3xl md:text-5xl lg:text-6xl font-bold mt-2 md:mt-4">Future Starts Here</h2>
-                                            <p class="text-gray-200 mt-3 md:mt-4 text-sm md:text-base lg:text-lg max-w-xl">Premium gadgets and electronics for modern living.</p>
-                                            <div class="flex flex-col sm:flex-row gap-3 mt-6 md:mt-8 lg:mt-10">
-                                                <a href="products.html" class="bg-gradient-to-r from-blue-700 to-blue-800 hover:shadow-lg text-white px-6 md:px-8 py-3 md:py-4 rounded-xl inline-fl[...]
+                                            <span class="text-blue-300 uppercase tracking-[4px] text-xs md:text-sm font-semibold" data-aos="fade-up">Smart Technology</span>
+                                            <h2 class="text-white text-3xl md:text-5xl lg:text-6xl font-bold mt-2 md:mt-4" data-aos="fade-up" data-aos-delay="100">Future Starts Here</h2>
+                                            <p class="text-gray-200 mt-3 md:mt-4 text-sm md:text-base lg:text-lg max-w-xl" data-aos="fade-up" data-aos-delay="200">Discover smart electronics for modern living.</p>
+                                            <div class="flex flex-col sm:flex-row gap-3 mt-6 md:mt-8 lg:mt-10" data-aos="fade-up" data-aos-delay="300">
+                                                <a href="products.html?category=electronics" class="btn-primary text-center">Shop Electronics</a>
+                                                <button class="btn-secondary">Explore</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Slide C -->
+                                <!-- Slide 3: Books -->
                                 <div class="swiper-slide">
-                                    <div class="relative h-[400px] md:h-[500px] lg:h-[600px]">
-                                        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1600&auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Books">
+                                    <div class="relative h-[400px] md:h-[500px] lg:h-[600px] bg-blue-900">
+                                        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1600&auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Educational Books">
                                         <div class="absolute inset-0 bg-gradient-to-r from-blue-950/85 via-blue-900/50 to-transparent"></div>
                                         <div class="absolute inset-0 flex flex-col justify-center px-6 md:px-8 lg:px-12">
-                                            <span class="text-blue-300 uppercase tracking-[4px] text-xs md:text-sm font-semibold">Knowledge Hub</span>
-                                            <h2 class="text-white text-3xl md:text-5xl lg:text-6xl font-bold mt-2 md:mt-4">Read. Learn. Grow.</h2>
-                                            <p class="text-gray-200 mt-3 md:mt-4 text-sm md:text-base lg:text-lg max-w-xl">Books that inspire success and transformation.</p>
-                                            <div class="flex flex-col sm:flex-row gap-3 mt-6 md:mt-8 lg:mt-10">
-                                                <a href="products.html" class="bg-gradient-to-r from-blue-700 to-blue-800 hover:shadow-lg text-white px-6 md:px-8 py-3 md:py-4 rounded-xl inline-fl[...]
+                                            <span class="text-blue-300 uppercase tracking-[4px] text-xs md:text-sm font-semibold" data-aos="fade-up">Knowledge Hub</span>
+                                            <h2 class="text-white text-3xl md:text-5xl lg:text-6xl font-bold mt-2 md:mt-4" data-aos="fade-up" data-aos-delay="100">Read. Learn. Grow.</h2>
+                                            <p class="text-gray-200 mt-3 md:mt-4 text-sm md:text-base lg:text-lg max-w-xl" data-aos="fade-up" data-aos-delay="200">Explore books designed to expand knowledge and inspire success.</p>
+                                            <div class="flex flex-col sm:flex-row gap-3 mt-6 md:mt-8 lg:mt-10" data-aos="fade-up" data-aos-delay="300">
+                                                <a href="products.html?category=books" class="btn-primary text-center">Shop Books</a>
+                                                <button class="btn-secondary">Discover</button>
                                             </div>
                                         </div>
                                     </div>
@@ -237,24 +386,54 @@
                     </div>
                 </section>
 
-                <!-- CATEGORIES SECTION (kept for navigation; not product data) -->
+                <!-- FEATURED PRODUCTS SECTION -->
+                <section class="px-4 sm:px-6 lg:px-8 mb-12 md:mb-16 lg:mb-20">
+                    <div class="max-w-7xl mx-auto">
+                        <!-- Section Header -->
+                        <div class="mb-8 lg:mb-12">
+                            <h2 class="text-3xl md:text-4xl font-bold text-blue-950" data-aos="fade-up">Featured Products</h2>
+                            <p class="text-gray-500 text-sm md:text-base mt-2" data-aos="fade-up" data-aos-delay="100">Handpicked products for you</p>
+                        </div>
+
+                        <!-- Products Grid -->
+                        <div id="featuredProductsContainer" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                            <!-- Skeleton Loading -->
+                            <div class="skeleton skeleton-card"></div>
+                            <div class="skeleton skeleton-card"></div>
+                            <div class="skeleton skeleton-card"></div>
+                            <div class="skeleton skeleton-card hidden lg:block"></div>
+                            <div class="skeleton skeleton-card hidden md:block"></div>
+                            <div class="skeleton skeleton-card hidden md:block"></div>
+                        </div>
+
+                        <!-- Error State -->
+                        <div id="featuredProductsError" class="hidden text-center py-12">
+                            <i class="fas fa-exclamation-circle text-4xl text-red-500 mb-4"></i>
+                            <p class="text-gray-600">We couldn't load products right now. Please try again.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CATEGORIES SECTION -->
                 <section class="px-4 sm:px-6 lg:px-8 mb-12 md:mb-16 lg:mb-20">
                     <div class="max-w-7xl mx-auto">
                         <!-- Section Header -->
                         <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-8 lg:mb-12">
                             <div>
                                 <h2 class="text-3xl md:text-4xl font-bold text-blue-950" data-aos="fade-up">Categories</h2>
-                                <p class="text-gray-500 text-sm md:text-base mt-2">Explore our curated collections</p>
+                                <p class="text-gray-500 text-sm md:text-base mt-2" data-aos="fade-up" data-aos-delay="100">Explore our curated collections</p>
                             </div>
-                            <button id="viewAllCats" class="text-blue-700 font-semibold text-sm md:text-base mt-4 md:mt-0 hover:text-blue-900 transition inline-flex items-center gap-2">
+                            <a href="products.html" class="text-blue-700 font-semibold text-sm md:text-base mt-4 md:mt-0 hover:text-blue-900 transition inline-flex items-center gap-2">
                                 View All <i class="fas fa-arrow-right"></i>
-                            </button>
+                            </a>
                         </div>
 
-                        <!-- Categories Grid (static thumbnails for navigation) -->
-                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
-                            <div class="category-card group relative overflow-hidden rounded-3xl h-48 md:h-56 lg:h-64 shadow-xl cursor-pointer" data-category="shoes">
-                                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000" alt="Shoes" class="w-full h-full object-cover group-hover:scale-125 transition-transform">
+                        <!-- Categories Grid -->
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                            
+                            <!-- Shoes -->
+                            <a href="products.html?category=shoes" class="category-card group relative h-48 md:h-56 lg:h-64" data-aos="zoom-in" data-aos-delay="0">
+                                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000&auto=format&fit=crop&q=80" alt="Shoes Collection">
                                 <div class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent"></div>
                                 <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6">
                                     <div class="bg-white/20 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center mb-2">
@@ -263,10 +442,11 @@
                                     <h3 class="text-white font-bold text-lg md:text-xl">Shoes</h3>
                                     <p class="text-gray-200 text-xs md:text-sm">Luxury footwear</p>
                                 </div>
-                            </div>
+                            </a>
 
-                            <div class="category-card group relative overflow-hidden rounded-3xl h-48 md:h-56 lg:h-64 shadow-xl cursor-pointer" data-category="electronics">
-                                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1000" alt="Electronics" class="w-full h-full object-cover group-hover:scale-125 transition-transform">
+                            <!-- Electronics -->
+                            <a href="products.html?category=electronics" class="category-card group relative h-48 md:h-56 lg:h-64" data-aos="zoom-in" data-aos-delay="100">
+                                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1000&auto=format&fit=crop&q=80" alt="Electronics Collection">
                                 <div class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent"></div>
                                 <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6">
                                     <div class="bg-white/20 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center mb-2">
@@ -275,10 +455,11 @@
                                     <h3 class="text-white font-bold text-lg md:text-xl">Electronics</h3>
                                     <p class="text-gray-200 text-xs md:text-sm">Smart devices</p>
                                 </div>
-                            </div>
+                            </a>
 
-                            <div class="category-card group relative overflow-hidden rounded-3xl h-48 md:h-56 lg:h-64 shadow-xl cursor-pointer" data-category="books">
-                                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1000" alt="Books" class="w-full h-full object-cover group-hover:scale-125 transition-transform">
+                            <!-- Books -->
+                            <a href="products.html?category=books" class="category-card group relative h-48 md:h-56 lg:h-64" data-aos="zoom-in" data-aos-delay="200">
+                                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1000&auto=format&fit=crop&q=80" alt="Books Collection">
                                 <div class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent"></div>
                                 <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6">
                                     <div class="bg-white/20 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center mb-2">
@@ -287,6 +468,405 @@
                                     <h3 class="text-white font-bold text-lg md:text-xl">Books</h3>
                                     <p class="text-gray-200 text-xs md:text-sm">Knowledge hub</p>
                                 </div>
+                            </a>
+
+                            <!-- Special Orders -->
+                            <a href="special-orders.html" class="category-card group relative h-48 md:h-56 lg:h-64" data-aos="zoom-in" data-aos-delay="300">
+                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&auto=format&fit=crop&q=80" alt="Special Orders">
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent"></div>
+                                <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6">
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center mb-2">
+                                        <i class="fas fa-star text-white text-xl"></i>
+                                    </div>
+                                    <h3 class="text-white font-bold text-lg md:text-xl">Special Orders</h3>
+                                    <p class="text-gray-200 text-xs md:text-sm">Find what you need</p>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- LATEST PRODUCTS SECTION -->
+                <section class="px-4 sm:px-6 lg:px-8 mb-12 md:mb-16 lg:mb-20">
+                    <div class="max-w-7xl mx-auto">
+                        <!-- Section Header -->
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-8 lg:mb-12">
+                            <div>
+                                <h2 class="text-3xl md:text-4xl font-bold text-blue-950" data-aos="fade-up">Latest Products</h2>
+                                <p class="text-gray-500 text-sm md:text-base mt-2" data-aos="fade-up" data-aos-delay="100">Fresh arrivals just for you</p>
+                            </div>
+                            <a href="products.html" class="text-blue-700 font-semibold text-sm md:text-base mt-4 md:mt-0 hover:text-blue-900 transition inline-flex items-center gap-2">
+                                View All <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+
+                        <!-- Products Grid -->
+                        <div id="latestProductsContainer" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                            <!-- Skeleton Loading -->
+                            <div class="skeleton skeleton-card"></div>
+                            <div class="skeleton skeleton-card"></div>
+                            <div class="skeleton skeleton-card"></div>
+                            <div class="skeleton skeleton-card hidden lg:block"></div>
+                        </div>
+
+                        <!-- Error State -->
+                        <div id="latestProductsError" class="hidden text-center py-12">
+                            <i class="fas fa-exclamation-circle text-4xl text-red-500 mb-4"></i>
+                            <p class="text-gray-600">We couldn't load products right now. Please try again.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PROMOTIONAL SECTION -->
+                <section class="px-4 sm:px-6 lg:px-8 mb-12 md:mb-16 lg:mb-20">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="bg-gradient-to-r from-blue-950 to-blue-900 rounded-3xl p-8 md:p-12 lg:p-16 shadow-2xl" data-aos="fade-up">
+                            <div class="max-w-2xl">
+                                <span class="text-blue-300 uppercase tracking-[2px] text-xs md:text-sm font-semibold">Special Orders</span>
+                                <h3 class="text-white text-3xl md:text-4xl font-bold mt-2 md:mt-4">Find What You're Looking For</h3>
+                                <p class="text-gray-300 mt-3 md:mt-4 text-sm md:text-base">Can't find what you need? Let us help you locate the perfect product through our special order service.</p>
+                                <a href="special-orders.html" class="inline-block mt-6 md:mt-8 px-8 py-3 bg-white text-blue-950 font-semibold rounded-xl hover:shadow-lg transition">
+                                    Request a Special Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- WHY CHOOSE US SECTION -->
+                <section class="px-4 sm:px-6 lg:px-8 mb-12 md:mb-16 lg:mb-20">
+                    <div class="max-w-7xl mx-auto">
+                        <h2 class="text-3xl md:text-4xl font-bold text-blue-950 mb-8 lg:mb-12 text-center" data-aos="fade-up">Why Choose Kanye Series</h2>
+
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                            
+                            <!-- Quality Products -->
+                            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-md text-center" data-aos="fade-up" data-aos-delay="0">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-star text-blue-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-blue-950 mb-2">Quality Products</h3>
+                                <p class="text-gray-600 text-sm">Carefully selected and verified products for your satisfaction.</p>
                             </div>
 
-We truncated earlier; continue but main focus contact section. Given character limits, create_or_update_file content may be too large. But earlier create_or_update_file ran and committed large file. We need to ensure our content isn't truncated. The tool will accept content. But due to length, it's risky to craft whole file. However previous create_or_update_file succeeded for large file. We'll proceed; need to include sha param. Use sha from getfile: 
+                            <!-- Affordable Prices -->
+                            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-md text-center" data-aos="fade-up" data-aos-delay="100">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-tag text-blue-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-blue-950 mb-2">Affordable Prices</h3>
+                                <p class="text-gray-600 text-sm">Great value for your money with competitive pricing.</p>
+                            </div>
+
+                            <!-- Reliable Service -->
+                            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-md text-center" data-aos="fade-up" data-aos-delay="200">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-handshake text-blue-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-blue-950 mb-2">Reliable Service</h3>
+                                <p class="text-gray-600 text-sm">We are committed to serving you with excellence.</p>
+                            </div>
+
+                            <!-- Easy Ordering -->
+                            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-md text-center" data-aos="fade-up" data-aos-delay="300">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-shopping-cart text-blue-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-blue-950 mb-2">Easy Ordering</h3>
+                                <p class="text-gray-600 text-sm">Simple and convenient shopping experience.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- FOOTER -->
+            <footer class="bg-gradient-to-b from-blue-950 to-blue-1000 text-white mt-auto">
+                <div class="px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
+                    <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 md:gap-12 mb-8">
+                        
+                        <!-- Brand -->
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                                    <i class="fas fa-crown text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Kanye Series</h3>
+                                    <p class="text-blue-300 text-xs">Premium Products</p>
+                                </div>
+                            </div>
+                            <p class="text-blue-200 text-sm">Your destination for quality shoes, electronics, and educational books.</p>
+                        </div>
+
+                        <!-- Quick Links -->
+                        <div>
+                            <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                            <ul class="space-y-2 text-blue-200 text-sm">
+                                <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                                <li><a href="products.html" class="hover:text-white transition">Products</a></li>
+                                <li><a href="orders.html" class="hover:text-white transition">Orders</a></li>
+                                <li><a href="profile.html" class="hover:text-white transition">Profile</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Categories -->
+                        <div>
+                            <h4 class="font-bold text-lg mb-4">Categories</h4>
+                            <ul class="space-y-2 text-blue-200 text-sm">
+                                <li><a href="products.html?category=shoes" class="hover:text-white transition">Shoes</a></li>
+                                <li><a href="products.html?category=electronics" class="hover:text-white transition">Electronics</a></li>
+                                <li><a href="products.html?category=books" class="hover:text-white transition">Books</a></li>
+                                <li><a href="special-orders.html" class="hover:text-white transition">Special Orders</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Contact -->
+                        <div>
+                            <h4 class="font-bold text-lg mb-4">Contact Us</h4>
+                            <ul class="space-y-3 text-blue-200 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-envelope mt-1 text-blue-300"></i>
+                                    <a href="mailto:support@kanyeseries.com" class="hover:text-white transition">support@kanyeseries.com</a>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-phone mt-1 text-blue-300"></i>
+                                    <a href="tel:+234123456789" class="hover:text-white transition">+234 123 456 789</a>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-comments mt-1 text-blue-300"></i>
+                                    <a href="https://wa.me/234123456789" class="hover:text-white transition">WhatsApp</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="border-t border-blue-800 pt-8">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 text-blue-300 text-sm">
+                            <p>&copy; 2026 Kanye Series. All rights reserved.</p>
+                            <div class="flex gap-4">
+                                <a href="#" class="hover:text-white transition" aria-label="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="hover:text-white transition" aria-label="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="hover:text-white transition" aria-label="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- MOBILE/TABLET BOTTOM NAVIGATION -->
+    <nav class="fixed bottom-0 left-0 right-0 md:hidden z-50 bg-white border-t border-gray-200 shadow-2xl">
+        <div class="flex justify-around">
+            <a href="index.html" class="bottom-nav-item active flex-1 py-3" aria-label="Home" aria-current="page">
+                <i class="fas fa-home text-xl"></i>
+                <span>Home</span>
+            </a>
+            <a href="products.html" class="bottom-nav-item flex-1 py-3" aria-label="Shop products">
+                <i class="fas fa-store text-xl"></i>
+                <span>Products</span>
+            </a>
+            <a href="orders.html" class="bottom-nav-item flex-1 py-3" aria-label="View orders">
+                <i class="fas fa-bag-shopping text-xl"></i>
+                <span>Orders</span>
+            </a>
+            <a href="profile.html" class="bottom-nav-item flex-1 py-3" aria-label="User profile">
+                <i class="fas fa-user text-xl"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- SCRIPTS -->
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- Main Script -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out-quad',
+            once: true,
+            offset: 100
+        });
+
+        // Initialize Hero Swiper
+        const heroSwiper = new Swiper('.heroSwiper', {
+            loop: true,
+            autoplay: {
+                delay: 6000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            keyboard: {
+                enabled: true,
+            },
+        });
+
+        // Search button functionality
+        const searchBtn = document.getElementById('searchBtn');
+        const searchContainer = document.getElementById('searchContainer');
+        const searchInput = document.getElementById('searchInput');
+
+        searchBtn.addEventListener('click', () => {
+            searchContainer.classList.toggle('hidden');
+            if (!searchContainer.classList.contains('hidden')) {
+                searchInput.focus();
+            }
+        });
+
+        // Placeholder product data (will be replaced with Firebase)
+        const placeholderProducts = [
+            {
+                id: 1,
+                name: 'Premium Leather Shoes',
+                price: 12999,
+                oldPrice: 15999,
+                image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=60',
+                category: 'shoes'
+            },
+            {
+                id: 2,
+                name: 'Wireless Earbuds Pro',
+                price: 8999,
+                oldPrice: 11999,
+                image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60',
+                category: 'electronics'
+            },
+            {
+                id: 3,
+                name: 'Physics Textbook',
+                price: 3500,
+                oldPrice: 4500,
+                image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=500&auto=format&fit=crop&q=60',
+                category: 'books'
+            },
+            {
+                id: 4,
+                name: 'Smart Watch Ultra',
+                price: 15999,
+                oldPrice: 19999,
+                image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=60',
+                category: 'electronics'
+            },
+            {
+                id: 5,
+                name: 'Casual Sneakers',
+                price: 7999,
+                oldPrice: 9999,
+                image: 'https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=500&auto=format&fit=crop&q=60',
+                category: 'shoes'
+            },
+            {
+                id: 6,
+                name: 'Chemistry Guide',
+                price: 2999,
+                oldPrice: 3999,
+                image: 'https://images.unsplash.com/photo-1507842217343-583f7270bfba?w=500&auto=format&fit=crop&q=60',
+                category: 'books'
+            }
+        ];
+
+        // Function to create product card HTML
+        function createProductCard(product) {
+            const discount = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
+            return `
+                <div class="product-card" data-aos="fade-up">
+                    <div class="relative">
+                        <img src="${product.image}" alt="${product.name}" loading="lazy">
+                        <div class="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                            -${discount}%
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-blue-950 truncate text-sm md:text-base">${product.name}</h3>
+                        <div class="mt-2 mb-3">
+                            <span class="text-lg font-bold text-blue-700">₦${product.price.toLocaleString()}</span>
+                            <span class="text-sm text-gray-500 line-through ml-2">₦${product.oldPrice.toLocaleString()}</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-xs font-semibold transition" aria-label="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="flex-1 bg-blue-700 hover:bg-blue-800 text-white py-2 rounded-lg text-xs font-semibold transition" aria-label="Add to cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Load featured products
+        function loadFeaturedProducts() {
+            const container = document.getElementById('featuredProductsContainer');
+            const errorDiv = document.getElementById('featuredProductsError');
+            
+            try {
+                container.innerHTML = placeholderProducts.slice(0, 6).map(product => createProductCard(product)).join('');
+                errorDiv.classList.add('hidden');
+            } catch (error) {
+                console.error('Error loading featured products:', error);
+                container.innerHTML = '';
+                errorDiv.classList.remove('hidden');
+            }
+        }
+
+        // Load latest products
+        function loadLatestProducts() {
+            const container = document.getElementById('latestProductsContainer');
+            const errorDiv = document.getElementById('latestProductsError');
+            
+            try {
+                container.innerHTML = placeholderProducts.slice(0, 4).map(product => createProductCard(product)).join('');
+                errorDiv.classList.add('hidden');
+            } catch (error) {
+                console.error('Error loading latest products:', error);
+                container.innerHTML = '';
+                errorDiv.classList.remove('hidden');
+            }
+        }
+
+        // Update cart and wishlist counts from localStorage
+        function updateCounts() {
+            const cartCount = localStorage.getItem('cartCount') || '0';
+            const wishlistCount = localStorage.getItem('wishlistCount') || '0';
+            
+            document.getElementById('cartCount').textContent = cartCount;
+            document.getElementById('wishlistCount').textContent = wishlistCount;
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFeaturedProducts();
+            loadLatestProducts();
+            updateCounts();
+        });
+
+        // Listen for storage changes to update counts
+        window.addEventListener('storage', updateCounts);
+    </script>
+</body>
+</html>
