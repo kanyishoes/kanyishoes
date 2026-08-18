@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Products - Kanye Series</title>
+    <meta name="description" content="Browse our collection of premium shoes, electronics, and books. Find quality products at affordable prices.">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <style>
+        /* Smooth transitions for luxury feel */
+        * {
+            transition: all 0.3s ease;
+        }
+        
+        /* Sidebar nav items */
+        .nav-item {
+            position: relative;
+            padding: 1rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            color: #4b5563;
+            cursor: pointer;
+            border-radius: 0.5rem;
+        }
+        
+        .nav-item:hover {
+            color: #1e3a8a;
+            background-color: #ebf8ff;
+        }
+        
+        .nav-item.active {
+            background: linear-gradient(90deg, #1e3a8a, #1e40af);
+            color: white;
+            box-shadow: 0 10px 25px rgba(2, 6, 23, 0.6);
+        }
+        
+        .nav-item i {
+            font-size: 1.25rem;
+            transition: transform 0.2s;
+        }
+        
+        .nav-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        @media (min-width: 1024px) {
+            .nav-item {
+                flex-direction: row;
+                align-items: center;
+            }
+            .nav-item i {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Bottom navigation for mobile/tablet */
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            padding: 0.5rem;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .bottom-nav-item:hover {
+            color: #1e3a8a;
+        }
+
+        .bottom-nav-item.active {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        .bottom-nav-item i {
+            font-size: 1.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .bottom-nav-item.active i {
+            transform: scale(1.1);
+        }
+
+        /* Product card hover effect */
+        .product-card {
+            transition: all 0.3s ease;
+            border-radius: 1rem;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 20px 40px rgba(2, 6, 23, 0.12);
+            transform: translateY(-0.5rem);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Utility classes */
+        .truncate {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 10px 25px rgba(30, 58, 138, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #1e3a8a;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #1e3a8a;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #1e3a8a;
+            color: white;
+        }
+
+        /* Skeleton loading */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .skeleton-card {
+            border-radius: 1rem;
+            height: 350px;
+        }
+
+        /* Category button active state */
+        .category-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            background: white;
+            border: 2px solid #e5e7eb;
+            color: #4b5563;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .category-btn:hover {
+            border-color: #1e3a8a;
+            color: #1e3a8a;
+        }
+
+        .category-btn.active {
+            background: #1e3a8a;
+            color: white;
+            border-color: #1e3a8a;
+        }
+
+        /* Filter modal */
+        .filter-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 40;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .filter-modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .filter-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 320px;
+            height: 100vh;
+            background: white;
+            z-index: 50;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        /* Price range slider */
+        .price-range-slider {
+            margin-top: 1rem;
+        }
+
+        .price-inputs {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .price-inputs input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex min-h-screen flex-col lg:flex-row">
+        
+        <!-- DESKTOP LEFT SIDEBAR NAVIGATION -->
+        <nav class="hidden lg:flex fixed left-0 top-0 h-screen w-24 bg-gradient-to-b from-blue-950 via-blue-900 to-blue-950 shadow-2xl flex-col items-center pt-8 pb-8 z-40 border-r border-blue-800">
+            
+            <!-- Logo -->
+            <div class="mb-12 text-center">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-lg">
+                    <i class="fas fa-crown text-white text-2xl"></i>
+                </div>
+            </div>
+
+            <!-- Navigation Items -->
+            <div class="flex flex-col gap-4 flex-1">
+                
+                <!-- Home -->
+                <a href="index.html" class="nav-item group" aria-label="Home">
+                    <div class="flex flex-col items-center gap-2">
+                        <i class="fas fa-home text-2xl"></i>
+                        <span class="nav-label text-center w-full">Home</span>
+                    </div>
+                </a>
+
+                <!-- Products -->
+                <a href="products.html" class="nav-item active group" aria-label="Products">
+                    <div class="flex flex-col items-center gap-2">
+                        <i class="fas fa-store text-2xl"></i>
+                        <span class="nav-label text-center w-full">Shop</span>
+                    </div>
+                </a>
+
+                <!-- Orders -->
+                <a href="orders.html" class="nav-item group" aria-label="Orders">
+                    <div class="flex flex-col items-center gap-2">
+                        <i class="fas fa-bag-shopping text-2xl"></i>
+                        <span class="nav-label text-center w-full">Orders</span>
+                    </div>
+                </a>
+
+                <!-- Profile -->
+                <a href="profile.html" class="nav-item group" aria-label="Profile">
+                    <div class="flex flex-col items-center gap-2">
+                        <i class="fas fa-user-circle text-2xl"></i>
+                        <span class="nav-label text-center w-full">Profile</span>
+                    </div>
+                </a>
+
+            </div>
+
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <main class="w-full lg:ml-24 min-h-screen flex flex-col">
+            
+            <!-- TOP HEADER -->
+            <header class="fixed top-0 left-0 right-0 lg:left-24 z-50 bg-white shadow-md backdrop-blur-sm bg-opacity-95">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between py-4 md:py-5">
+                        <!-- Logo (Mobile/Tablet) -->
+                        <div class="lg:hidden">
+                            <h1 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">
+                                Kanye
+                            </h1>
+                        </div>
+
+                        <!-- Desktop Centered Title -->
+                        <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2">
+                            <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">
+                                Kanye Series
+                            </h1>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="flex items-center gap-4 md:gap-8 text-blue-900">
+                            <button id="searchBtn" class="p-2 hover:bg-blue-50 rounded-lg transition" aria-label="Search products">
+                                <i class="fas fa-search text-lg md:text-xl"></i>
+                            </button>
+
+                            <a href="wishlist.html" class="p-2 hover:bg-blue-50 rounded-lg transition relative" aria-label="Wishlist">
+                                <i class="fas fa-heart text-lg md:text-xl"></i>
+                                <span id="wishlistCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                            </a>
+
+                            <a href="cart.html" class="p-2 hover:bg-blue-50 rounded-lg transition relative" aria-label="Shopping cart">
+                                <i class="fas fa-shopping-cart text-lg md:text-xl"></i>
+                                <span id="cartCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- PAGE SPACING FOR FIXED HEADER -->
+            <div class="h-20 md:h-24"></div>
+
+            <!-- SEARCH BAR (hidden by default) -->
+            <div id="searchContainer" class="hidden px-4 py-4 sticky top-20 lg:top-24 z-40 bg-white/95 backdrop-blur-sm shadow-sm">
+                <div class="max-w-7xl mx-auto">
+                    <div class="relative">
+                        <input
+                            id="searchInput"
+                            type="text"
+                            placeholder="Search products..."
+                            class="w-full bg-gray-50 border-2 border-gray-200 rounded-2xl py-3 pl-12 pr-4 outline-none focus:border-blue-700 text-sm md:text-base"
+                            aria-label="Product search">
+                        <i class="fas fa-search absolute left-4 top-3.5 text-gray-400"></i>
+                        <button id="clearSearchBtn" class="absolute right-4 top-3.5 text-gray-400 hover:text-gray-600 hidden" aria-label="Clear search">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE CONTENT -->
+            <div class="w-full flex-1 pb-24 md:pb-0">
+                
+                <!-- PAGE HEADER -->
+                <section class="px-4 sm:px-6 lg:px-8 pt-6 md:pt-8 pb-4 md:pb-6 border-b border-gray-200">
+                    <div class="max-w-7xl mx-auto">
+                        <!-- Breadcrumb -->
+                        <div class="text-sm text-gray-600 mb-4">
+                            <a href="index.html" class="hover:text-blue-700">Home</a>
+                            <span class="mx-2">/</span>
+                            <span class="text-blue-700 font-semibold">Products</span>
+                        </div>
+
+                        <!-- Page Title -->
+                        <div data-aos="fade-up">
+                            <h1 class="text-4xl md:text-5xl font-bold text-blue-950">Shop Products</h1>
+                            <p class="text-gray-500 mt-2">Explore our collection of quality products.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FILTERS & SEARCH SECTION -->
+                <section class="px-4 sm:px-6 lg:px-8 py-6 bg-white border-b border-gray-200">
+                    <div class="max-w-7xl mx-auto">
+                        <!-- Category Filter (Horizontal) -->
+                        <div class="mb-6">
+                            <h3 class="text-sm font-semibold text-gray-700 mb-3">Categories</h3>
+                            <div class="flex flex-wrap gap-2 overflow-x-auto pb-2">
+                                <button class="category-btn active" data-category="all" aria-label="Show all products">All</button>
+                                <button class="category-btn" data-category="shoes" aria-label="Filter by shoes">Shoes</button>
+                                <button class="category-btn" data-category="electronics" aria-label="Filter by electronics">Electronics</button>
+                                <button class="category-btn" data-category="books" aria-label="Filter by books">Books</button>
+                            </div>
+                        </div>
+
+                        <!-- Sort & Filter Controls -->
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+                            <!-- Product Count -->
+                            <div>
+                                <p class="text-sm font-semibold text-gray-700">
+                                    <span id="productCount">0</span> products found
+                                </p>
+                            </div>
+
+                            <!-- Sort Dropdown -->
+                            <div class="flex flex-col sm:flex-row gap-4 sm:items-center">
+                                <div>
+                                    <label for="sortSelect" class="text-sm font-semibold text-gray-700 block mb-2 sm:mb-0 sm:mr-2">Sort by:</label>
+                                </div>
+                                <select id="sortSelect" class="py-2 px-4 border-2 border-gray-200 rounded-lg text-sm font-medium text-gray-700 focus:border-blue-700 outline-none" aria-label="Sort products">
+                                    <option value="newest">Newest</option>
+                                    <option value="price-low">Price: Low to High</option>
+                                    <option value="price-high">Price: High to Low</option>
+                                    <option value="popular">Popular</option>
+                                </select>
+
+                                <!-- Filter Button (Mobile) -->
+                                <button id="filterBtn" class="md:hidden py-2 px-4 border-2 border-blue-700 bg-white text-blue-700 rounded-lg text-sm font-semibold hover:bg-blue-50 transition flex items-center gap-2" aria-label="Open filters">
+                                    <i class="fas fa-sliders-h"></i>
+                                    Filters
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- DESKTOP FILTERS SIDEBAR + PRODUCTS GRID -->
+                <section class="px-4 sm:px-6 lg:px-8 py-8">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="grid lg:grid-cols-4 gap-8">
+                            
+                            <!-- DESKTOP FILTERS (Hidden on mobile) -->
+                            <aside class="hidden lg:block">
+                                <div class="bg-white rounded-lg p-6 shadow-sm">
+                                    <h3 class="text-lg font-bold text-blue-950 mb-6">Filters</h3>
+
+                                    <!-- Price Filter -->
+                                    <div class="mb-8">
+                                        <h4 class="font-semibold text-gray-900 mb-4 text-sm">Price Range</h4>
+                                        <div class="price-inputs">
+                                            <input type="number" id="priceMin" placeholder="Min" min="0" class="price-range-slider" aria-label="Minimum price">
+                                            <input type="number" id="priceMax" placeholder="Max" min="0" class="price-range-slider" aria-label="Maximum price">
+                                        </div>
+                                    </div>
+
+                                    <!-- Stock Filter -->
+                                    <div class="mb-8">
+                                        <h4 class="font-semibold text-gray-900 mb-4 text-sm">Availability</h4>
+                                        <label class="flex items-center gap-2 cursor-pointer">
+                                            <input type="checkbox" id="inStockOnly" class="w-4 h-4 rounded border-gray-300">
+                                            <span class="text-sm text-gray-700">In Stock Only</span>
+                                        </label>
+                                    </div>
+
+                                    <!-- Clear Filters -->
+                                    <button id="clearFiltersBtn" class="w-full py-2 px-4 border-2 border-gray-300 text-gray-700 rounded-lg text-sm font-semibold hover:border-blue-700 hover:text-blue-700 transition">
+                                        Clear Filters
+                                    </button>
+                                </div>
+                            </aside>
+
+                            <!-- PRODUCTS GRID -->
+                            <div class="lg:col-span-3">
+                                <!-- Loading State -->
+                                <div id="loadingState" class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                                    <div class="skeleton skeleton-card"></div>
+                                    <div class="skeleton skeleton-card"></div>
+                                    <div class="skeleton skeleton-card"></div>
+                                    <div class="skeleton skeleton-card hidden md:block"></div>
+                                    <div class="skeleton skeleton-card hidden md:block"></div>
+                                    <div class="skeleton skeleton-card hidden md:block"></div>
+                                </div>
+
+                                <!-- Products Container -->
+                                <div id="productsContainer" class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 hidden">
+                                    <!-- Products will be inserted here -->
+                                </div>
+
+                                <!-- Empty State -->
+                                <div id="emptyState" class="hidden text-center py-16">
+                                    <i class="fas fa-inbox text-6xl text-gray-300 mb-6 block"></i>
+                                    <h3 class="text-2xl font-bold text-gray-800 mb-2">No products found</h3>
+                                    <p class="text-gray-600 mb-6">Try changing your search or filters.</p>
+                                    <button id="resetFiltersEmptyBtn" class="inline-block py-3 px-6 bg-blue-700 text-white rounded-lg font-semibold hover:bg-blue-800 transition">
+                                        Clear Filters
+                                    </button>
+                                </div>
+
+                                <!-- Error State -->
+                                <div id="errorState" class="hidden text-center py-16">
+                                    <i class="fas fa-exclamation-circle text-6xl text-red-500 mb-6 block"></i>
+                                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Unable to load products</h3>
+                                    <p class="text-gray-600 mb-6">We encountered an error loading products. Please try again.</p>
+                                    <button id="retryBtn" class="inline-block py-3 px-6 bg-blue-700 text-white rounded-lg font-semibold hover:bg-blue-800 transition">
+                                        Try Again
+                                    </button>
+                                </div>
+
+                                <!-- Load More Button -->
+                                <div id="loadMoreContainer" class="hidden text-center mt-10">
+                                    <button id="loadMoreBtn" class="inline-block py-3 px-8 bg-blue-700 text-white rounded-lg font-semibold hover:bg-blue-800 transition">
+                                        Load More Products
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- FOOTER -->
+            <footer class="bg-gradient-to-b from-blue-950 to-blue-1000 text-white mt-auto">
+                <div class="px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
+                    <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 md:gap-12 mb-8">
+                        
+                        <!-- Brand -->
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                                    <i class="fas fa-crown text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Kanye Series</h3>
+                                    <p class="text-blue-300 text-xs">Premium Products</p>
+                                </div>
+                            </div>
+                            <p class="text-blue-200 text-sm">Your destination for quality shoes, electronics, and educational books.</p>
+                        </div>
+
+                        <!-- Quick Links -->
+                        <div>
+                            <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                            <ul class="space-y-2 text-blue-200 text-sm">
+                                <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                                <li><a href="products.html" class="hover:text-white transition">Products</a></li>
+                                <li><a href="orders.html" class="hover:text-white transition">Orders</a></li>
+                                <li><a href="profile.html" class="hover:text-white transition">Profile</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Categories -->
+                        <div>
+                            <h4 class="font-bold text-lg mb-4">Categories</h4>
+                            <ul class="space-y-2 text-blue-200 text-sm">
+                                <li><a href="products.html?category=shoes" class="hover:text-white transition">Shoes</a></li>
+                                <li><a href="products.html?category=electronics" class="hover:text-white transition">Electronics</a></li>
+                                <li><a href="products.html?category=books" class="hover:text-white transition">Books</a></li>
+                                <li><a href="special-orders.html" class="hover:text-white transition">Special Orders</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Contact -->
+                        <div>
+                            <h4 class="font-bold text-lg mb-4">Contact Us</h4>
+                            <ul class="space-y-3 text-blue-200 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-envelope mt-1 text-blue-300"></i>
+                                    <a href="mailto:support@kanyeseries.com" class="hover:text-white transition">support@kanyeseries.com</a>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-phone mt-1 text-blue-300"></i>
+                                    <a href="tel:+234123456789" class="hover:text-white transition">+234 123 456 789</a>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-comments mt-1 text-blue-300"></i>
+                                    <a href="https://wa.me/234123456789" class="hover:text-white transition">WhatsApp</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="border-t border-blue-800 pt-8">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 text-blue-300 text-sm">
+                            <p>&copy; 2026 Kanye Series. All rights reserved.</p>
+                            <div class="flex gap-4">
+                                <a href="#" class="hover:text-white transition" aria-label="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="hover:text-white transition" aria-label="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="hover:text-white transition" aria-label="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- MOBILE FILTER MODAL -->
+    <div id="filterModal" class="filter-modal">
+        <div class="filter-panel">
+            <!-- Filter Header -->
+            <div class="sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center z-10">
+                <h3 class="text-lg font-bold text-blue-950">Filters</h3>
+                <button id="closeFilterBtn" class="text-gray-500 hover:text-gray-700" aria-label="Close filters">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+
+            <!-- Filter Content -->
+            <div class="p-6">
+                <!-- Price Filter -->
+                <div class="mb-8">
+                    <h4 class="font-semibold text-gray-900 mb-4 text-sm">Price Range</h4>
+                    <div class="price-inputs">
+                        <input type="number" id="priceMinMobile" placeholder="Min" min="0" aria-label="Minimum price">
+                        <input type="number" id="priceMaxMobile" placeholder="Max" min="0" aria-label="Maximum price">
+                    </div>
+                </div>
+
+                <!-- Stock Filter -->
+                <div class="mb-8">
+                    <h4 class="font-semibold text-gray-900 mb-4 text-sm">Availability</h4>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="inStockOnlyMobile" class="w-4 h-4 rounded border-gray-300">
+                        <span class="text-sm text-gray-700">In Stock Only</span>
+                    </label>
+                </div>
+
+                <!-- Apply & Clear Buttons -->
+                <div class="flex gap-2">
+                    <button id="applyFiltersBtn" class="flex-1 py-2 px-4 bg-blue-700 text-white rounded-lg text-sm font-semibold hover:bg-blue-800 transition">
+                        Apply Filters
+                    </button>
+                    <button id="clearFiltersMobileBtn" class="flex-1 py-2 px-4 border-2 border-gray-300 text-gray-700 rounded-lg text-sm font-semibold hover:border-blue-700 transition">
+                        Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOBILE/TABLET BOTTOM NAVIGATION -->
+    <nav class="fixed bottom-0 left-0 right-0 md:hidden z-50 bg-white border-t border-gray-200 shadow-2xl">
+        <div class="flex justify-around">
+            <a href="index.html" class="bottom-nav-item flex-1 py-3" aria-label="Home">
+                <i class="fas fa-home text-xl"></i>
+                <span>Home</span>
+            </a>
+            <a href="products.html" class="bottom-nav-item active flex-1 py-3" aria-label="Shop products" aria-current="page">
+                <i class="fas fa-store text-xl"></i>
+                <span>Products</span>
+            </a>
+            <a href="orders.html" class="bottom-nav-item flex-1 py-3" aria-label="View orders">
+                <i class="fas fa-bag-shopping text-xl"></i>
+                <span>Orders</span>
+            </a>
+            <a href="profile.html" class="bottom-nav-item flex-1 py-3" aria-label="User profile">
+                <i class="fas fa-user text-xl"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- SCRIPTS -->
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- Main Script -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out-quad',
+            once: true,
+            offset: 100
+        });
+
+        // Placeholder product data
+        const allProducts = [
+            { id: 1, name: 'Premium Leather Shoes', price: 12999, oldPrice: 15999, category: 'shoes', stock: 15, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=60' },
+            { id: 2, name: 'Wireless Earbuds Pro', price: 8999, oldPrice: 11999, category: 'electronics', stock: 25, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60' },
+            { id: 3, name: 'Physics Textbook', price: 3500, oldPrice: 4500, category: 'books', stock: 30, image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=500&auto=format&fit=crop&q=60' },
+            { id: 4, name: 'Smart Watch Ultra', price: 15999, oldPrice: 19999, category: 'electronics', stock: 10, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=60' },
+            { id: 5, name: 'Casual Sneakers', price: 7999, oldPrice: 9999, category: 'shoes', stock: 20, image: 'https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=500&auto=format&fit=crop&q=60' },
+            { id: 6, name: 'Chemistry Guide', price: 2999, oldPrice: 3999, category: 'books', stock: 0, image: 'https://images.unsplash.com/photo-1507842217343-583f7270bfba?w=500&auto=format&fit=crop&q=60' },
+            { id: 7, name: 'Running Shoes', price: 9999, oldPrice: 12999, category: 'shoes', stock: 12, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=60' },
+            { id: 8, name: 'Tablet Pro', price: 45999, oldPrice: 54999, category: 'electronics', stock: 5, image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&auto=format&fit=crop&q=60' },
+            { id: 9, name: 'Biology Handbook', price: 4200, oldPrice: 5500, category: 'books', stock: 18, image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=500&auto=format&fit=crop&q=60' },
+            { id: 10, name: 'Winter Boots', price: 14999, oldPrice: 18999, category: 'shoes', stock: 8, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=60' },
+            { id: 11, name: 'Laptop Stand', price: 3999, oldPrice: 5499, category: 'electronics', stock: 22, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60' },
+            { id: 12, name: 'Mathematics Textbook', price: 5999, oldPrice: 7999, category: 'books', stock: 14, image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=500&auto=format&fit=crop&q=60' }
+        ];
+
+        // State management
+        let state = {
+            currentPage: 0,
+            itemsPerPage: 6,
+            selectedCategory: 'all',
+            searchTerm: '',
+            sortBy: 'newest',
+            priceMin: 0,
+            priceMax: Infinity,
+            inStockOnly: false,
+            filteredProducts: []
+        };
+
+        // DOM Elements
+        const productsContainer = document.getElementById('productsContainer');
+        const loadingState = document.getElementById('loadingState');
+        const emptyState = document.getElementById('emptyState');
+        const errorState = document.getElementById('errorState');
+        const loadMoreContainer = document.getElementById('loadMoreContainer');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        const productCountSpan = document.getElementById('productCount');
+        const sortSelect = document.getElementById('sortSelect');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const searchContainer = document.getElementById('searchContainer');
+        const clearSearchBtn = document.getElementById('clearSearchBtn');
+
+        // Filter elements
+        const filterBtn = document.getElementById('filterBtn');
+        const filterModal = document.getElementById('filterModal');
+        const closeFilterBtn = document.getElementById('closeFilterBtn');
+        const priceMin = document.getElementById('priceMin');
+        const priceMax = document.getElementById('priceMax');
+        const priceMinMobile = document.getElementById('priceMinMobile');
+        const priceMaxMobile = document.getElementById('priceMaxMobile');
+        const inStockOnly = document.getElementById('inStockOnly');
+        const inStockOnlyMobile = document.getElementById('inStockOnlyMobile');
+        const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+        const clearFiltersMobileBtn = document.getElementById('clearFiltersMobileBtn');
+        const clearFiltersEmptyBtn = document.getElementById('resetFiltersEmptyBtn');
+        const applyFiltersBtn = document.getElementById('applyFiltersBtn');
+        const retryBtn = document.getElementById('retryBtn');
+
+        // Get category from URL
+        function getCategoryFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('category') || 'all';
+        }
+
+        // Filter and sort products
+        function filterAndSortProducts() {
+            let filtered = allProducts.filter(product => {
+                const categoryMatch = state.selectedCategory === 'all' || product.category === state.selectedCategory;
+                const searchMatch = state.searchTerm === '' || 
+                    product.name.toLowerCase().includes(state.searchTerm.toLowerCase());
+                const priceMatch = product.price >= state.priceMin && product.price <= state.priceMax;
+                const stockMatch = !state.inStockOnly || product.stock > 0;
+
+                return categoryMatch && searchMatch && priceMatch && stockMatch;
+            });
+
+            // Sort
+            switch(state.sortBy) {
+                case 'price-low':
+                    filtered.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    filtered.sort((a, b) => b.price - a.price);
+                    break;
+                case 'popular':
+                    // Simulate popular (by ID for demo)
+                    filtered.sort((a, b) => b.id - a.id);
+                    break;
+                default: // newest
+                    filtered.sort((a, b) => b.id - a.id);
+            }
+
+            state.filteredProducts = filtered;
+            state.currentPage = 0;
+            productCountSpan.textContent = filtered.length;
+        }
+
+        // Create product card HTML
+        function createProductCard(product) {
+            const discount = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
+            const stockStatus = product.stock === 0 ? 'Out of Stock' : `${product.stock} in stock`;
+            return `
+                <div class="product-card cursor-pointer" data-product-id="${product.id}" data-aos="fade-up">
+                    <div class="relative">
+                        <img src="${product.image}" alt="${product.name}" loading="lazy">
+                        <div class="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                            -${discount}%
+                        </div>
+                        ${product.stock === 0 ? '<div class="absolute inset-0 bg-black/30 flex items-center justify-center"><span class="text-white font-bold">Out of Stock</span></div>' : ''}
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-blue-950 truncate text-sm md:text-base">${product.name}</h3>
+                        <p class="text-xs text-gray-500 mt-1">${stockStatus}</p>
+                        <div class="mt-2 mb-3">
+                            <span class="text-lg font-bold text-blue-700">₦${product.price.toLocaleString()}</span>
+                            <span class="text-sm text-gray-500 line-through ml-2">₦${product.oldPrice.toLocaleString()}</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-xs font-semibold transition wishlist-btn" aria-label="Add to wishlist" ${product.stock === 0 ? 'disabled' : ''}>
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="flex-1 bg-blue-700 hover:bg-blue-800 text-white py-2 rounded-lg text-xs font-semibold transition cart-btn" aria-label="Add to cart" ${product.stock === 0 ? 'disabled' : ''}>
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render products
+        function renderProducts() {
+            const start = state.currentPage * state.itemsPerPage;
+            const end = start + state.itemsPerPage;
+            const productsToShow = state.filteredProducts.slice(start, end);
+
+            if (productsToShow.length === 0 && state.currentPage === 0) {
+                loadingState.classList.add('hidden');
+                productsContainer.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                loadMoreContainer.classList.add('hidden');
+                errorState.classList.add('hidden');
+                return;
+            }
+
+            productsContainer.innerHTML = productsToShow.map(product => createProductCard(product)).join('');
+            loadingState.classList.add('hidden');
+            productsContainer.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+            errorState.classList.add('hidden');
+
+            // Show load more if there are more products
+            if (end < state.filteredProducts.length) {
+                loadMoreContainer.classList.remove('hidden');
+            } else {
+                loadMoreContainer.classList.add('hidden');
+            }
+
+            AOS.refresh();
+        }
+
+        // Update UI based on state
+        function updateUI() {
+            filterAndSortProducts();
+            renderProducts();
+            updateCategoryButtons();
+        }
+
+        // Update category buttons
+        function updateCategoryButtons() {
+            categoryBtns.forEach(btn => {
+                if (btn.dataset.category === state.selectedCategory) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        // Update cart and wishlist counts
+        function updateCounts() {
+            const cartCount = localStorage.getItem('cartCount') || '0';
+            const wishlistCount = localStorage.getItem('wishlistCount') || '0';
+            document.getElementById('cartCount').textContent = cartCount;
+            document.getElementById('wishlistCount').textContent = wishlistCount;
+        }
+
+        // Debounced search
+        let searchTimeout;
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            const value = e.target.value.trim();
+            clearSearchBtn.classList.toggle('hidden', value === '');
+            
+            searchTimeout = setTimeout(() => {
+                state.searchTerm = value;
+                updateUI();
+            }, 300);
+        });
+
+        clearSearchBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            state.searchTerm = '';
+            clearSearchBtn.classList.add('hidden');
+            updateUI();
+        });
+
+        // Category buttons
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                state.selectedCategory = btn.dataset.category;
+                updateUI();
+                window.history.replaceState({}, '', `products.html${state.selectedCategory !== 'all' ? `?category=${state.selectedCategory}` : ''}`);
+            });
+        });
+
+        // Sort dropdown
+        sortSelect.addEventListener('change', (e) => {
+            state.sortBy = e.target.value;
+            updateUI();
+        });
+
+        // Load more button
+        loadMoreBtn.addEventListener('click', () => {
+            state.currentPage++;
+            renderProducts();
+        });
+
+        // Filter modal
+        filterBtn.addEventListener('click', () => {
+            filterModal.classList.add('active');
+        });
+
+        closeFilterBtn.addEventListener('click', () => {
+            filterModal.classList.remove('active');
+        });
+
+        filterModal.addEventListener('click', (e) => {
+            if (e.target === filterModal) {
+                filterModal.classList.remove('active');
+            }
+        });
+
+        // Apply filters
+        applyFiltersBtn.addEventListener('click', () => {
+            state.priceMin = parseInt(priceMinMobile.value) || 0;
+            state.priceMax = parseInt(priceMaxMobile.value) || Infinity;
+            state.inStockOnly = inStockOnlyMobile.checked;
+            updateUI();
+            filterModal.classList.remove('active');
+        });
+
+        // Desktop price filters
+        priceMin.addEventListener('change', () => {
+            state.priceMin = parseInt(priceMin.value) || 0;
+            updateUI();
+        });
+
+        priceMax.addEventListener('change', () => {
+            state.priceMax = parseInt(priceMax.value) || Infinity;
+            updateUI();
+        });
+
+        inStockOnly.addEventListener('change', () => {
+            state.inStockOnly = inStockOnly.checked;
+            updateUI();
+        });
+
+        // Clear filters
+        function clearAllFilters() {
+            state.priceMin = 0;
+            state.priceMax = Infinity;
+            state.inStockOnly = false;
+            state.searchTerm = '';
+            priceMin.value = '';
+            priceMax.value = '';
+            priceMinMobile.value = '';
+            priceMaxMobile.value = '';
+            inStockOnly.checked = false;
+            inStockOnlyMobile.checked = false;
+            searchInput.value = '';
+            clearSearchBtn.classList.add('hidden');
+            sortSelect.value = 'newest';
+            state.sortBy = 'newest';
+            state.selectedCategory = 'all';
+            updateUI();
+            if (filterModal.classList.contains('active')) {
+                filterModal.classList.remove('active');
+            }
+        }
+
+        clearFiltersBtn.addEventListener('click', clearAllFilters);
+        clearFiltersMobileBtn.addEventListener('click', clearAllFilters);
+        clearFiltersEmptyBtn.addEventListener('click', clearAllFilters);
+
+        // Retry button
+        retryBtn.addEventListener('click', updateUI);
+
+        // Search button toggle
+        searchBtn.addEventListener('click', () => {
+            searchContainer.classList.toggle('hidden');
+            if (!searchContainer.classList.contains('hidden')) {
+                searchInput.focus();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            state.selectedCategory = getCategoryFromURL();
+            updateUI();
+            updateCounts();
+        });
+
+        window.addEventListener('storage', updateCounts);
+    </script>
+</body>
+</html>
