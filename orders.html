@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Kanye Series</title>
+    <meta name="description" content="View and manage your orders at Kanye Series. Track order status, view items, and manage your purchases.">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* Smooth transitions for luxury feel */
+        * {
+            transition: all 0.3s ease;
+        }
+        
+        /* Sidebar nav items */
+        .nav-item {
+            position: relative;
+            padding: 1rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            color: #4b5563;
+            cursor: pointer;
+            border-radius: 0.5rem;
+        }
+        
+        .nav-item:hover {
+            color: #1e3a8a;
+            background-color: #ebf8ff;
+        }
+        
+        .nav-item.active {
+            background: linear-gradient(90deg, #1e3a8a, #1e40af);
+            color: white;
+            box-shadow: 0 10px 25px rgba(2, 6, 23, 0.6);
+        }
+        
+        .nav-item i {
+            font-size: 1.25rem;
+            transition: transform 0.2s;
+        }
+        
+        .nav-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        @media (min-width: 1024px) {
+            .nav-item {
+                flex-direction: row;
+                align-items: center;
+            }
+            .nav-item i {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Bottom navigation for mobile/tablet */
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            padding: 0.5rem;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .bottom-nav-item:hover {
+            color: #1e3a8a;
+        }
+
+        .bottom-nav-item.active {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        .bottom-nav-item i {
+            font-size: 1.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .bottom-nav-item.active i {
+            transform: scale(1.1);
+        }
+
+        /* Utility classes */
+        .truncate {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 10px 25px rgba(30, 58, 138, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #1e3a8a;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #1e3a8a;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #1e3a8a;
+            color: white;
+        }
+
+        /* Skeleton loading */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .skeleton-card {
+            border-radius: 1rem;
+            height: 250px;
+        }
+
+        /* Order card */
+        .order-card {
+            transition: all 0.3s ease;
+            border-radius: 1rem;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            border: 2px solid transparent;
+        }
+
+        .order-card:hover {
+            box-shadow: 0 20px 40px rgba(2, 6, 23, 0.12);
+            border-color: #1e3a8a;
+        }
+
+        /* Status badge styles */
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-confirmed {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-processing {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .status-shipped {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-delivered {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-cancelled {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Filter button */
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            background: white;
+            border: 2px solid #e5e7eb;
+            color: #4b5563;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            border-color: #1e3a8a;
+            color: #1e3a8a;
+        }
+
+        .filter-btn.active {
+            background: #1e3a8a;
+            color: white;
+            border-color: #1e3a8a;
+        }
+
+        /* Modal overlay */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Product item preview */
+        .order-item-preview {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .order-item-preview:last-child {
+            border-bottom: none;
+        }
+
+        .order-item-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background: #f3f4f6;
+        }
+
+        .order-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .order-item-info {
+            flex: 1;
+        }
+
+        .order-item-name {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 0.875rem;
+        }
+
+        .order-item-qty {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+
+        /* Auth state */
+        .auth-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex min-h-screen flex-col lg:flex-row">
+        
+        <!-- DESKTOP LEFT SIDEBAR NAVIGATION -->
+        <nav class="hidden lg:flex fixed left-0 top-0 h-screen w-24 bg-gradient-to-b from-blue-950 via-blue-900 to-blue-950 shadow-2xl flex-col items-center pt-8 pb-8 z-40 border-r border-blue-800">
+            
+            <!-- Logo -->
+            <div class="mb-12 text-center">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-lg">
+                    <i class="fas fa-crown text-white text-2xl"></i>
+                </div>
+            </div>
+
+            <!-- Navigation Items -->
+            <div class="flex flex-col gap-4 flex-1">
+                
+                <!-- Home -->
+                <a href="index.html" class="nav-item group" aria-label="Home">
+                    <div class="flex flex-col items-center gap-2">
+                        <i class="fas fa-home text-2xl"></i>
+                        <span class="nav-label text-center w-full">Home</span>
+                    </div>
+                </a>
+
+                <!-- Products -->
+                <a href="products.html" class="nav-item group" aria-label="Products">
+                    <div class="flex flex-col items-center gap-2">
+                        <i class="fas fa-store text-2xl"></i>
+                        <span class="nav-label text-center w-full">Shop</span>
+                    </div>
+                </a>
+
+                <!-- Orders -->
+                <a href="orders.html" class="nav-item active group" aria-label="Orders">
+                    <div class="flex flex-col items-center gap-2">
+                        <i class="fas fa-bag-shopping text-2xl"></i>
+                        <span class="nav-label text-center w-full">Orders</span>
+                    </div>
+                </a>
+
+                <!-- Profile -->
+                <a href="profile.html" class="nav-item group" aria-label="Profile">
+                    <div class="flex flex-col items-center gap-2">
+                        <i class="fas fa-user-circle text-2xl"></i>
+                        <span class="nav-label text-center w-full">Profile</span>
+                    </div>
+                </a>
+
+            </div>
+
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <main class="w-full lg:ml-24 min-h-screen flex flex-col">
+            
+            <!-- TOP HEADER -->
+            <header class="fixed top-0 left-0 right-0 lg:left-24 z-50 bg-white shadow-md backdrop-blur-sm bg-opacity-95">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between py-4 md:py-5">
+                        <!-- Logo (Mobile/Tablet) -->
+                        <div class="lg:hidden">
+                            <h1 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">
+                                Kanye
+                            </h1>
+                        </div>
+
+                        <!-- Desktop Centered Title -->
+                        <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2">
+                            <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">
+                                Kanye Series
+                            </h1>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="flex items-center gap-4 md:gap-8 text-blue-900">
+                            <a href="wishlist.html" class="p-2 hover:bg-blue-50 rounded-lg transition relative" aria-label="Wishlist">
+                                <i class="fas fa-heart text-lg md:text-xl"></i>
+                                <span id="wishlistCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                            </a>
+
+                            <a href="cart.html" class="p-2 hover:bg-blue-50 rounded-lg transition relative" aria-label="Shopping cart">
+                                <i class="fas fa-shopping-cart text-lg md:text-xl"></i>
+                                <span id="cartCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- PAGE SPACING FOR FIXED HEADER -->
+            <div class="h-20 md:h-24"></div>
+
+            <!-- PAGE CONTENT -->
+            <div class="w-full flex-1 pb-24 md:pb-0">
+                
+                <!-- PAGE HEADER -->
+                <section class="px-4 sm:px-6 lg:px-8 pt-6 md:pt-8 pb-4 md:pb-6 border-b border-gray-200">
+                    <div class="max-w-7xl mx-auto">
+                        <!-- Breadcrumb -->
+                        <div class="text-sm text-gray-600 mb-4">
+                            <a href="index.html" class="hover:text-blue-700">Home</a>
+                            <span class="mx-2">/</span>
+                            <span class="text-blue-700 font-semibold">Orders</span>
+                        </div>
+
+                        <!-- Page Title -->
+                        <div data-aos="fade-up">
+                            <h1 class="text-4xl md:text-5xl font-bold text-blue-950">My Orders</h1>
+                            <p class="text-gray-500 mt-2">View and manage your recent orders.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- AUTHENTICATION STATE (Hidden when logged in) -->
+                <div id="authState" class="w-full flex-1 px-4 sm:px-6 lg:px-8 py-12">
+                    <div class="max-w-7xl mx-auto auth-container">
+                        <i class="fas fa-sign-in-alt text-6xl text-blue-200 mb-6"></i>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-2">Sign in to view your orders</h2>
+                        <p class="text-gray-600 text-lg mb-8">Your orders will appear here after you sign in.</p>
+                        <a href="login.html" class="btn-primary">Login to Your Account</a>
+                    </div>
+                </div>
+
+                <!-- MAIN CONTENT (Hidden when not logged in) -->
+                <div id="mainContent" class="hidden w-full flex-1">
+                    
+                    <!-- FILTER SECTION -->
+                    <section class="px-4 sm:px-6 lg:px-8 py-6 bg-white border-b border-gray-200">
+                        <div class="max-w-7xl mx-auto">
+                            <!-- Status Filter -->
+                            <div>
+                                <h3 class="text-sm font-semibold text-gray-700 mb-3">Filter by Status</h3>
+                                <div class="flex flex-wrap gap-2 overflow-x-auto pb-2">
+                                    <button class="filter-btn active" data-status="all" aria-label="Show all orders">All</button>
+                                    <button class="filter-btn" data-status="pending" aria-label="Filter by pending">Pending</button>
+                                    <button class="filter-btn" data-status="confirmed" aria-label="Filter by confirmed">Confirmed</button>
+                                    <button class="filter-btn" data-status="processing" aria-label="Filter by processing">Processing</button>
+                                    <button class="filter-btn" data-status="shipped" aria-label="Filter by shipped">Shipped</button>
+                                    <button class="filter-btn" data-status="delivered" aria-label="Filter by delivered">Delivered</button>
+                                    <button class="filter-btn" data-status="cancelled" aria-label="Filter by cancelled">Cancelled</button>
+                                </div>
+                            </div>
+
+                            <!-- Sort & Search -->
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mt-6">
+                                <!-- Order Count -->
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-700">
+                                        <span id="orderCount">0</span> orders
+                                    </p>
+                                </div>
+
+                                <!-- Sort Dropdown -->
+                                <div class="flex flex-col sm:flex-row gap-4 sm:items-center">
+                                    <label for="sortSelect" class="text-sm font-semibold text-gray-700">Sort by:</label>
+                                    <select id="sortSelect" class="py-2 px-4 border-2 border-gray-200 rounded-lg text-sm font-medium text-gray-700 focus:border-blue-700 outline-none" aria-label="Sort orders">
+                                        <option value="newest">Newest</option>
+                                        <option value="oldest">Oldest</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ORDERS LIST -->
+                    <section class="px-4 sm:px-6 lg:px-8 py-8">
+                        <div class="max-w-7xl mx-auto">
+                            <!-- Loading State -->
+                            <div id="loadingState" class="space-y-4">
+                                <div class="skeleton skeleton-card"></div>
+                                <div class="skeleton skeleton-card"></div>
+                                <div class="skeleton skeleton-card"></div>
+                            </div>
+
+                            <!-- Orders Container -->
+                            <div id="ordersContainer" class="space-y-4 hidden">
+                                <!-- Orders will be inserted here -->
+                            </div>
+
+                            <!-- Empty State -->
+                            <div id="emptyState" class="hidden text-center py-16">
+                                <i class="fas fa-inbox text-6xl text-gray-300 mb-6 block"></i>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-2">No orders yet</h3>
+                                <p class="text-gray-600 mb-6">When you place an order, it will appear here.</p>
+                                <a href="products.html" class="inline-block btn-primary">Start Shopping</a>
+                            </div>
+
+                            <!-- Error State -->
+                            <div id="errorState" class="hidden text-center py-16">
+                                <i class="fas fa-exclamation-circle text-6xl text-red-500 mb-6 block"></i>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-2">Unable to load your orders</h3>
+                                <p class="text-gray-600 mb-6">Something went wrong. Please try again.</p>
+                                <button id="retryBtn" class="inline-block btn-primary">Try Again</button>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+            </div>
+
+            <!-- FOOTER -->
+            <footer class="bg-gradient-to-b from-blue-950 to-blue-1000 text-white">
+                <div class="px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
+                    <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 md:gap-12 mb-8">
+                        
+                        <!-- Brand -->
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                                    <i class="fas fa-crown text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Kanye Series</h3>
+                                    <p class="text-blue-300 text-xs">Premium Products</p>
+                                </div>
+                            </div>
+                            <p class="text-blue-200 text-sm">Your destination for quality shoes, electronics, and educational books.</p>
+                        </div>
+
+                        <!-- Quick Links -->
+                        <div>
+                            <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                            <ul class="space-y-2 text-blue-200 text-sm">
+                                <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                                <li><a href="products.html" class="hover:text-white transition">Products</a></li>
+                                <li><a href="orders.html" class="hover:text-white transition">Orders</a></li>
+                                <li><a href="profile.html" class="hover:text-white transition">Profile</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Categories -->
+                        <div>
+                            <h4 class="font-bold text-lg mb-4">Categories</h4>
+                            <ul class="space-y-2 text-blue-200 text-sm">
+                                <li><a href="products.html?category=shoes" class="hover:text-white transition">Shoes</a></li>
+                                <li><a href="products.html?category=electronics" class="hover:text-white transition">Electronics</a></li>
+                                <li><a href="products.html?category=books" class="hover:text-white transition">Books</a></li>
+                                <li><a href="special-orders.html" class="hover:text-white transition">Special Orders</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Contact -->
+                        <div>
+                            <h4 class="font-bold text-lg mb-4">Contact Us</h4>
+                            <ul class="space-y-3 text-blue-200 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-envelope mt-1 text-blue-300"></i>
+                                    <a href="mailto:support@kanyeseries.com" class="hover:text-white transition">support@kanyeseries.com</a>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-phone mt-1 text-blue-300"></i>
+                                    <a href="tel:+234123456789" class="hover:text-white transition">+234 123 456 789</a>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-comments mt-1 text-blue-300"></i>
+                                    <a href="https://wa.me/234123456789" class="hover:text-white transition">WhatsApp</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="border-t border-blue-800 pt-8">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 text-blue-300 text-sm">
+                            <p>&copy; 2026 Kanye Series. All rights reserved.</p>
+                            <div class="flex gap-4">
+                                <a href="#" class="hover:text-white transition" aria-label="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="hover:text-white transition" aria-label="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="hover:text-white transition" aria-label="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- CANCEL ORDER CONFIRMATION MODAL -->
+    <div id="cancelModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Cancel this order?</h3>
+            <p class="text-gray-600 mb-6">Are you sure you want to cancel this order? This action cannot be undone.</p>
+            <div class="flex gap-3">
+                <button id="confirmCancelBtn" class="flex-1 btn-primary">Cancel Order</button>
+                <button id="closeModalBtn" class="flex-1 btn-secondary">Keep Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOBILE/TABLET BOTTOM NAVIGATION -->
+    <nav class="fixed bottom-0 left-0 right-0 md:hidden z-50 bg-white border-t border-gray-200 shadow-2xl">
+        <div class="flex justify-around">
+            <a href="index.html" class="bottom-nav-item flex-1 py-3" aria-label="Home">
+                <i class="fas fa-home text-xl"></i>
+                <span>Home</span>
+            </a>
+            <a href="products.html" class="bottom-nav-item flex-1 py-3" aria-label="Shop products">
+                <i class="fas fa-store text-xl"></i>
+                <span>Products</span>
+            </a>
+            <a href="orders.html" class="bottom-nav-item active flex-1 py-3" aria-label="View orders" aria-current="page">
+                <i class="fas fa-bag-shopping text-xl"></i>
+                <span>Orders</span>
+            </a>
+            <a href="profile.html" class="bottom-nav-item flex-1 py-3" aria-label="User profile">
+                <i class="fas fa-user text-xl"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- SCRIPTS -->
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- Main Script -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out-quad',
+            once: true,
+            offset: 100
+        });
+
+        // Mock orders data (will be replaced with Firebase Firestore)
+        const mockOrders = [
+            {
+                id: 'KS-1001',
+                userId: 'user-123',
+                items: [
+                    { id: 1, name: 'Premium Leather Shoes', quantity: 1, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100&auto=format&fit=crop&q=60' },
+                    { id: 2, name: 'Wireless Earbuds Pro', quantity: 1, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&auto=format&fit=crop&q=60' }
+                ],
+                total: 21999,
+                status: 'delivered',
+                orderDate: new Date('2026-08-15'),
+                canCancel: false
+            },
+            {
+                id: 'KS-1002',
+                userId: 'user-123',
+                items: [
+                    { id: 3, name: 'Physics Textbook', quantity: 2, image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=100&auto=format&fit=crop&q=60' }
+                ],
+                total: 7000,
+                status: 'processing',
+                orderDate: new Date('2026-08-16'),
+                canCancel: true
+            },
+            {
+                id: 'KS-1003',
+                userId: 'user-123',
+                items: [
+                    { id: 4, name: 'Smart Watch Ultra', quantity: 1, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100&auto=format&fit=crop&q=60' },
+                    { id: 5, name: 'Casual Sneakers', quantity: 1, image: 'https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=100&auto=format&fit=crop&q=60' },
+                    { id: 6, name: 'Chemistry Guide', quantity: 1, image: 'https://images.unsplash.com/photo-1507842217343-583f7270bfba?w=100&auto=format&fit=crop&q=60' }
+                ],
+                total: 26999,
+                status: 'shipped',
+                orderDate: new Date('2026-08-10'),
+                canCancel: false
+            },
+            {
+                id: 'KS-1004',
+                userId: 'user-123',
+                items: [
+                    { id: 7, name: 'Running Shoes', quantity: 1, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100&auto=format&fit=crop&q=60' }
+                ],
+                total: 9999,
+                status: 'confirmed',
+                orderDate: new Date('2026-08-17'),
+                canCancel: true
+            }
+        ];
+
+        // State management
+        let state = {
+            orders: [],
+            filteredOrders: [],
+            selectedStatus: 'all',
+            sortBy: 'newest',
+            isAuthenticated: false,
+            currentUser: null,
+            selectedOrderId: null
+        };
+
+        // DOM Elements
+        const authState = document.getElementById('authState');
+        const mainContent = document.getElementById('mainContent');
+        const loadingState = document.getElementById('loadingState');
+        const ordersContainer = document.getElementById('ordersContainer');
+        const emptyState = document.getElementById('emptyState');
+        const errorState = document.getElementById('errorState');
+        const orderCountSpan = document.getElementById('orderCount');
+        const statusBtns = document.querySelectorAll('.filter-btn');
+        const sortSelect = document.getElementById('sortSelect');
+        const retryBtn = document.getElementById('retryBtn');
+
+        // Modal elements
+        const cancelModal = document.getElementById('cancelModal');
+        const confirmCancelBtn = document.getElementById('confirmCancelBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        // Check authentication status
+        function checkAuthentication() {
+            // Simulate authentication check
+            // In real implementation, check with Firebase Auth
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userId = localStorage.getItem('userId');
+            
+            state.isAuthenticated = isLoggedIn;
+            state.currentUser = isLoggedIn ? { uid: userId } : null;
+
+            if (state.isAuthenticated) {
+                authState.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+                loadOrders();
+            } else {
+                authState.classList.remove('hidden');
+                mainContent.classList.add('hidden');
+            }
+        }
+
+        // Format date
+        function formatDate(date) {
+            return new Intl.DateTimeFormat('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            }).format(date);
+        }
+
+        // Format currency
+        function formatCurrency(amount) {
+            return `UGX ${amount.toLocaleString()}`;
+        }
+
+        // Get status badge class
+        function getStatusClass(status) {
+            return `status-${status}`;
+        }
+
+        // Get status label
+        function getStatusLabel(status) {
+            return status.charAt(0).toUpperCase() + status.slice(1);
+        }
+
+        // Load orders
+        function loadOrders() {
+            // Simulate loading delay
+            setTimeout(() => {
+                try {
+                    // In real implementation, fetch from Firebase
+                    // where("userId", "==", currentUser.uid)
+                    state.orders = mockOrders.filter(order => order.userId === state.currentUser.uid);
+                    filterAndSortOrders();
+                    renderOrders();
+                } catch (error) {
+                    console.error('Error loading orders:', error);
+                    showError();
+                }
+            }, 500);
+        }
+
+        // Filter and sort orders
+        function filterAndSortOrders() {
+            let filtered = state.orders;
+
+            // Apply status filter
+            if (state.selectedStatus !== 'all') {
+                filtered = filtered.filter(order => order.status === state.selectedStatus);
+            }
+
+            // Apply sorting
+            if (state.sortBy === 'newest') {
+                filtered.sort((a, b) => b.orderDate - a.orderDate);
+            } else if (state.sortBy === 'oldest') {
+                filtered.sort((a, b) => a.orderDate - b.orderDate);
+            }
+
+            state.filteredOrders = filtered;
+            orderCountSpan.textContent = filtered.length;
+        }
+
+        // Create order card HTML
+        function createOrderCard(order) {
+            const itemsDisplay = order.items.slice(0, 2).map(item => `
+                <div class="order-item-preview">
+                    <div class="order-item-image">
+                        <img src="${item.image}" alt="${item.name}" loading="lazy">
+                    </div>
+                    <div class="order-item-info">
+                        <div class="order-item-name">${item.name}</div>
+                        <div class="order-item-qty">Qty: ${item.quantity}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            const moreItems = order.items.length > 2 ? `<div class="py-2 text-sm text-gray-600 font-medium">+ ${order.items.length - 2} more item${order.items.length > 3 ? 's' : ''}</div>` : '';
+
+            const cancelButton = order.canCancel ? `
+                <button class="flex-1 py-2 px-4 border-2 border-red-500 text-red-500 rounded-lg text-sm font-semibold hover:bg-red-50 transition cancel-order-btn" data-order-id="${order.id}" aria-label="Cancel order">
+                    Cancel Order
+                </button>
+            ` : '';
+
+            return `
+                <div class="order-card" data-aos="fade-up">
+                    <div class="p-6">
+                        <!-- Order Header -->
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-blue-950">Order #${order.id}</h3>
+                                <p class="text-sm text-gray-600 mt-1">${formatDate(order.orderDate)}</p>
+                            </div>
+                            <div class="status-badge ${getStatusClass(order.status)}">
+                                ${getStatusLabel(order.status)}
+                            </div>
+                        </div>
+
+                        <!-- Order Items -->
+                        <div class="mb-4 pb-4 border-b border-gray-200">
+                            ${itemsDisplay}
+                            ${moreItems}
+                        </div>
+
+                        <!-- Order Total -->
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-gray-700 font-medium">Total</span>
+                            <span class="text-lg font-bold text-blue-700">${formatCurrency(order.total)}</span>
+                        </div>
+
+                        <!-- Order Actions -->
+                        <div class="flex gap-2">
+                            <a href="order-details.html?id=${order.id}" class="flex-1 py-2 px-4 bg-blue-700 text-white rounded-lg text-sm font-semibold hover:bg-blue-800 transition text-center">
+                                View Details
+                            </a>
+                            ${cancelButton}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render orders
+        function renderOrders() {
+            if (state.filteredOrders.length === 0) {
+                loadingState.classList.add('hidden');
+                ordersContainer.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                errorState.classList.add('hidden');
+                return;
+            }
+
+            ordersContainer.innerHTML = state.filteredOrders.map(order => createOrderCard(order)).join('');
+            loadingState.classList.add('hidden');
+            ordersContainer.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+            errorState.classList.add('hidden');
+
+            AOS.refresh();
+
+            // Attach event listeners to cancel buttons
+            document.querySelectorAll('.cancel-order-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    state.selectedOrderId = e.target.dataset.orderId;
+                    cancelModal.classList.add('active');
+                });
+            });
+        }
+
+        // Show error state
+        function showError() {
+            loadingState.classList.add('hidden');
+            ordersContainer.classList.add('hidden');
+            emptyState.classList.add('hidden');
+            errorState.classList.remove('hidden');
+        }
+
+        // Update UI
+        function updateUI() {
+            filterAndSortOrders();
+            renderOrders();
+            updateStatusButtons();
+        }
+
+        // Update status buttons
+        function updateStatusButtons() {
+            statusBtns.forEach(btn => {
+                if (btn.dataset.status === state.selectedStatus) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        // Status filter buttons
+        statusBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                state.selectedStatus = btn.dataset.status;
+                updateUI();
+            });
+        });
+
+        // Sort dropdown
+        sortSelect.addEventListener('change', (e) => {
+            state.sortBy = e.target.value;
+            updateUI();
+        });
+
+        // Cancel order modal
+        confirmCancelBtn.addEventListener('click', () => {
+            if (state.selectedOrderId) {
+                const order = state.orders.find(o => o.id === state.selectedOrderId);
+                if (order) {
+                    order.status = 'cancelled';
+                    order.canCancel = false;
+                    updateUI();
+                    cancelModal.classList.remove('active');
+                    state.selectedOrderId = null;
+                }
+            }
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            cancelModal.classList.remove('active');
+            state.selectedOrderId = null;
+        });
+
+        cancelModal.addEventListener('click', (e) => {
+            if (e.target === cancelModal) {
+                cancelModal.classList.remove('active');
+                state.selectedOrderId = null;
+            }
+        });
+
+        // Retry button
+        retryBtn.addEventListener('click', () => {
+            loadingState.classList.remove('hidden');
+            errorState.classList.add('hidden');
+            loadOrders();
+        });
+
+        // Update cart and wishlist counts
+        function updateCounts() {
+            const cartCount = localStorage.getItem('cartCount') || '0';
+            const wishlistCount = localStorage.getItem('wishlistCount') || '0';
+            document.getElementById('cartCount').textContent = cartCount;
+            document.getElementById('wishlistCount').textContent = wishlistCount;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuthentication();
+            updateCounts();
+        });
+
+        window.addEventListener('storage', updateCounts);
+    </script>
+</body>
+</html>
