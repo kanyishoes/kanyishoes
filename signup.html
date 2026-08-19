@@ -700,365 +700,400 @@
 
     <script type="module">
 
-        // ========================================
-        // FIREBASE IMPORTS
-        // ========================================
+    // ============================================
+    // FIREBASE IMPORTS
+    // ============================================
 
-        import {
-            initializeApp
-        } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 
-        import {
-            getAnalytics
-        } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-analytics.js";
+    import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        updateProfile
+    } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
-        import {
-            getAuth,
-            createUserWithEmailAndPassword,
-            updateProfile
-        } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
-
-        import {
-            getFirestore,
-            doc,
-            setDoc,
-            serverTimestamp
-        } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+    import {
+        getDatabase,
+        ref,
+        set,
+        serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
 
 
-        // ========================================
-        // FIREBASE CONFIGURATION
-        // ========================================
+    // ============================================
+    // FIREBASE CONFIGURATION
+    // ============================================
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAyzTotQ683NK-9lntGgcsY83Se6sFRx8M",
-            authDomain: "kanyeseries.firebaseapp.com",
-            databaseURL: "https://kanyeseries-default-rtdb.firebaseio.com",
-            projectId: "kanyeseries",
-            storageBucket: "kanyeseries.firebasestorage.app",
-            messagingSenderId: "845831844956",
-            appId: "1:845831844956:web:34817fdec3ee7a3c896299",
-            measurementId: "G-Q5JJ2TZRZ0"
-        };
+    const firebaseConfig = {
 
+        apiKey: "AIzaSyAyzTotQ683NK-9lntGgcsY83Se6sFRx8M",
 
-        // ========================================
-        // FIREBASE INITIALIZATION
-        // ========================================
+        authDomain: "kanyeseries.firebaseapp.com",
 
-        const app = initializeApp(firebaseConfig);
+        databaseURL:
+            "https://kanyeseries-default-rtdb.firebaseio.com",
 
-        const analytics = getAnalytics(app);
+        projectId: "kanyeseries",
 
-        const auth = getAuth(app);
+        storageBucket:
+            "kanyeseries.firebasestorage.app",
 
-        const db = getFirestore(app);
+        messagingSenderId: "845831844956",
 
+        appId:
+            "1:845831844956:web:34817fdec3ee7a3c896299",
 
-        // ========================================
-        // DOM ELEMENTS
-        // ========================================
+        measurementId: "G-Q5JJ2TZRZ0"
 
-        const signupForm = document.getElementById("signupForm");
-
-        const nameInput = document.getElementById("name");
-        const emailInput = document.getElementById("email");
-        const phoneInput = document.getElementById("phone");
-        const passwordInput = document.getElementById("password");
-        const confirmPasswordInput =
-            document.getElementById("confirmPassword");
-
-        const signupButton =
-            document.getElementById("signupButton");
-
-        const signupButtonText =
-            document.getElementById("signupButtonText");
-
-        const signupButtonIcon =
-            document.getElementById("signupButtonIcon");
-
-        const errorMessage =
-            document.getElementById("errorMessage");
-
-        const errorText =
-            document.getElementById("errorText");
-
-        const successMessage =
-            document.getElementById("successMessage");
-
-        const successText =
-            document.getElementById("successText");
-
-        const passwordLength =
-            document.getElementById("passwordLength");
-
-        const passwordMatch =
-            document.getElementById("passwordMatch");
-
-        const nameError =
-            document.getElementById("nameError");
-
-        const emailError =
-            document.getElementById("emailError");
-
-        const phoneError =
-            document.getElementById("phoneError");
-
-        const passwordError =
-            document.getElementById("passwordError");
-
-        const confirmPasswordError =
-            document.getElementById("confirmPasswordError");
+    };
 
 
-        // ========================================
-        // MESSAGE HELPERS
-        // ========================================
+    // ============================================
+    // INITIALIZE FIREBASE
+    // ============================================
 
-        function showError(message) {
+    const app = initializeApp(firebaseConfig);
 
-            errorText.textContent = message;
+    const auth = getAuth(app);
 
-            errorMessage.classList.remove("hidden");
+    const db = getDatabase(app);
 
-            successMessage.classList.add("hidden");
+
+    // ============================================
+    // DOM ELEMENTS
+    // ============================================
+
+    const signupForm =
+        document.getElementById("signupForm");
+
+    const nameInput =
+        document.getElementById("name");
+
+    const emailInput =
+        document.getElementById("email");
+
+    const phoneInput =
+        document.getElementById("phone");
+
+    const passwordInput =
+        document.getElementById("password");
+
+    const confirmPasswordInput =
+        document.getElementById("confirmPassword");
+
+    const signupButton =
+        document.getElementById("signupButton");
+
+    const signupButtonText =
+        document.getElementById("signupButtonText");
+
+    const signupButtonIcon =
+        document.getElementById("signupButtonIcon");
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const errorText =
+        document.getElementById("errorText");
+
+    const successMessage =
+        document.getElementById("successMessage");
+
+    const successText =
+        document.getElementById("successText");
+
+    const passwordLength =
+        document.getElementById("passwordLength");
+
+    const passwordMatch =
+        document.getElementById("passwordMatch");
+
+    const nameError =
+        document.getElementById("nameError");
+
+    const emailError =
+        document.getElementById("emailError");
+
+    const phoneError =
+        document.getElementById("phoneError");
+
+    const passwordError =
+        document.getElementById("passwordError");
+
+    const confirmPasswordError =
+        document.getElementById("confirmPasswordError");
+
+
+    // ============================================
+    // MESSAGE FUNCTIONS
+    // ============================================
+
+    function showError(message) {
+
+        errorText.textContent = message;
+
+        errorMessage.classList.remove("hidden");
+
+        successMessage.classList.add("hidden");
+
+    }
+
+
+    function showSuccess(message) {
+
+        successText.textContent = message;
+
+        successMessage.classList.remove("hidden");
+
+        errorMessage.classList.add("hidden");
+
+    }
+
+
+    function clearMessages() {
+
+        errorMessage.classList.add("hidden");
+
+        successMessage.classList.add("hidden");
+
+        errorText.textContent = "";
+
+        successText.textContent = "";
+
+    }
+
+
+    // ============================================
+    // FIELD ERROR FUNCTIONS
+    // ============================================
+
+    function showFieldError(element, message) {
+
+        element.textContent = message;
+
+        element.classList.remove("hidden");
+
+    }
+
+
+    function clearFieldError(element) {
+
+        element.textContent = "";
+
+        element.classList.add("hidden");
+
+    }
+
+
+    function clearFieldErrors() {
+
+        clearFieldError(nameError);
+
+        clearFieldError(emailError);
+
+        clearFieldError(phoneError);
+
+        clearFieldError(passwordError);
+
+        clearFieldError(confirmPasswordError);
+
+    }
+
+
+    // ============================================
+    // VALIDATION
+    // ============================================
+
+    function isValidEmail(email) {
+
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    }
+
+
+    function isValidPhone(phone) {
+
+        const digitsOnly =
+            phone.replace(/\D/g, "");
+
+        return (
+            digitsOnly.length >= 7 &&
+            digitsOnly.length <= 15
+        );
+
+    }
+
+
+    function validateForm() {
+
+        clearFieldErrors();
+
+        clearMessages();
+
+        let isValid = true;
+
+
+        // ----------------------------------------
+        // NAME
+        // ----------------------------------------
+
+        const name =
+            nameInput.value.trim();
+
+        if (!name) {
+
+            showFieldError(
+                nameError,
+                "Please enter your full name."
+            );
+
+            isValid = false;
 
         }
 
 
-        function showSuccess(message) {
+        // ----------------------------------------
+        // EMAIL
+        // ----------------------------------------
 
-            successText.textContent = message;
+        const email =
+            emailInput.value.trim().toLowerCase();
 
-            successMessage.classList.remove("hidden");
+        if (!email) {
 
-            errorMessage.classList.add("hidden");
+            showFieldError(
+                emailError,
+                "Please enter your email address."
+            );
 
-        }
+            isValid = false;
 
+        } else if (!isValidEmail(email)) {
 
-        function clearMessages() {
+            showFieldError(
+                emailError,
+                "Please enter a valid email address."
+            );
 
-            errorMessage.classList.add("hidden");
-
-            successMessage.classList.add("hidden");
-
-            errorText.textContent = "";
-
-            successText.textContent = "";
-
-        }
-
-
-        // ========================================
-        // FIELD ERROR HELPERS
-        // ========================================
-
-        function showFieldError(element, message) {
-
-            element.textContent = message;
-
-            element.classList.remove("hidden");
+            isValid = false;
 
         }
 
 
-        function clearFieldError(element) {
-
-            element.textContent = "";
-
-            element.classList.add("hidden");
-
-        }
-
-
-        function clearFieldErrors() {
-
-            clearFieldError(nameError);
-
-            clearFieldError(emailError);
-
-            clearFieldError(phoneError);
-
-            clearFieldError(passwordError);
-
-            clearFieldError(confirmPasswordError);
-
-        }
-
-
-        // ========================================
-        // VALIDATION
-        // ========================================
-
-        function isValidEmail(email) {
-
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-        }
-
-
-        function isValidPhone(phone) {
-
-            /*
-             * Accept common phone formats.
-             * This is intentionally not tied to one country.
-             */
-
-            const digitsOnly = phone.replace(/\D/g, "");
-
-            return digitsOnly.length >= 7 &&
-                   digitsOnly.length <= 15;
-
-        }
-
-
-        function validateForm() {
-
-            clearFieldErrors();
-
-            clearMessages();
-
-            let isValid = true;
-
-
-            // Full name
-
-            const name = nameInput.value.trim();
-
-            if (!name) {
-
-                showFieldError(
-                    nameError,
-                    "Please enter your full name."
-                );
-
-                isValid = false;
-
-            }
-
-
-            // Email
-
-            const email =
-                emailInput.value.trim().toLowerCase();
-
-            if (!email) {
-
-                showFieldError(
-                    emailError,
-                    "Please enter your email address."
-                );
-
-                isValid = false;
-
-            } else if (!isValidEmail(email)) {
-
-                showFieldError(
-                    emailError,
-                    "Please enter a valid email address."
-                );
-
-                isValid = false;
-
-            }
-
-
-            // Phone
-
-            const phone = phoneInput.value.trim();
-
-            if (phone && !isValidPhone(phone)) {
-
-                showFieldError(
-                    phoneError,
-                    "Please enter a valid phone number."
-                );
-
-                isValid = false;
-
-            }
-
-
-            // Password
-
-            const password = passwordInput.value;
-
-            if (!password) {
-
-                showFieldError(
-                    passwordError,
-                    "Please create a password."
-                );
-
-                isValid = false;
-
-            } else if (password.length < 6) {
-
-                showFieldError(
-                    passwordError,
-                    "Password must contain at least 6 characters."
-                );
-
-                isValid = false;
-
-            }
-
-
-            // Confirm password
-
-            const confirmPassword =
-                confirmPasswordInput.value;
-
-            if (!confirmPassword) {
-
-                showFieldError(
-                    confirmPasswordError,
-                    "Please confirm your password."
-                );
-
-                isValid = false;
-
-            } else if (password !== confirmPassword) {
-
-                showFieldError(
-                    confirmPasswordError,
-                    "Passwords do not match."
-                );
-
-                isValid = false;
-
-            }
-
-
-            return {
-                isValid,
-                name,
-                email,
-                phone,
-                password
-            };
-
-        }
-
-
-        // ========================================
-        // PASSWORD VISIBILITY
-        // ========================================
-
-        function setupPasswordToggle(
-            input,
-            button,
-            icon
+        // ----------------------------------------
+        // PHONE
+        // ----------------------------------------
+
+        const phone =
+            phoneInput.value.trim();
+
+        if (
+            phone &&
+            !isValidPhone(phone)
         ) {
 
-            button.addEventListener("click", () => {
+            showFieldError(
+                phoneError,
+                "Please enter a valid phone number."
+            );
+
+            isValid = false;
+
+        }
+
+
+        // ----------------------------------------
+        // PASSWORD
+        // ----------------------------------------
+
+        const password =
+            passwordInput.value;
+
+        if (!password) {
+
+            showFieldError(
+                passwordError,
+                "Please create a password."
+            );
+
+            isValid = false;
+
+        } else if (password.length < 6) {
+
+            showFieldError(
+                passwordError,
+                "Password must contain at least 6 characters."
+            );
+
+            isValid = false;
+
+        }
+
+
+        // ----------------------------------------
+        // CONFIRM PASSWORD
+        // ----------------------------------------
+
+        const confirmPassword =
+            confirmPasswordInput.value;
+
+        if (!confirmPassword) {
+
+            showFieldError(
+                confirmPasswordError,
+                "Please confirm your password."
+            );
+
+            isValid = false;
+
+        } else if (
+            password !== confirmPassword
+        ) {
+
+            showFieldError(
+                confirmPasswordError,
+                "Passwords do not match."
+            );
+
+            isValid = false;
+
+        }
+
+
+        return {
+            isValid,
+            name,
+            email,
+            phone,
+            password
+        };
+
+    }
+
+
+    // ============================================
+    // PASSWORD VISIBILITY
+    // ============================================
+
+    function setupPasswordToggle(
+        input,
+        button,
+        icon
+    ) {
+
+        button.addEventListener(
+            "click",
+            () => {
 
                 const isPassword =
                     input.type === "password";
 
                 input.type =
-                    isPassword ? "text" : "password";
+                    isPassword
+                        ? "text"
+                        : "password";
 
                 icon.classList.toggle(
                     "fa-eye",
@@ -1077,379 +1112,411 @@
                         : "Show password"
                 );
 
-            });
+            }
+        );
+
+    }
+
+
+    setupPasswordToggle(
+        passwordInput,
+        document.getElementById("togglePassword"),
+        document.getElementById("passwordIcon")
+    );
+
+
+    setupPasswordToggle(
+        confirmPasswordInput,
+        document.getElementById("toggleConfirmPassword"),
+        document.getElementById("confirmPasswordIcon")
+    );
+
+
+    // ============================================
+    // PASSWORD FEEDBACK
+    // ============================================
+
+    function updatePasswordFeedback() {
+
+        const password =
+            passwordInput.value;
+
+        const confirmPassword =
+            confirmPasswordInput.value;
+
+
+        // PASSWORD LENGTH
+
+        if (password.length >= 6) {
+
+            passwordLength.classList.remove(
+                "requirement-invalid"
+            );
+
+            passwordLength.classList.add(
+                "requirement-valid"
+            );
+
+            passwordLength.innerHTML = `
+                <i class="fas fa-check-circle"
+                   aria-hidden="true"></i>
+                At least 6 characters
+            `;
+
+        } else {
+
+            passwordLength.classList.remove(
+                "requirement-valid"
+            );
+
+            passwordLength.classList.add(
+                "requirement-invalid"
+            );
+
+            passwordLength.innerHTML = `
+                <i class="fas fa-circle text-[6px]"
+                   aria-hidden="true"></i>
+                At least 6 characters
+            `;
 
         }
 
 
-        setupPasswordToggle(
-            passwordInput,
-            document.getElementById("togglePassword"),
-            document.getElementById("passwordIcon")
-        );
+        // PASSWORD MATCH
 
-
-        setupPasswordToggle(
-            confirmPasswordInput,
-            document.getElementById("toggleConfirmPassword"),
-            document.getElementById("confirmPasswordIcon")
-        );
-
-
-        // ========================================
-        // REAL-TIME PASSWORD FEEDBACK
-        // ========================================
-
-        function updatePasswordFeedback() {
-
-            const password =
-                passwordInput.value;
-
-            const confirmPassword =
-                confirmPasswordInput.value;
-
-
-            // Password length
-
-            if (password.length >= 6) {
-
-                passwordLength.classList.remove(
-                    "requirement-invalid"
-                );
-
-                passwordLength.classList.add(
-                    "requirement-valid"
-                );
-
-                passwordLength.innerHTML = `
-                    <i class="fas fa-check-circle"
-                       aria-hidden="true"></i>
-                    At least 6 characters
-                `;
-
-            } else {
-
-                passwordLength.classList.remove(
-                    "requirement-valid"
-                );
-
-                passwordLength.classList.add(
-                    "requirement-invalid"
-                );
-
-                passwordLength.innerHTML = `
-                    <i class="fas fa-circle text-[6px]"
-                       aria-hidden="true"></i>
-                    At least 6 characters
-                `;
-
-            }
-
-
-            // Password match
-
-            if (
-                confirmPassword &&
-                password === confirmPassword
-            ) {
-
-                passwordMatch.classList.remove(
-                    "requirement-invalid"
-                );
-
-                passwordMatch.classList.add(
-                    "requirement-valid"
-                );
-
-                passwordMatch.innerHTML = `
-                    <i class="fas fa-check-circle"
-                       aria-hidden="true"></i>
-                    Passwords match
-                `;
-
-            } else {
-
-                passwordMatch.classList.remove(
-                    "requirement-valid"
-                );
-
-                passwordMatch.classList.add(
-                    "requirement-invalid"
-                );
-
-                passwordMatch.innerHTML = `
-                    <i class="fas fa-circle text-[6px]"
-                       aria-hidden="true"></i>
-                    Passwords must match
-                `;
-
-            }
-
-        }
-
-
-        passwordInput.addEventListener(
-            "input",
-            updatePasswordFeedback
-        );
-
-        confirmPasswordInput.addEventListener(
-            "input",
-            updatePasswordFeedback
-        );
-
-
-        // ========================================
-        // FIREBASE ERROR HANDLING
-        // ========================================
-
-        function getFriendlyFirebaseError(error) {
-
-            switch (error.code) {
-
-                case "auth/email-already-in-use":
-                    return "An account with this email already exists. Try logging in instead.";
-
-                case "auth/invalid-email":
-                    return "Please enter a valid email address.";
-
-                case "auth/weak-password":
-                    return "Your password is too weak. Please use at least 6 characters.";
-
-                case "auth/network-request-failed":
-                    return "Network connection failed. Please check your internet connection and try again.";
-
-                case "auth/operation-not-allowed":
-                    return "Email registration is currently unavailable. Please try again later.";
-
-                case "auth/too-many-requests":
-                    return "Too many attempts were made. Please wait a while and try again.";
-
-                default:
-                    return "We could not create your account. Please try again.";
-
-            }
-
-        }
-
-
-        // ========================================
-        // LOADING STATE
-        // ========================================
-
-        function setLoading(isLoading) {
-
-            signupButton.disabled = isLoading;
-
-
-            if (isLoading) {
-
-                signupButtonText.textContent =
-                    "Creating account...";
-
-                signupButtonIcon.className =
-                    "spinner";
-
-            } else {
-
-                signupButtonText.textContent =
-                    "Create Account";
-
-                signupButtonIcon.className =
-                    "fas fa-user-plus";
-
-            }
-
-        }
-
-
-        // ========================================
-        // CREATE FIRESTORE USER
-        // ========================================
-
-        async function createUserProfile(
-            user,
-            name,
-            phone
+        if (
+            confirmPassword &&
+            password === confirmPassword
         ) {
 
-            const userRef =
-                doc(db, "users", user.uid);
+            passwordMatch.classList.remove(
+                "requirement-invalid"
+            );
+
+            passwordMatch.classList.add(
+                "requirement-valid"
+            );
+
+            passwordMatch.innerHTML = `
+                <i class="fas fa-check-circle"
+                   aria-hidden="true"></i>
+                Passwords match
+            `;
+
+        } else {
+
+            passwordMatch.classList.remove(
+                "requirement-valid"
+            );
+
+            passwordMatch.classList.add(
+                "requirement-invalid"
+            );
+
+            passwordMatch.innerHTML = `
+                <i class="fas fa-circle text-[6px]"
+                   aria-hidden="true"></i>
+                Passwords must match
+            `;
+
+        }
+
+    }
 
 
-            await setDoc(userRef, {
+    passwordInput.addEventListener(
+        "input",
+        updatePasswordFeedback
+    );
+
+    confirmPasswordInput.addEventListener(
+        "input",
+        updatePasswordFeedback
+    );
+
+
+    // ============================================
+    // FIREBASE ERROR HANDLING
+    // ============================================
+
+    function getFriendlyFirebaseError(error) {
+
+        switch (error.code) {
+
+            case "auth/email-already-in-use":
+
+                return "An account with this email already exists. Please login instead.";
+
+
+            case "auth/invalid-email":
+
+                return "Please enter a valid email address.";
+
+
+            case "auth/weak-password":
+
+                return "Your password is too weak. Please use at least 6 characters.";
+
+
+            case "auth/network-request-failed":
+
+                return "Network connection failed. Please check your internet connection.";
+
+
+            case "auth/operation-not-allowed":
+
+                return "Email and password registration is not enabled in Firebase Authentication.";
+
+
+            case "auth/too-many-requests":
+
+                return "Too many attempts. Please wait and try again.";
+
+
+            case "PERMISSION_DENIED":
+
+                return "Your account was created, but the customer profile could not be saved because of database permissions.";
+
+
+            default:
+
+                console.error(error);
+
+                return "We could not create your account. Please try again.";
+
+        }
+
+    }
+
+
+    // ============================================
+    // LOADING STATE
+    // ============================================
+
+    function setLoading(isLoading) {
+
+        signupButton.disabled =
+            isLoading;
+
+
+        if (isLoading) {
+
+            signupButtonText.textContent =
+                "Creating account...";
+
+            signupButtonIcon.className =
+                "spinner";
+
+        } else {
+
+            signupButtonText.textContent =
+                "Create Account";
+
+            signupButtonIcon.className =
+                "fas fa-user-plus";
+
+        }
+
+    }
+
+
+    // ============================================
+    // SAVE CUSTOMER PROFILE
+    // FIREBASE REALTIME DATABASE
+    // ============================================
+
+    async function createUserProfile(
+        user,
+        name,
+        phone
+    ) {
+
+        const userRef =
+            ref(
+                db,
+                `users/${user.uid}`
+            );
+
+
+        await set(
+            userRef,
+            {
 
                 uid: user.uid,
 
                 name: name,
 
-                email: user.email || "",
+                email:
+                    user.email || "",
 
-                phone: phone || "",
+                phone:
+                    phone || "",
 
-                photoURL: user.photoURL || "",
+                photoURL:
+                    user.photoURL || "",
 
-                createdAt: serverTimestamp(),
+                role:
+                    "customer",
 
-                updatedAt: serverTimestamp()
+                createdAt:
+                    serverTimestamp(),
 
-            });
-
-        }
-
-
-        // ========================================
-        // SIGNUP
-        // ========================================
-
-        signupForm.addEventListener(
-            "submit",
-            async (event) => {
-
-                event.preventDefault();
-
-
-                const formData =
-                    validateForm();
-
-
-                if (!formData.isValid) {
-
-                    const firstInvalid =
-                        document.querySelector(
-                            ".border-red-500"
-                        );
-
-                    if (firstInvalid) {
-                        firstInvalid.focus();
-                    }
-
-                    return;
-
-                }
-
-
-                setLoading(true);
-
-
-                try {
-
-                    // --------------------------------
-                    // Create Firebase Authentication
-                    // account
-                    // --------------------------------
-
-                    const userCredential =
-                        await createUserWithEmailAndPassword(
-                            auth,
-                            formData.email,
-                            formData.password
-                        );
-
-
-                    const user =
-                        userCredential.user;
-
-
-                    // --------------------------------
-                    // Update Firebase display name
-                    // --------------------------------
-
-                    await updateProfile(user, {
-
-                        displayName: formData.name
-
-                    });
-
-
-                    // --------------------------------
-                    // Create Firestore profile
-                    // --------------------------------
-
-                    await createUserProfile(
-                        user,
-                        formData.name,
-                        formData.phone
-                    );
-
-
-                    // --------------------------------
-                    // Success
-                    // --------------------------------
-
-                    showSuccess(
-                        "Account created successfully! Redirecting..."
-                    );
-
-
-                    // Keep loading state while redirecting
-
-                    setTimeout(() => {
-
-                        window.location.href =
-                            "index.html";
-
-                    }, 1200);
-
-
-                } catch (error) {
-
-                    console.error(
-                        "Signup error:",
-                        error
-                    );
-
-
-                    setLoading(false);
-
-
-                    showError(
-                        getFriendlyFirebaseError(error)
-                    );
-
-                }
+                updatedAt:
+                    serverTimestamp()
 
             }
         );
 
-
-        // ========================================
-        // CLEAR FIELD ERRORS WHILE TYPING
-        // ========================================
-
-        nameInput.addEventListener(
-            "input",
-            () => clearFieldError(nameError)
-        );
-
-        emailInput.addEventListener(
-            "input",
-            () => clearFieldError(emailError)
-        );
-
-        phoneInput.addEventListener(
-            "input",
-            () => clearFieldError(phoneError)
-        );
-
-        passwordInput.addEventListener(
-            "input",
-            () => clearFieldError(passwordError)
-        );
-
-        confirmPasswordInput.addEventListener(
-            "input",
-            () => clearFieldError(confirmPasswordError)
-        );
+    }
 
 
-        // ========================================
-        // INITIAL PAGE STATE
-        // ========================================
+    // ============================================
+    // SIGNUP
+    // ============================================
 
-        updatePasswordFeedback();
+    signupForm.addEventListener(
+        "submit",
+        async (event) => {
 
-    </script>
+            event.preventDefault();
+
+
+            const formData =
+                validateForm();
+
+
+            if (!formData.isValid) {
+
+                return;
+
+            }
+
+
+            setLoading(true);
+
+
+            try {
+
+                // --------------------------------
+                // CREATE AUTH ACCOUNT
+                // --------------------------------
+
+                const userCredential =
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        formData.email,
+                        formData.password
+                    );
+
+
+                const user =
+                    userCredential.user;
+
+
+                // --------------------------------
+                // SAVE DISPLAY NAME
+                // TO FIREBASE AUTH
+                // --------------------------------
+
+                await updateProfile(
+                    user,
+                    {
+                        displayName:
+                            formData.name
+                    }
+                );
+
+
+                // --------------------------------
+                // SAVE CUSTOMER DATA
+                // TO REALTIME DATABASE
+                // --------------------------------
+
+                await createUserProfile(
+                    user,
+                    formData.name,
+                    formData.phone
+                );
+
+
+                // --------------------------------
+                // SUCCESS
+                // --------------------------------
+
+                showSuccess(
+                    "Account created successfully! Redirecting..."
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        window.location.href =
+                            "index.html";
+
+                    },
+                    1200
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Signup error:",
+                    error
+                );
+
+
+                setLoading(false);
+
+
+                showError(
+                    getFriendlyFirebaseError(error)
+                );
+
+            }
+
+        }
+    );
+
+
+    // ============================================
+    // CLEAR ERRORS WHILE TYPING
+    // ============================================
+
+    nameInput.addEventListener(
+        "input",
+        () => clearFieldError(nameError)
+    );
+
+    emailInput.addEventListener(
+        "input",
+        () => clearFieldError(emailError)
+    );
+
+    phoneInput.addEventListener(
+        "input",
+        () => clearFieldError(phoneError)
+    );
+
+    passwordInput.addEventListener(
+        "input",
+        () => clearFieldError(passwordError)
+    );
+
+    confirmPasswordInput.addEventListener(
+        "input",
+        () => clearFieldError(confirmPasswordError)
+    );
+
+
+    // ============================================
+    // INITIAL STATE
+    // ============================================
+
+    updatePasswordFeedback();
+
+</script>
 
 </body>
 
