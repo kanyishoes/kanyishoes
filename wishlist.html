@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wishlist | Kanye Series</title>
+<meta name="description" content="View and manage your saved Kanye Series products.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+html{scroll-behavior:smooth}body{background:#f8fafc}.desktop-sidebar{width:84px}.main-with-sidebar{margin-left:84px}.sidebar-link{color:#cbd5e1;transition:.2s}.sidebar-link:hover{background:#ffffff14;color:#fff}.sidebar-link.active{color:#fff;background:#ffffff1a;box-shadow:inset 3px 0 #60a5fa}.focus-ring:focus-visible{outline:3px solid #60a5fab3;outline-offset:3px}.bottom-safe{padding-bottom:88px}.wishlist-card{transition:transform .2s,box-shadow .2s,border-color .2s}.wishlist-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px #0f172e17}.product-image-wrap{aspect-ratio:1/1;background:#f1f5f9}.product-image{width:100%;height:100%;object-fit:cover}.line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.skeleton{background:linear-gradient(90deg,#e5e7eb 25%,#f8fafc 50%,#e5e7eb 75%);background-size:200% 100%;animation:skeleton 1.3s infinite}@keyframes skeleton{from{background-position:200% 0}to{background-position:-200% 0}}.search-backdrop{background:#0f172e94;backdrop-filter:blur(5px)}@media(max-width:1023px){.desktop-sidebar{display:none}.main-with-sidebar{margin-left:0}}@media(min-width:768px){.bottom-safe{padding-bottom:0}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body class="text-slate-900">
+<div class="min-h-screen">
+<aside class="desktop-sidebar fixed inset-y-0 left-0 z-50 hidden flex-col items-center bg-gradient-to-b from-blue-950 via-blue-900 to-blue-950 shadow-xl lg:flex">
+<a href="index.html" class="mt-6 mb-10 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-blue-900 shadow-lg focus-ring" aria-label="Kanye Series home"><i class="bi bi-bag-heart-fill text-2xl"></i></a>
+<nav class="flex w-full flex-1 flex-col gap-2 px-2" aria-label="Primary navigation">
+<a href="index.html" class="sidebar-link flex flex-col items-center gap-1 rounded-xl px-2 py-3 text-center focus-ring"><i class="bi bi-house-door text-xl"></i><span class="text-[11px] font-semibold">Home</span></a>
+<a href="products.html" class="sidebar-link flex flex-col items-center gap-1 rounded-xl px-2 py-3 text-center focus-ring"><i class="bi bi-grid-fill text-xl"></i><span class="text-[11px] font-semibold">Products</span></a>
+<a href="orders.html" class="sidebar-link flex flex-col items-center gap-1 rounded-xl px-2 py-3 text-center focus-ring"><i class="bi bi-bag-check text-xl"></i><span class="text-[11px] font-semibold">Orders</span></a>
+<a href="profile.html" class="sidebar-link flex flex-col items-center gap-1 rounded-xl px-2 py-3 text-center focus-ring"><i class="bi bi-person-circle text-xl"></i><span class="text-[11px] font-semibold">Profile</span></a></nav>
+<a id="desktopAccountLink" href="profile.html" class="mb-5 flex h-11 w-11 items-center justify-center rounded-full text-slate-300 hover:bg-white/10 hover:text-white focus-ring" aria-label="Account"><i class="bi bi-person text-xl"></i></a>
+</aside>
+<div class="main-with-sidebar">
+<header class="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur"><div class="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:px-6 lg:px-8">
+<a href="index.html" class="flex min-w-0 items-center gap-2 lg:hidden" aria-label="Kanye Series home"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-900 text-white"><i class="bi bi-bag-heart-fill"></i></span><span class="truncate text-base font-black tracking-tight text-blue-950">KANYE SERIES</span></a>
+<a href="index.html" class="hidden min-w-0 items-center gap-2 lg:flex" aria-label="Kanye Series home"><span class="truncate text-lg font-black tracking-tight text-blue-950">KANYE SERIES</span></a>
+<div class="ml-auto flex items-center gap-1 sm:gap-2">
+<button id="openSearchBtn" type="button" class="focus-ring flex h-10 w-10 items-center justify-center rounded-full text-slate-600 hover:bg-blue-50 hover:text-blue-900" aria-label="Search products"><i class="bi bi-search text-lg"></i></button>
+<a href="wishlist.html" class="focus-ring relative flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-blue-900" aria-label="Wishlist" aria-current="page"><i class="bi bi-heart-fill text-lg"></i><span id="wishlistCount" class="absolute -right-0.5 -top-0.5 hidden min-w-4 rounded-full bg-red-600 px-1 text-center text-[10px] font-bold leading-4 text-white">0</span></a>
+<a href="cart.html" class="focus-ring relative flex h-10 w-10 items-center justify-center rounded-full text-slate-600 hover:bg-blue-50 hover:text-blue-900" aria-label="Shopping cart"><i class="bi bi-cart3 text-lg"></i><span id="cartCount" class="absolute -right-0.5 -top-0.5 hidden min-w-4 rounded-full bg-blue-700 px-1 text-center text-[10px] font-bold leading-4 text-white">0</span></a>
+<a id="profileLink" href="profile.html" class="focus-ring flex h-10 w-10 items-center justify-center rounded-full text-slate-600 hover:bg-blue-50 hover:text-blue-900" aria-label="Profile"><i class="bi bi-person-circle text-lg"></i></a>
+</div></div></header>
+<main class="bottom-safe"><section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+<div data-aos="fade-up" class="mb-8"><div class="flex items-center gap-2 text-xs font-semibold text-slate-500"><a href="index.html" class="hover:text-blue-800 focus-ring rounded">Home</a><i class="bi bi-chevron-right text-[10px]"></i><span class="text-blue-800">Wishlist</span></div><div class="mt-4 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div><p class="text-sm font-bold uppercase tracking-[0.18em] text-blue-700">Saved for later</p><h1 class="mt-1 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">Wishlist</h1><p class="mt-2 max-w-xl text-sm leading-6 text-slate-500">Products you've saved for later.</p></div><a href="products.html" class="focus-ring inline-flex w-fit items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-5 py-3 text-sm font-bold text-blue-800 shadow-sm hover:bg-blue-50"><i class="bi bi-shop"></i>Explore Products</a></div></div>
+<div id="loadingState" class="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" aria-live="polite"><template id="skeletonTemplate"><div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"><div class="product-image-wrap skeleton"></div><div class="space-y-3 p-4"><div class="skeleton h-3 w-20 rounded"></div><div class="skeleton h-5 w-4/5 rounded"></div><div class="skeleton h-4 w-2/5 rounded"></div><div class="skeleton h-10 w-full rounded-xl"></div></div></div></template></div>
+<div id="loginState" class="hidden rounded-3xl border border-slate-200 bg-white px-5 py-14 text-center shadow-sm" data-aos="fade-up"><div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 text-blue-800"><i class="bi bi-heart text-3xl"></i></div><h2 class="mt-5 text-2xl font-black text-slate-950">Sign in to view your wishlist.</h2><p class="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500">Save products you love and find them here whenever you return.</p><a href="login.html" class="focus-ring mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-blue-800 px-6 py-3 text-sm font-bold text-white hover:bg-blue-900"><i class="bi bi-box-arrow-in-right"></i>Login</a></div>
+<div id="errorState" class="hidden rounded-3xl border border-red-200 bg-red-50 px-5 py-12 text-center" role="alert"><i class="bi bi-exclamation-circle text-4xl text-red-600"></i><h2 class="mt-4 text-xl font-black text-red-900">Unable to load your wishlist right now.</h2><p class="mt-2 text-sm text-red-700">Please try again.</p><button id="retryBtn" type="button" class="focus-ring mt-6 rounded-xl bg-blue-800 px-5 py-3 text-sm font-bold text-white hover:bg-blue-900"><i class="bi bi-arrow-clockwise mr-1"></i>Try again</button></div>
+<div id="emptyState" class="hidden rounded-3xl border border-slate-200 bg-white px-5 py-14 text-center shadow-sm" data-aos="fade-up"><div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 text-blue-800"><i class="bi bi-heart text-3xl"></i></div><h2 class="mt-5 text-2xl font-black text-slate-950">Your Wishlist is Empty</h2><p class="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500">Save products you love and find them here later.</p><a href="products.html" class="focus-ring mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-blue-800 px-6 py-3 text-sm font-bold text-white hover:bg-blue-900"><i class="bi bi-shop"></i>Explore Products</a></div>
+<div id="wishlistGrid" class="hidden grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" aria-live="polite"></div>
+<div id="staleNotice" class="mt-5 hidden rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800"><div class="flex items-start gap-3"><i class="bi bi-info-circle mt-0.5"></i><p></p></div></div>
+</section></main>
+<footer class="bg-blue-950 text-slate-300"><div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8"><div class="grid gap-8 md:grid-cols-3"><div><div class="flex items-center gap-2 text-white"><span class="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-blue-950"><i class="bi bi-bag-heart-fill"></i></span><span class="text-lg font-black tracking-tight">KANYE SERIES</span></div><p class="mt-4 max-w-md text-sm leading-6 text-blue-200">A modern marketplace for shoes, electronics, secondary science books and special orders.</p></div><div><h3 class="font-bold text-white">Navigation</h3><ul class="mt-4 space-y-3 text-sm"><li><a href="index.html" class="hover:text-white focus-ring">Home</a></li><li><a href="products.html" class="hover:text-white focus-ring">Products</a></li><li><a href="orders.html" class="hover:text-white focus-ring">Orders</a></li><li><a href="profile.html" class="hover:text-white focus-ring">Profile</a></li><li><a href="special-orders.html" class="hover:text-white focus-ring">Special Orders</a></li></ul></div><div><h3 class="font-bold text-white">Account</h3><ul class="mt-4 space-y-3 text-sm"><li><a href="wishlist.html" class="hover:text-white focus-ring">Wishlist</a></li><li><a href="cart.html" class="hover:text-white focus-ring">Cart</a></li><li><a href="login.html" class="hover:text-white focus-ring">Login</a></li></ul></div></div><div class="mt-10 border-t border-blue-900 pt-6 text-xs text-blue-300"><p>&copy; <span id="copyrightYear">2026</span> Kanye Series. All rights reserved.</p></div></div></footer>
+</div>
+<nav class="fixed bottom-0 left-0 right-0 z-50 border-t border-slate-200 bg-white/95 shadow-2xl backdrop-blur md:block lg:hidden" aria-label="Mobile and tablet navigation"><div class="mx-auto grid max-w-lg grid-cols-4"><a href="index.html" class="focus-ring flex flex-col items-center gap-1 px-2 py-3 text-slate-500 hover:text-blue-800" aria-label="Home"><i class="bi bi-house-door text-lg"></i><span class="text-[11px] font-semibold">Home</span></a><a href="products.html" class="focus-ring flex flex-col items-center gap-1 px-2 py-3 text-slate-500 hover:text-blue-800" aria-label="Products"><i class="bi bi-grid text-lg"></i><span class="text-[11px] font-semibold">Products</span></a><a href="orders.html" class="focus-ring flex flex-col items-center gap-1 px-2 py-3 text-slate-500 hover:text-blue-800" aria-label="Orders"><i class="bi bi-bag-check text-lg"></i><span class="text-[11px] font-semibold">Orders</span></a><a href="profile.html" class="focus-ring flex flex-col items-center gap-1 px-2 py-3 text-slate-500 hover:text-blue-800" aria-label="Profile"><i class="bi bi-person text-lg"></i><span class="text-[11px] font-semibold">Profile</span></a></div></nav>
+<div id="searchModal" class="search-backdrop fixed inset-0 z-[70] hidden p-4 sm:p-8" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle"><div class="mx-auto mt-3 max-w-3xl overflow-hidden rounded-3xl bg-white shadow-2xl sm:mt-10"><div class="flex items-center gap-3 border-b border-slate-200 p-4 sm:p-5"><i class="bi bi-search text-lg text-slate-400"></i><label id="searchModalTitle" for="modalSearchInput" class="sr-only">Search products</label><input id="modalSearchInput" type="search" autocomplete="off" class="min-w-0 flex-1 border-0 bg-transparent text-base font-medium outline-none placeholder:text-slate-400" placeholder="Search products..."><button id="closeSearchBtn" type="button" class="focus-ring flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200" aria-label="Close search"><i class="bi bi-x-lg"></i></button></div><div class="p-5"><p class="text-sm text-slate-500">Search from the products available in Kanye Series.</p><button id="goSearchBtn" type="button" class="focus-ring mt-4 inline-flex items-center gap-2 rounded-xl bg-blue-800 px-5 py-3 text-sm font-bold text-white hover:bg-blue-900"><i class="bi bi-search"></i>Search Products</button></div></div></div>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+import{getAuth,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+import{getDatabase,ref,get,set,remove,onValue}from"https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
+
+// ========================================
+// FIREBASE CONFIGURATION
+// ========================================
+const firebaseConfig={apiKey:"AIzaSyDGpgx9033X1_KUiodxLsT3J5lKB4hQTJc",authDomain:"kanye-series.firebaseapp.com",projectId:"kanye-series",storageBucket:"kanye-series.firebasestorage.app",messagingSenderId:"518877515683",appId:"1:518877515683:web:672b69c89fe89a882fd416",measurementId:"G-MCMYRNCWVC"};
+
+// ========================================
+// FIREBASE INITIALIZATION
+// ========================================
+const app=initializeApp(firebaseConfig);const auth=getAuth(app);const db=getDatabase(app);
+
+// ========================================
+// CLOUDINARY CONFIGURATION
+// ========================================
+const CLOUDINARY_CLOUD_NAME="fjifvpsp";const CLOUDINARY_UPLOAD_PRESET="kanye_products";const CLOUDINARY_UPLOAD_URL="https://api.cloudinary.com/v1_1/fjifvpsp/image/upload";
+// Customer Wishlist only reads Cloudinary URLs already stored in products/.
+
+// ========================================
+// GLOBAL STATE
+// ========================================
+let currentUser=null,allProducts=[],wishlistItems={},productsLoaded=false,productsLoadPromise=null,wishlistListenerCleanup=null,cartListenerCleanup=null;
+
+// ========================================
+// DOM ELEMENTS
+// ========================================
+const loadingState=document.getElementById("loadingState"),loginState=document.getElementById("loginState"),errorState=document.getElementById("errorState"),emptyState=document.getElementById("emptyState"),wishlistGrid=document.getElementById("wishlistGrid"),staleNotice=document.getElementById("staleNotice"),wishlistCount=document.getElementById("wishlistCount"),cartCount=document.getElementById("cartCount"),profileLink=document.getElementById("profileLink"),desktopAccountLink=document.getElementById("desktopAccountLink");
+
+// ========================================
+// HELPERS
+// ========================================
+function setCount(el,n){n=Math.max(0,Number(n)||0);el.textContent=String(n);el.classList.toggle("hidden",n<=0)}
+function esc(v){return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+function currency(v){const n=Number(v);return`UGX ${(Number.isFinite(n)?n:0).toLocaleString("en-UG")}`}
+function pid(p){return String(p?.id??"").trim()}
+function imageOf(p){if(typeof p?.image==="string"&&p.image.trim())return p.image.trim();if(Array.isArray(p?.images)){const x=p.images.find(v=>typeof v==="string"&&v.trim());if(x)return x.trim()}if(p?.images&&typeof p.images==="object"){const x=Object.values(p.images).find(v=>typeof v==="string"&&v.trim());if(x)return x.trim()}return""}
+function available(p){const s=Number(p?.stock);return Number.isFinite(s)?s>0:true}
+function stockText(p){const s=Number(p?.stock);if(!Number.isFinite(s))return"Availability varies";if(s<=0)return"Out of stock";if(s<=5)return`Only ${s} left`;return"In stock"}
+function discountOf(p){const price=Number(p?.price),old=Number(p?.oldPrice);return Number.isFinite(price)&&Number.isFinite(old)&&old>price&&old>0?Math.round((old-price)/old*100):null}
+function alertBox(title,text,icon="info"){return window.Swal?Swal.fire({title,text,icon,confirmButtonColor:"#1d4ed8"}):Promise.resolve()}
+function stateOnly(s){[loadingState,loginState,errorState,emptyState,wishlistGrid].forEach(x=>x.classList.add("hidden"));if(s==="loading")loadingState.classList.remove("hidden");if(s==="login")loginState.classList.remove("hidden");if(s==="error")errorState.classList.remove("hidden");if(s==="empty")emptyState.classList.remove("hidden");if(s==="grid")wishlistGrid.classList.remove("hidden")}
+
+// ========================================
+// AUTHENTICATION
+// ========================================
+onAuthStateChanged(auth,async user=>{currentUser=user||null;cleanupListeners();if(!currentUser){wishlistItems={};setCount(wishlistCount,0);setCount(cartCount,0);profileLink.href="login.html";desktopAccountLink.href="login.html";profileLink.setAttribute("aria-label","Login");desktopAccountLink.setAttribute("aria-label","Login");stateOnly("login");return}profileLink.href="profile.html";desktopAccountLink.href="profile.html";profileLink.setAttribute("aria-label","Profile");desktopAccountLink.setAttribute("aria-label","Account");stateOnly("loading");try{await loadProducts();startWishlistListener(currentUser.uid);startCartListener(currentUser.uid)}catch(e){console.error("Wishlist initialization error:",e);stateOnly("error")}});
+
+// ========================================
+// LOAD PRODUCTS
+// ========================================
+async function loadProducts(){if(productsLoaded)return allProducts;if(productsLoadPromise)return productsLoadPromise;productsLoadPromise=(async()=>{try{const snap=await get(ref(db,"products"));const data=snap.exists()?snap.val()||{}:{};allProducts=Object.entries(data).map(([id,p])=>({id,...(p||{})}));productsLoaded=true;return allProducts}catch(e){productsLoadPromise=null;console.error("Products loading error:",e);throw e}})();return productsLoadPromise}
+
+// ========================================
+// LOAD WISHLIST / REALTIME COUNT
+// ========================================
+function startWishlistListener(uid){if(wishlistListenerCleanup)wishlistListenerCleanup();wishlistListenerCleanup=onValue(ref(db,`wishlists/${uid}`),async snap=>{wishlistItems=snap.val()||{};setCount(wishlistCount,Object.values(wishlistItems).filter(Boolean).length);try{if(!productsLoaded)await loadProducts();renderWishlist()}catch(e){console.error("Wishlist rendering error:",e);stateOnly("error")}},e=>{console.error("Wishlist loading error:",e);wishlistItems={};setCount(wishlistCount,0);stateOnly("error")})}
+
+// ========================================
+// LOAD CART COUNT
+// ========================================
+function startCartListener(uid){if(cartListenerCleanup)cartListenerCleanup();cartListenerCleanup=onValue(ref(db,`carts/${uid}`),snap=>{const data=snap.val()||{};const count=Object.values(data).reduce((t,item)=>t+Math.max(0,Number(item?.quantity)||0),0);setCount(cartCount,count)},e=>{console.error("Cart listener error:",e);setCount(cartCount,0)})}
+
+// ========================================
+// RENDER WISHLIST
+// ========================================
+function renderWishlist(){const ids=Object.keys(wishlistItems).filter(id=>Boolean(wishlistItems[id]));if(!ids.length){wishlistGrid.innerHTML="";staleNotice.classList.add("hidden");stateOnly("empty");return}const map=new Map(allProducts.map(p=>[pid(p),p]));const products=[];let stale=0;ids.forEach(id=>{const p=map.get(String(id));p?products.push(p):stale++});if(!products.length){wishlistGrid.innerHTML="";stateOnly("empty");if(stale){staleNotice.classList.remove("hidden");staleNotice.querySelector("p").textContent="Some saved products are no longer available and were not displayed."}return}products.sort((a,b)=>{const aa=Number(wishlistItems[pid(a)]?.addedAt||0),bb=Number(wishlistItems[pid(b)]?.addedAt||0);return aa||bb?bb-aa:Number(b.createdAt||0)-Number(a.createdAt||0)});wishlistGrid.innerHTML=products.map(card).join("");stateOnly("grid");if(stale){staleNotice.classList.remove("hidden");staleNotice.querySelector("p").textContent=`${stale} saved product${stale===1?"":"s"} ${stale===1?"is":"are"} no longer available and ${stale===1?"was":"were"} not displayed.`}else staleNotice.classList.add("hidden");if(window.AOS)AOS.refresh()}
+function card(p){const id=pid(p),name=esc(p.name||"Unnamed product"),cat=esc(p.category||"Product"),img=imageOf(p),price=currency(p.price),oldN=Number(p.oldPrice),old=Number.isFinite(oldN)?currency(oldN):"",disc=discountOf(p),ok=available(p),stock=esc(stockText(p));const image=img?`<img src="${esc(img)}" alt="${name}" class="product-image" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentElement.querySelector('.image-fallback').classList.remove('hidden')">`:"";return`<article class="wishlist-card overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm" data-aos="fade-up"><a href="product.html?id=${encodeURIComponent(id)}" class="focus-ring relative block" aria-label="View ${name}"><div class="product-image-wrap relative overflow-hidden">${image}<div class="${img?"hidden ":""}image-fallback absolute inset-0 flex items-center justify-center text-slate-300"><i class="bi bi-image text-4xl"></i></div>${disc!==null?`<span class="absolute left-2 top-2 rounded-full bg-red-600 px-2 py-1 text-[10px] font-black text-white">-${disc}%</span>`:""}<span class="absolute right-2 top-2 rounded-full bg-white/95 px-2 py-1 text-[10px] font-bold text-slate-600 shadow-sm">${cat}</span></div></a><div class="p-3 sm:p-4"><a href="product.html?id=${encodeURIComponent(id)}" class="focus-ring block rounded"><h2 class="line-clamp-2 min-h-[2.5rem] text-sm font-black leading-5 text-blue-950 sm:text-base">${name}</h2></a><div class="mt-2 flex flex-wrap items-center gap-2"><span class="text-base font-black text-blue-800 sm:text-lg">${price}</span>${old&&disc!==null?`<span class="text-xs font-medium text-slate-400 line-through sm:text-sm">${old}</span>`:""}</div><p class="mt-1 text-xs font-semibold ${ok?"text-emerald-600":"text-red-600"}"><i class="bi ${ok?"bi-check-circle":"bi-x-circle"} mr-1"></i>${stock}</p><div class="mt-3 grid grid-cols-2 gap-2"><button type="button" class="remove-wishlist-btn focus-ring inline-flex min-h-10 items-center justify-center gap-1 rounded-xl border border-slate-200 bg-white px-2 py-2 text-xs font-bold text-slate-600 hover:border-red-200 hover:bg-red-50 hover:text-red-700 sm:text-sm" data-product-id="${esc(id)}" aria-label="Remove ${name} from wishlist"><i class="bi bi-trash3"></i><span>Remove</span></button><button type="button" class="add-cart-btn focus-ring inline-flex min-h-10 items-center justify-center gap-1 rounded-xl bg-blue-800 px-2 py-2 text-xs font-bold text-white hover:bg-blue-900 disabled:cursor-not-allowed disabled:bg-slate-300 sm:text-sm" data-product-id="${esc(id)}" aria-label="Add ${name} to cart" ${ok?"":"disabled"}><i class="bi bi-cart-plus"></i><span>Cart</span></button></div><a href="product.html?id=${encodeURIComponent(id)}" class="focus-ring mt-2 flex min-h-9 items-center justify-center gap-1 rounded-xl px-2 py-2 text-xs font-bold text-blue-800 hover:bg-blue-50">View Product <i class="bi bi-arrow-right"></i></a></div></article>`}
+
+// ========================================
+// REMOVE FROM WISHLIST
+// ========================================
+async function removeFromWishlist(id,button){if(!currentUser){await alertBox("Login required","Please log in to manage your wishlist.");return}button.disabled=true;try{await remove(ref(db,`wishlists/${currentUser.uid}/${id}`));await alertBox("Removed from wishlist","The product has been removed from your wishlist.","success")}catch(e){console.error("Remove wishlist error:",e);button.disabled=false;await alertBox("Could not remove product","Please try again.","error")}}
+
+// ========================================
+// ADD TO CART
+// ========================================
+async function addToCart(id,button){if(!currentUser){await alertBox("Login required","Please log in to add items to your cart.");return}const p=allProducts.find(x=>pid(x)===String(id));if(!p){await alertBox("Product unavailable","This product is no longer available.");return}if(!available(p)){await alertBox("Out of stock","This product is currently unavailable.");return}button.disabled=true;try{const itemRef=ref(db,`carts/${currentUser.uid}/${id}`);const snap=await get(itemRef);const existing=snap.val()||{};const current=Math.max(0,Number(existing.quantity)||0),stock=Number(p.stock),next=current+1;if(Number.isFinite(stock)&&next>stock){await alertBox("Stock limit reached",`Only ${stock} item${stock===1?"":"s"} available.");return}await set(itemRef,{productId:String(id),name:p.name||"Unnamed product",price:Number(p.price)||0,image:imageOf(p),quantity:next,addedAt:existing.addedAt||Date.now()});await alertBox("Added to cart",`${p.name||"Product"} was added to your cart.` ,"success")}catch(e){console.error("Add to cart error:",e);await alertBox("Could not add to cart","Please try again.","error")}finally{button.disabled=false}}
+
+document.addEventListener("click",e=>{const r=e.target.closest(".remove-wishlist-btn");if(r){e.preventDefault();removeFromWishlist(r.dataset.productId,r);return}const c=e.target.closest(".add-cart-btn");if(c){e.preventDefault();addToCart(c.dataset.productId,c)}});
+
+// ========================================
+// SEARCH / NAVIGATION
+// ========================================
+const searchModal=document.getElementById("searchModal"),modalSearchInput=document.getElementById("modalSearchInput");function openSearch(){searchModal.classList.remove("hidden");document.body.classList.add("overflow-hidden");setTimeout(()=>modalSearchInput.focus(),50)}function closeSearch(){searchModal.classList.add("hidden");document.body.classList.remove("overflow-hidden");modalSearchInput.value=""}function doSearch(){const q=modalSearchInput.value.trim();window.location.href=q?`products.html?search=${encodeURIComponent(q)}`:"products.html"}
+document.getElementById("openSearchBtn").addEventListener("click",openSearch);document.getElementById("closeSearchBtn").addEventListener("click",closeSearch);document.getElementById("goSearchBtn").addEventListener("click",doSearch);modalSearchInput.addEventListener("keydown",e=>{if(e.key==="Enter")doSearch();if(e.key==="Escape")closeSearch()});searchModal.addEventListener("click",e=>{if(e.target===searchModal)closeSearch()});
+
+document.getElementById("copyrightYear").textContent=new Date().getFullYear();
+document.getElementById("retryBtn").addEventListener("click",async()=>{if(!currentUser){stateOnly("login");return}stateOnly("loading");try{productsLoaded=false;productsLoadPromise=null;allProducts=[];await loadProducts();startWishlistListener(currentUser.uid);startCartListener(currentUser.uid)}catch(e){console.error("Wishlist retry error:",e);stateOnly("error")}});
+function cleanupListeners(){if(wishlistListenerCleanup){wishlistListenerCleanup();wishlistListenerCleanup=null}if(cartListenerCleanup){cartListenerCleanup();cartListenerCleanup=null}}
+if(window.AOS)AOS.init({duration:650,easing:"ease-out",once:true,offset:80});
+</script>
+</body>
+</html>
