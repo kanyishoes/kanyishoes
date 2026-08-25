@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kanye Series administrator dashboard.">
+    <meta name="theme-color" content="#172554">
+    <title>Admin Dashboard | Kanye Series</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        * { box-sizing: border-box; }
+        body { background:#f8fafc; color:#0f172a; }
+        .sidebar-link { transition:.2s ease; }
+        .sidebar-link:hover { background:rgba(255,255,255,.08); transform:translateX(2px); }
+        .sidebar-link.active { background:#1d4ed8; color:#fff; box-shadow:0 10px 25px rgba(15,23,42,.18); }
+        .stat-card, .panel { box-shadow:0 8px 28px rgba(15,23,42,.06); }
+        .skeleton {
+            background:linear-gradient(90deg,#e2e8f0 25%,#f8fafc 50%,#e2e8f0 75%);
+            background-size:200% 100%;
+            animation:skeleton 1.4s infinite;
+        }
+        @keyframes skeleton { from {background-position:200% 0} to {background-position:-200% 0} }
+        .drawer { transform:translateX(-100%); transition:transform .25s ease; }
+        .drawer.open { transform:translateX(0); }
+        .mobile-bottom { padding-bottom:env(safe-area-inset-bottom); }
+        .focus-ring:focus-visible { outline:3px solid rgba(59,130,246,.35); outline-offset:2px; }
+        @media (min-width:1024px) {
+            .dashboard-main { margin-left:280px; }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <!--
+        KANYE SERIES ADMIN DASHBOARD
+        Backend:
+        Firebase Authentication + Firebase Realtime Database + Cloudinary
+        No Firestore. No Firebase Storage.
+
+        IMPORTANT SECURITY:
+        Frontend role checking is not sufficient. Firebase Realtime Database
+        Security Rules must allow authenticated admins to read/write admin data
+        while preventing ordinary customers from accessing it.
+    -->
+
+    <!-- Desktop Sidebar -->
+    <aside class="fixed inset-y-0 left-0 z-50 hidden w-[280px] flex-col bg-blue-950 text-white lg:flex"
+           aria-label="Admin navigation">
+        <div class="flex h-20 items-center gap-3 border-b border-blue-900 px-6">
+            <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-600 shadow-lg">
+                <i class="bi bi-crown-fill text-xl"></i>
+            </div>
+            <div>
+                <p class="text-lg font-black tracking-wide">KANYE SERIES</p>
+                <p class="text-xs text-blue-200">Administration</p>
+            </div>
+        </div>
+
+        <nav class="flex-1 space-y-2 overflow-y-auto p-4">
+            <a href="admin.html" aria-current="page"
+               class="sidebar-link active flex items-center gap-3 rounded-xl px-4 py-3 font-semibold">
+                <i class="bi bi-speedometer2 text-lg"></i><span>Dashboard</span>
+            </a>
+            <a href="admin-products.html"
+               class="sidebar-link flex items-center gap-3 rounded-xl px-4 py-3 text-blue-100 font-semibold">
+                <i class="bi bi-box-seam text-lg"></i><span>Products</span>
+            </a>
+            <a href="admin-orders.html"
+               class="sidebar-link flex items-center gap-3 rounded-xl px-4 py-3 text-blue-100 font-semibold">
+                <i class="bi bi-bag-check text-lg"></i><span>Orders</span>
+            </a>
+            <a href="admin-users.html"
+               class="sidebar-link flex items-center gap-3 rounded-xl px-4 py-3 text-blue-100 font-semibold">
+                <i class="bi bi-people text-lg"></i><span>Users</span>
+            </a>
+            <a href="admin-special-orders.html"
+               id="desktopSpecialOrdersLink"
+               class="sidebar-link hidden items-center gap-3 rounded-xl px-4 py-3 text-blue-100 font-semibold">
+                <i class="bi bi-clipboard-check text-lg"></i><span>Special Orders</span>
+            </a>
+            <a href="admin-settings.html"
+               class="sidebar-link flex items-center gap-3 rounded-xl px-4 py-3 text-blue-100 font-semibold">
+                <i class="bi bi-gear text-lg"></i><span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="border-t border-blue-900 p-4">
+            <button id="desktopLogoutBtn" type="button"
+                    class="focus-ring flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left font-semibold text-blue-100 hover:bg-red-500/15 hover:text-red-200">
+                <i class="bi bi-box-arrow-right text-lg"></i><span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Mobile Drawer -->
+    <div id="drawerOverlay" class="fixed inset-0 z-[60] hidden bg-slate-950/50" aria-hidden="true"></div>
+    <aside id="mobileDrawer"
+           class="drawer fixed inset-y-0 left-0 z-[70] flex w-[285px] flex-col bg-blue-950 text-white lg:hidden"
+           aria-label="Mobile admin navigation">
+        <div class="flex h-20 items-center justify-between border-b border-blue-900 px-5">
+            <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600">
+                    <i class="bi bi-crown-fill"></i>
+                </div>
+                <div>
+                    <p class="font-black">KANYE SERIES</p>
+                    <p class="text-[11px] text-blue-200">Administration</p>
+                </div>
+            </div>
+            <button id="closeDrawerBtn" class="focus-ring rounded-lg p-2 hover:bg-white/10"
+                    aria-label="Close menu">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        <nav class="flex-1 space-y-2 overflow-y-auto p-4">
+            <a href="admin.html" class="sidebar-link active flex items-center gap-3 rounded-xl px-4 py-3 font-semibold">
+                <i class="bi bi-speedometer2"></i><span>Dashboard</span>
+            </a>
+            <a href="admin-products.html" class="sidebar-link flex items-center gap-3 rounded-xl px-4 py-3 text-blue-100 font-semibold">
+                <i class="bi bi-box-seam"></i><span>Products</span>
+            </a>
+            <a href="admin-orders.html" class="sidebar-link flex items-center gap-3 rounded-xl px-4 py-3 text-blue-100 font-semibold">
+                <i class="bi bi-bag-check"></i><span>Orders</span>
+            </a>
+            <a href="admin-users.html" class="sidebar-link flex items-center gap-3 rounded-xl px-4 py-3 text-blue-100 font-semibold">
+                <i class="bi bi-people"></i><span>Users</span>
+            </a>
+            <a href="admin-special-orders.html" id="mobileSpecialOrdersLink"
+               class="sidebar-link hidden items-center gap-3 rounded-xl px-4 py-3 text-blue-100 font-semibold">
+                <i class="bi bi-clipboard-check"></i><span>Special Orders</span>
+            </a>
+            <a href="admin-settings.html" class="sidebar-link flex items-center gap-3 rounded-xl px-4 py-3 text-blue-100 font-semibold">
+                <i class="bi bi-gear"></i><span>Settings</span>
+            </a>
+        </nav>
+        <div class="border-t border-blue-900 p-4">
+            <button id="mobileLogoutBtn" type="button"
+                    class="focus-ring flex w-full items-center gap-3 rounded-xl px-4 py-3 font-semibold text-blue-100 hover:bg-red-500/15 hover:text-red-200">
+                <i class="bi bi-box-arrow-right"></i><span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Top Header -->
+    <header class="dashboard-main sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
+        <div class="mx-auto flex h-20 max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
+            <div class="flex min-w-0 items-center gap-3">
+                <button id="openDrawerBtn" type="button"
+                        class="focus-ring flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 lg:hidden"
+                        aria-label="Open admin menu">
+                    <i class="bi bi-list text-xl"></i>
+                </button>
+                <div class="min-w-0">
+                    <p class="text-xs font-bold uppercase tracking-[.18em] text-blue-700">Kanye Series</p>
+                    <h1 class="truncate text-xl font-black text-slate-950 sm:text-2xl">Dashboard</h1>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 sm:gap-4">
+                <div id="pendingIndicator" class="hidden items-center gap-2 rounded-full bg-amber-50 px-3 py-2 text-xs font-bold text-amber-700">
+                    <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+                    <span id="pendingIndicatorText">0 pending</span>
+                </div>
+
+                <div class="hidden items-center gap-3 sm:flex">
+                    <img id="adminAvatar" src="" alt="Administrator profile"
+                         class="h-10 w-10 rounded-full border border-slate-200 bg-slate-100 object-cover">
+                    <div class="hidden max-w-[160px] md:block">
+                        <p id="adminName" class="truncate text-sm font-bold text-slate-900">Loading...</p>
+                        <p id="adminRole" class="text-xs font-medium text-blue-700">Administrator</p>
+                    </div>
+                </div>
+
+                <button id="headerLogoutBtn" type="button"
+                        class="focus-ring flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 text-slate-600 hover:border-red-200 hover:bg-red-50 hover:text-red-600"
+                        aria-label="Logout">
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="dashboard-main min-h-screen pb-24 lg:pb-8">
+        <div class="mx-auto max-w-[1600px] px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+
+            <!-- Loading / Access / Error -->
+            <section id="pageLoading" class="py-16 text-center" aria-live="polite">
+                <div class="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-slate-200 border-t-blue-700"></div>
+                <p class="mt-4 font-semibold text-slate-600">Checking administrator access...</p>
+            </section>
+
+            <section id="accessDenied" class="hidden py-16 text-center">
+                <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-red-50 text-red-600">
+                    <i class="bi bi-shield-lock text-4xl"></i>
+                </div>
+                <h2 class="mt-6 text-2xl font-black text-slate-900">Access Denied</h2>
+                <p class="mx-auto mt-2 max-w-md text-slate-500">
+                    Your account does not have administrator privileges.
+                </p>
+                <p class="mt-4 text-sm font-semibold text-slate-400">Returning to the customer homepage...</p>
+            </section>
+
+            <section id="dashboardError" class="hidden py-16 text-center">
+                <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-red-50 text-red-600">
+                    <i class="bi bi-exclamation-triangle text-3xl"></i>
+                </div>
+                <h2 class="mt-6 text-2xl font-black text-slate-900">Unable to load dashboard data</h2>
+                <p class="mx-auto mt-2 max-w-md text-slate-500">
+                    Please check your connection and try again.
+                </p>
+                <button id="retryBtn" type="button"
+                        class="focus-ring mt-6 inline-flex items-center gap-2 rounded-xl bg-blue-800 px-5 py-3 font-bold text-white hover:bg-blue-900">
+                    <i class="bi bi-arrow-clockwise"></i> Retry
+                </button>
+            </section>
+
+            <!-- Dashboard Content -->
+            <div id="dashboardContent" class="hidden">
+
+                <!-- Welcome -->
+                <section class="mb-7 overflow-hidden rounded-3xl bg-blue-950 p-6 text-white shadow-xl sm:p-8"
+                         data-aos="fade-up">
+                    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-center">
+                        <div>
+                            <p id="welcomeGreeting" class="text-sm font-bold text-blue-200">Welcome</p>
+                            <h2 class="mt-1 text-2xl font-black sm:text-3xl">Good day, <span id="welcomeName">Admin</span>.</h2>
+                            <p class="mt-2 max-w-2xl text-sm leading-6 text-blue-100 sm:text-base">
+                                Here's what's happening with Kanye Series today.
+                            </p>
+                        </div>
+                        <div class="hidden h-20 w-20 items-center justify-center rounded-3xl bg-white/10 md:flex">
+                            <i class="bi bi-speedometer2 text-4xl text-blue-200"></i>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Statistics -->
+                <section aria-labelledby="statisticsHeading" class="mb-7">
+                    <div class="mb-4">
+                        <h2 id="statisticsHeading" class="text-lg font-black text-slate-900">Overview</h2>
+                        <p class="text-sm text-slate-500">Current ecommerce management information.</p>
+                    </div>
+
+                    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                        <a href="admin-products.html"
+                           class="stat-card group rounded-2xl border border-slate-200 bg-white p-5 hover:-translate-y-1 hover:border-blue-200"
+                           data-aos="fade-up">
+                            <div class="flex items-start justify-between">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+                                    <i class="bi bi-box-seam text-xl"></i>
+                                </div>
+                                <i class="bi bi-arrow-up-right text-slate-300 group-hover:text-blue-600"></i>
+                            </div>
+                            <p class="mt-5 text-sm font-semibold text-slate-500">Total Products</p>
+                            <p id="totalProducts" class="mt-1 text-3xl font-black text-slate-950">Loading...</p>
+                            <p class="mt-1 text-xs text-slate-400">Products in catalogue</p>
+                        </a>
+
+                        <a href="admin-orders.html"
+                           class="stat-card group rounded-2xl border border-slate-200 bg-white p-5 hover:-translate-y-1 hover:border-blue-200"
+                           data-aos="fade-up" data-aos-delay="50">
+                            <div class="flex items-start justify-between">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-700">
+                                    <i class="bi bi-bag-check text-xl"></i>
+                                </div>
+                                <i class="bi bi-arrow-up-right text-slate-300 group-hover:text-blue-600"></i>
+                            </div>
+                            <p class="mt-5 text-sm font-semibold text-slate-500">Total Orders</p>
+                            <p id="totalOrders" class="mt-1 text-3xl font-black text-slate-950">Loading...</p>
+                            <p class="mt-1 text-xs text-slate-400">All customer orders</p>
+                        </a>
+
+                        <a href="admin-users.html"
+                           class="stat-card group rounded-2xl border border-slate-200 bg-white p-5 hover:-translate-y-1 hover:border-blue-200"
+                           data-aos="fade-up" data-aos-delay="100">
+                            <div class="flex items-start justify-between">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-50 text-sky-700">
+                                    <i class="bi bi-people text-xl"></i>
+                                </div>
+                                <i class="bi bi-arrow-up-right text-slate-300 group-hover:text-blue-600"></i>
+                            </div>
+                            <p class="mt-5 text-sm font-semibold text-slate-500">Total Customers</p>
+                            <p id="totalCustomers" class="mt-1 text-3xl font-black text-slate-950">Loading...</p>
+                            <p class="mt-1 text-xs text-slate-400">Customer accounts</p>
+                        </a>
+
+                        <a href="admin-orders.html?status=pending"
+                           class="stat-card group rounded-2xl border border-amber-200 bg-white p-5 hover:-translate-y-1"
+                           data-aos="fade-up" data-aos-delay="150">
+                            <div class="flex items-start justify-between">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-amber-700">
+                                    <i class="bi bi-hourglass-split text-xl"></i>
+                                </div>
+                                <i class="bi bi-arrow-up-right text-slate-300 group-hover:text-amber-600"></i>
+                            </div>
+                            <p class="mt-5 text-sm font-semibold text-slate-500">Pending Orders</p>
+                            <p id="pendingOrders" class="mt-1 text-3xl font-black text-slate-950">Loading...</p>
+                            <p class="mt-1 text-xs text-slate-400">Awaiting processing</p>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Recent Orders + Recent Products -->
+                <section class="grid gap-6 xl:grid-cols-2">
+
+                    <!-- Recent Orders -->
+                    <div class="panel overflow-hidden rounded-2xl border border-slate-200 bg-white" data-aos="fade-up">
+                        <div class="flex items-center justify-between gap-3 border-b border-slate-200 p-5">
+                            <div>
+                                <h2 class="font-black text-slate-900">Recent Orders</h2>
+                                <p class="mt-1 text-xs text-slate-500">Latest five customer orders.</p>
+                            </div>
+                            <a href="admin-orders.html" class="focus-ring text-sm font-bold text-blue-700 hover:text-blue-900">
+                                View all
+                            </a>
+                        </div>
+
+                        <div id="ordersLoading" class="space-y-4 p-5">
+                            <div class="skeleton h-16 rounded-xl"></div>
+                            <div class="skeleton h-16 rounded-xl"></div>
+                            <div class="skeleton h-16 rounded-xl"></div>
+                        </div>
+
+                        <div id="recentOrders" class="hidden divide-y divide-slate-100"></div>
+
+                        <div id="ordersEmpty" class="hidden p-10 text-center">
+                            <i class="bi bi-bag text-3xl text-slate-300"></i>
+                            <p class="mt-3 font-bold text-slate-700">No orders yet</p>
+                            <p class="mt-1 text-sm text-slate-400">New customer orders will appear here.</p>
+                        </div>
+                    </div>
+
+                    <!-- Recent Products -->
+                    <div class="panel overflow-hidden rounded-2xl border border-slate-200 bg-white" data-aos="fade-up" data-aos-delay="100">
+              
